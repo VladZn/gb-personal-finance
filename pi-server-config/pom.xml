@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>ru.gb.dev.spring</groupId>
         <version>1.0.0</version>
         <artifactId>pi</artifactId>
     </parent>
 
-	<artifactId>pi-server-config</artifactId>
-	<version>1.0.0</version>
-	<name>${project.artifactId}</name>
-	<description>Configuration Server</description>
+    <artifactId>pi-server-config</artifactId>
+    <version>1.0.0</version>
+    <name>${project.artifactId}</name>
+    <description>Configuration Server</description>
 
     <dependencies>
         <dependency>

@@ -2,8 +2,10 @@ server:
   port: 8888
 
 spring:
+  profiles:
+    active: native
   application:
-    name: pi-server-config
+    name: config
   cloud.config:
     server.native.search-locations: classpath:/shared
     discovery.enabled: true

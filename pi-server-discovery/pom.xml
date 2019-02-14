@@ -13,9 +13,9 @@
     <name>${project.artifactId}</name>
     <description>Service Discovery Server</description>
 
-    <properties>
-        <start-class>ru.gb.dev.spring.pi.server.discovery.PiServerDiscoveryApplication</start-class>
-    </properties>
+    <!--<properties>-->
+    <!--<start-class>ru.gb.dev.spring.pi.server.discovery.PiServerDiscoveryApplication</start-class>-->
+    <!--</properties>-->
 
     <dependencies>
         <dependency>
@@ -36,6 +36,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <build>
