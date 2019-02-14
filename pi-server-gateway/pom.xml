@@ -8,27 +8,19 @@
         <artifactId>pi</artifactId>
     </parent>
 
-    <artifactId>pi-server-discovery</artifactId>
+    <artifactId>pi-server-gateway</artifactId>
     <version>1.0.0</version>
     <name>${project.artifactId}</name>
-    <description>Service Discovery Server</description>
-
-    <properties>
-        <start-class>ru.gb.dev.spring.pi.server.discovery.PiServerDiscoveryApplication</start-class>
-    </properties>
+    <description>Personal Finance Service Gateway Server</description>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
         </dependency>
 
         <dependency>
@@ -37,6 +29,18 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <finalName>${artifactId}</finalName>
