@@ -9,7 +9,7 @@
         <artifactId>pi</artifactId>
     </parent>
 
-    <artifactId>pi-app-api</artifactId>
+    <artifactId>pi-notification</artifactId>
     <version>1.0.0</version>
     <name>${project.artifactId}</name>
     <description>Notification service</description>
@@ -80,12 +80,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
