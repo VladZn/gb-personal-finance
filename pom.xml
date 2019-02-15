@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.gb.dev.spring</groupId>
-    <artifactId>pi</artifactId>
+    <artifactId>pfs</artifactId>
     <version>1.0.0</version>
     <description>Personal Finance Service</description>
     <name>${project.artifactId}</name>
@@ -90,11 +90,11 @@
     </repositories>
 
     <modules>
-        <module>pi-accounting</module>
-        <module>pi-notification</module>
-        <module>pi-server-config</module>
-        <module>pi-server-discovery</module>
-        <module>pi-server-gateway</module>
+        <module>pfs-accounting</module>
+        <module>pfs-notification</module>
+        <module>pfs-server-config</module>
+        <module>pfs-server-discovery</module>
+        <module>pfs-server-gateway</module>
     </modules>
 
 </project>
