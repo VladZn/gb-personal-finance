@@ -1,9 +1,11 @@
 package ru.gb.dev.spring.pfs.accounting.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
 import ru.gb.dev.spring.pfs.accounting.model.dto.util.ResultDto;
+import ru.gb.dev.spring.pfs.accounting.model.dto.util.SuccessDto;
 import ru.gb.dev.spring.pfs.accounting.model.service.AccountService;
 
 @RestController
@@ -15,6 +17,11 @@ public class AccountResource {
     @Autowired
     public AccountResource(final AccountService service) {
         this.service = service;
+    }
+
+    @RequestMapping(value = "/ping", produces = "application/json")
+    public ResultDto ping() {
+        return new SuccessDto();
     }
 
     @GetMapping(value = "{id}", produces = "application/json")

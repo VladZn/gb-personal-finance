@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
 import ru.gb.dev.spring.pfs.accounting.model.dto.util.ResultDto;
+import ru.gb.dev.spring.pfs.accounting.model.dto.util.SuccessDto;
 import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
 import ru.gb.dev.spring.pfs.accounting.model.service.AccountService;
 
@@ -20,6 +21,11 @@ public class AccountsResource {
     @Autowired
     public AccountsResource(final AccountService service) {
         this.service = service;
+    }
+
+    @RequestMapping(value = "/ping", produces = "application/json")
+    public ResultDto ping() {
+        return new SuccessDto();
     }
 
     @GetMapping(produces = "application/json")
