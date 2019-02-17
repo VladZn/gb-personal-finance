@@ -1,5 +1,6 @@
 package ru.gb.dev.spring.pfs.accounting.controller;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
@@ -16,10 +17,13 @@ import java.util.stream.StreamSupport;
 @RequestMapping("/accounts")
 public class AccountsResource extends AbstractBaseResource {
 
+    private final ModelMapper modelMapper;
+
     private final AccountService service;
 
     @Autowired
-    public AccountsResource(final AccountService service) {
+    public AccountsResource(final ModelMapper modelMapper, final AccountService service) {
+        this.modelMapper = modelMapper;
         this.service = service;
     }
 
@@ -33,7 +37,7 @@ public class AccountsResource extends AbstractBaseResource {
         final Iterable<Account> accounts = service.findAll();
         return StreamSupport
                 .stream(accounts.spliterator(), false)
-                .map(AccountDto::new)
+                .map(account -> modelMapper.map(account, AccountDto.class))
                 .collect(Collectors.toList());
     }
 
