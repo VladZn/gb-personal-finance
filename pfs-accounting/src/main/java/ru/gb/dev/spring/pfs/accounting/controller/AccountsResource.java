@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RestController
-@RequestMapping("api/accounts")
-public class AccountsResource {
+@RequestMapping("/accounts")
+public class AccountsResource extends AbstractBaseResource {
 
     private final AccountService service;
 
@@ -23,12 +23,12 @@ public class AccountsResource {
         this.service = service;
     }
 
-    @RequestMapping(value = "/ping", produces = "application/json")
+    @GetMapping(value = "/ping")
     public ResultDto ping() {
         return new SuccessDto();
     }
 
-    @GetMapping(produces = "application/json")
+    @GetMapping
     public List<AccountDto> get() {
         final Iterable<Account> accounts = service.findAll();
         return StreamSupport
@@ -37,7 +37,7 @@ public class AccountsResource {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping(consumes = "application/json", produces = "application/json")
+    @PostMapping
     public ResultDto post(final AccountDto[] accounts) {
         for (final AccountDto account : accounts) {
             service.save(account);
@@ -46,7 +46,7 @@ public class AccountsResource {
     }
 
 
-    @PutMapping(consumes = "application/json", produces = "application/json")
+    @PutMapping
     public ResultDto put(final AccountDto[] accounts) {
         for (final AccountDto account : accounts) {
             service.save(account);
@@ -54,7 +54,7 @@ public class AccountsResource {
         return new ResultDto();
     }
 
-    @DeleteMapping(consumes = "application/json", produces = "application/json")
+    @DeleteMapping
     public ResultDto delete(final AccountDto[] accounts) {
         for (final AccountDto account : accounts) {
             service.delete(account);
