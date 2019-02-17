@@ -1,21 +1,28 @@
 package ru.gb.dev.spring.pfs.accounting.controller;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
 import ru.gb.dev.spring.pfs.accounting.model.dto.util.ResultDto;
 import ru.gb.dev.spring.pfs.accounting.model.dto.util.SuccessDto;
+import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
 import ru.gb.dev.spring.pfs.accounting.model.service.AccountService;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/account")
-public class AccountResource extends AbstractBaseResource{
+public class AccountResource extends AbstractBaseResource {
 
     private final AccountService service;
 
+    private final ModelMapper modelMapper;
+
     @Autowired
-    public AccountResource(final AccountService service) {
+    public AccountResource(final AccountService service, ModelMapper modelMapper) {
         this.service = service;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping(value = "/ping")
@@ -25,7 +32,9 @@ public class AccountResource extends AbstractBaseResource{
 
     @GetMapping(value = "{id}")
     public AccountDto get(@PathVariable("id") final String id) {
-        return service.findById(id).map(AccountDto::new).orElse(null);
+        final Optional<Account> optional = service.findById(id);
+        if (!optional.isPresent()) return null;
+        return modelMapper.map(optional.get(), AccountDto.class);
     }
 
     @PostMapping
