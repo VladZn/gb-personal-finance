@@ -1,4 +1,4 @@
-package ru.gd.dev.spring.pi.notification;
+package ru.gd.dev.spring.psf.notification;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
