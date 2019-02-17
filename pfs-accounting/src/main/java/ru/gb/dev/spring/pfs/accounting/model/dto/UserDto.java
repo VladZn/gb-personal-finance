@@ -3,7 +3,7 @@ package ru.gb.dev.spring.pfs.accounting.model.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -13,13 +13,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class UserDto {
 
-    @Nullable
-    private String id;
+    @NotNull
+    private String id = "";
 
-    @Nullable
-    private String login;
+    @NotNull
+    private String login = "";
 
-    @Nullable
-    private String email;
+    @NotNull
+    private String email = "";
 
 }

@@ -3,7 +3,7 @@ package ru.gb.dev.spring.pfs.accounting.model.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -13,34 +13,34 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class OperationDto {
 
-    @Nullable
-    private String id;
+    @NotNull
+    private String id="";
 
-    @Nullable
-    private String comment;
+    @NotNull
+    private String comment="";
 
-    @Nullable
-    private String amount;
+    @NotNull
+    private String amount="";
 
-    @Nullable
-    private String date;
+    @NotNull
+    private String date="";
 
-    @Nullable
-    private String typeId;
+    @NotNull
+    private String typeId="";
 
-    @Nullable
-    private String accountId;
+    @NotNull
+    private String accountId="";
 
-    @Nullable
-    private String userId;
+    @NotNull
+    private String userId="";
 
-    @Nullable
-    private String categoryId;
+    @NotNull
+    private String categoryId="";
 
-    @Nullable
-    private String fileId;
+    @NotNull
+    private String fileId="";
 
-    @Nullable
-    private String counterpartId;
+    @NotNull
+    private String counterpartId="";
 
 }
