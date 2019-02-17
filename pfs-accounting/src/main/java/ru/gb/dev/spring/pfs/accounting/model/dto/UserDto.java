@@ -20,9 +20,6 @@ public class UserDto {
     private String login;
 
     @Nullable
-    private String password;
-
-    @Nullable
     private String email;
 
 }
