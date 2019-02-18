@@ -3,7 +3,6 @@ package ru.gb.dev.spring.pfs.accounting.controller.resource;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.dev.spring.pfs.accounting.controller.base.AbstractBaseController;
 import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
 import ru.gb.dev.spring.pfs.accounting.model.dto.util.ResultDto;
 import ru.gb.dev.spring.pfs.accounting.model.dto.util.SuccessDto;
@@ -14,9 +13,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
+
 @RestController
 @RequestMapping("/api/accounts")
-public class AccountsResource implements AbstractBaseController {
+public class AccountsResource {
 
     private final ModelMapper modelMapper;
 
@@ -28,12 +29,12 @@ public class AccountsResource implements AbstractBaseController {
         this.service = service;
     }
 
-    @GetMapping(value = "/ping")
+    @GetMapping(value = "/ping", produces = APPLICATION_JSON_UTF8_VALUE)
     public ResultDto ping() {
         return new SuccessDto();
     }
 
-    @GetMapping
+    @GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
     public List<AccountDto> get() {
         final Iterable<Account> accounts = service.findAll();
         return StreamSupport
@@ -42,7 +43,10 @@ public class AccountsResource implements AbstractBaseController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping
+    @PostMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE
+    )
     public ResultDto post(final AccountDto[] accounts) {
         for (final AccountDto account : accounts) {
             service.save(account);
@@ -51,7 +55,10 @@ public class AccountsResource implements AbstractBaseController {
     }
 
 
-    @PutMapping
+    @PutMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE
+    )
     public ResultDto put(final AccountDto[] accounts) {
         for (final AccountDto account : accounts) {
             service.save(account);
@@ -59,7 +66,10 @@ public class AccountsResource implements AbstractBaseController {
         return new ResultDto();
     }
 
-    @DeleteMapping
+    @DeleteMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE
+    )
     public ResultDto delete(final AccountDto[] accounts) {
         for (final AccountDto account : accounts) {
             service.delete(account);

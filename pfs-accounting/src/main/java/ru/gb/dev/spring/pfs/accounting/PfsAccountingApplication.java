@@ -9,7 +9,8 @@ import org.springframework.context.annotation.Bean;
 
 /**
  *
- * http://localhost:10151/api/ping
+ * http://localhost:10151/api/account/ping
+ * http://localhost:10151/api/accounts/ping
  * http://localhost:10151/api/account
  * http://localhost:10151/api/accounts
  *

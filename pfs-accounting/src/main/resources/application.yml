@@ -32,12 +32,6 @@ spring:
         format_sql: true
         show_sql: true
         max_fetch_depth: 3
-        jdbc:
-          fetch_size: 50
-          batch_size: 10
-        c3p0:
-          min_size: 3
-          max_size: 10
 
 server:
   port: 10151

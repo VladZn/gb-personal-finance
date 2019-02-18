@@ -1,18 +1,19 @@
 package ru.gb.dev.spring.pfs.accounting.controller.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import ru.gb.dev.spring.pfs.accounting.controller.base.AbstractBaseController;
 import ru.gb.dev.spring.pfs.accounting.model.dto.OperationDto;
 
 import java.util.List;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
+
 @RequestMapping("/api/operations")
 @FeignClient(name = "operation")
-public interface OperationsClient extends AbstractBaseController {
+public interface OperationsClient {
 
-    @RequestMapping(value = "/operations", produces = "application/json", method = RequestMethod.GET)
+    @GetMapping(value = "/operations",  produces = APPLICATION_JSON_UTF8_VALUE)
     List<OperationDto> getOperations();
 
 }
