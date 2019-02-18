@@ -1,8 +1,6 @@
 spring:
-  profiles:
-    active: dev
   application:
-    name: gateway
+    name: authentication
   cloud:
     config:
       fail-fast: true
@@ -10,11 +8,3 @@ spring:
       discovery:
         enabled: true
         serviceId: config
-
----
-spring:
-  profiles: test
-  cloud:
-    config:
-      enabled: false
-      discovery.enabled: false
