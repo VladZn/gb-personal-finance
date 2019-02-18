@@ -8,7 +8,7 @@ import ru.gb.dev.spring.pfs.accounting.model.dto.OperationDto;
 
 import java.util.List;
 
-@RequestMapping("/api")
+@RequestMapping("/api/operations")
 @FeignClient(name = "operation")
 public interface OperationsClient extends AbstractBaseController {
 

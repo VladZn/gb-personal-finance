@@ -13,7 +13,7 @@ import ru.gb.dev.spring.pfs.accounting.model.service.AccountService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/account")
+@RequestMapping("/api/account")
 public class AccountResource implements AbstractBaseController {
 
     private final AccountService service;

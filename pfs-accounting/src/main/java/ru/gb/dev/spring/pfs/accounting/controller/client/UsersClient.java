@@ -8,7 +8,7 @@ import ru.gb.dev.spring.pfs.accounting.model.dto.UserDto;
 
 import java.util.List;
 
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 @FeignClient(name = "user")
 public interface UsersClient extends AbstractBaseController {
 
