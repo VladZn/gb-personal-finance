@@ -1,8 +1,9 @@
-package ru.gb.dev.spring.pfs.accounting.controller;
+package ru.gb.dev.spring.pfs.accounting.controller.resource;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.gb.dev.spring.pfs.accounting.controller.base.AbstractBaseController;
 import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
 import ru.gb.dev.spring.pfs.accounting.model.dto.util.ResultDto;
 import ru.gb.dev.spring.pfs.accounting.model.dto.util.SuccessDto;
@@ -15,7 +16,7 @@ import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("/accounts")
-public class AccountsResource extends AbstractBaseResource {
+public class AccountsResource implements AbstractBaseController {
 
     private final ModelMapper modelMapper;
 

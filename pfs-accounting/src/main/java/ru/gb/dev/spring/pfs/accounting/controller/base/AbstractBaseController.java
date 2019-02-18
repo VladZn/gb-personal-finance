@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting.controller;
+package ru.gb.dev.spring.pfs.accounting.controller.base;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -8,5 +8,5 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
         consumes = APPLICATION_JSON_UTF8_VALUE,
         produces = APPLICATION_JSON_UTF8_VALUE
 )
-public abstract class AbstractBaseResource {
+public interface AbstractBaseController {
 }
