@@ -2,13 +2,12 @@ package ru.gb.dev.spring.pfs.accounting.model.service;
 
 import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
 import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
-import ru.gb.dev.spring.pfs.accounting.util.NotFoundException;
 
 import java.util.Optional;
 
 public interface AccountService {
 
-    <S extends Account> S save(S Account) throws NotFoundException;
+    <S extends Account> S save(S account);
 
     <S extends Account> Iterable<S> saveAll(Iterable<S> ads);
 
@@ -24,7 +23,7 @@ public interface AccountService {
 
     void deleteById(String id);
 
-    void delete(Account Account) throws NotFoundException;
+    void delete(Account account);
 
     void deleteAll(Iterable<? extends Account> ads);
 

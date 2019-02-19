@@ -9,7 +9,7 @@ import org.springframework.util.StringUtils;
 import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
 import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
 import ru.gb.dev.spring.pfs.accounting.model.repository.AccountRepository;
-import ru.gb.dev.spring.pfs.accounting.util.NotFoundException;
+import ru.gb.dev.spring.pfs.accounting.exception.EntityNotFoundException;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -24,12 +24,12 @@ public class AccountServiceImpl implements AccountService {
         this.repository = repository;
     }
 
-    @Nullable
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public <S extends Account> S save(@Nullable final S account) {
-        if (account == null || StringUtils.isEmpty(account.getId()))
-            throw new NotFoundException("account is not valid");
+    public @Nullable <S extends Account> S save(final @Nullable S account) {
+        if (account == null || StringUtils.isEmpty(account.getId())) {
+            throw new EntityNotFoundException("account is not valid");
+        }
         return repository.save(account);
     }
 
@@ -41,13 +41,13 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    public Optional<Account> findById(@Nullable final String id) {
+    public Optional<Account> findById(final String id) {
         return repository.findById(id);
     }
 
     @Override
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    public boolean existsById(@Nullable final String id) {
+    public boolean existsById(final String id) {
         return repository.existsById(id);
     }
 
@@ -71,15 +71,16 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void deleteById(@Nullable final String id) {
+    public void deleteById(final String id) {
         repository.deleteById(id);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void delete(@Nullable final Account account) throws NotFoundException {
-        if (account == null || StringUtils.isEmpty(account.getId()))
-            throw new NotFoundException("account is not valid");
+    public void delete(final @Nullable Account account) throws EntityNotFoundException {
+        if (account == null || StringUtils.isEmpty(account.getId())) {
+            throw new EntityNotFoundException("account is not valid");
+        }
         repository.delete(account);
     }
 
@@ -98,10 +99,12 @@ public class AccountServiceImpl implements AccountService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void save(final AccountDto accountDto) {
-        if (accountDto == null) return;
-        final Optional<Account> optional = findById(accountDto.getId());
-        final Account account = optional.orElseGet(Account::new);
-        account.setId(accountDto.getId());
+        if (accountDto == null) {
+            return;
+        }
+        //TODO final? мы же меняем его дальше
+        final Account account = findById(accountDto.getId()).orElseGet(Account::new);
+        account.setId(accountDto.getId());  //TODO переделать на mapper
         account.setName(accountDto.getName());
         account.setAmount(new BigDecimal(accountDto.getAmount()));
         account.setUserId(accountDto.getUserId());
@@ -113,7 +116,9 @@ public class AccountServiceImpl implements AccountService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void delete(final AccountDto accountDto) {
-        if (accountDto == null) return;
+        if (accountDto == null) {
+            return;
+        }
         deleteById(accountDto.getId());
     }
 
