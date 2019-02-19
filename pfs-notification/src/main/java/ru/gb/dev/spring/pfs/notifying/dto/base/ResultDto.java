@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NoArgsConstructor
 @AllArgsConstructor
-public class Header {
+public class ResultDto {
 
     @Nullable
     private boolean success = true;

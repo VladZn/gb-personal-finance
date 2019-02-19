@@ -3,10 +3,9 @@ package ru.gb.dev.spring.pfs.notifying.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
-import ru.gb.dev.spring.pfs.notifying.dto.base.Header;
+import ru.gb.dev.spring.pfs.notifying.dto.base.ResultDto;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Date;
 
 @Data
 @XmlRootElement
@@ -14,7 +13,7 @@ import java.util.Date;
 public class NotificationDto {
 
     @NotNull
-    private Header header;
+    private ResultDto result;
 
     private String id = "";
 

@@ -21,23 +21,19 @@ public class NotificationServiceImpl implements NotificationService{
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = ErrorDatabase.class)
     public Notification save(Notification notification) {
-
-        if (notification == null)
+       if (notification == null)
             throw new ErrorDatabase("Error save database, parameter 1 is null");
         return notificationRepository.save(notification);
-
     }
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public Notification findById(String id) {
-
         if (id == null || id.isEmpty())
             throw new ErrorDatabase("Error save database, parameter 1 is null");
         Optional<Notification>  optionalNotification = notificationRepository.findById(id);
         if (optionalNotification.orElse(null) == null) return null;
         return optionalNotification.get();
-
     }
 
     @Override
@@ -47,22 +43,29 @@ public class NotificationServiceImpl implements NotificationService{
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
     public Iterable<Notification> findIsActive() {
-        return null;
+        return notificationRepository.findIsActive();
     }
 
     @Override
-    public Notification update(Notification notification) throws ErrorDatabase {
-        return null;
+    @Transactional(propagation = Propagation.REQUIRED, noRollbackFor = ErrorDatabase.class)
+    public Notification update(Notification notification) {
+        return save(notification);
     }
 
     @Override
-    public void deleteById(String id) throws ErrorDatabase {
-
+    @Transactional(propagation = Propagation.REQUIRED, noRollbackFor = ErrorDatabase.class)
+    public void deleteById(String id)  {
+        if (id == null || id.isEmpty())
+            throw new ErrorDatabase("Error save database, parameter 1 is null");
+        notificationRepository.deleteById(id);
     }
 
     @Override
     public void delete(Notification notification) throws ErrorDatabase {
-
+        if (notification == null)
+            throw new ErrorDatabase("Error save database, parameter 1 is null");
+        notificationRepository.delete(notification);
     }
 }
