@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.authentication;
+package ru.gb.dev.spring.pfs.authentication.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

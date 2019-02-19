@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.authentication.config;
+package ru.gb.dev.spring.pfs.authentication.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

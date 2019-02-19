@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.authentication;
+package ru.gb.dev.spring.pfs.authentication.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting.feign;
+package ru.gb.dev.spring.pfs.accounting.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

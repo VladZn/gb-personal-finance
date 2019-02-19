@@ -1,2 +1,5 @@
 server:
   port: 8901
+
+signing:
+  key: "cGVyc29uYWwgZmluYW5jZSBzZXJ2aWNl"
