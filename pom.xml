@@ -26,11 +26,6 @@
             <email>skubatko@gmail.com</email>
         </developer>
         <developer>
-            <id>alexeyshcheglov3</id>
-            <name>Alexey Shcheglov</name>
-            <email>as.shcheglov@gmail.com</email>
-        </developer>
-        <developer>
             <id>nurutdinov</id>
             <name>Rustam Nurutdinov</name>
             <email>nurutdinov.rustam@mail.ru</email>
@@ -85,6 +80,7 @@
         <module>pfs-accounting</module>
         <module>pfs-authentication</module>
         <module>pfs-notification</module>
+        <module>pfs-ui</module>
         <module>pfs-server-config</module>
         <module>pfs-server-discovery</module>
         <module>pfs-server-gateway</module>
