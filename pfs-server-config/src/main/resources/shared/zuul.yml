@@ -1,0 +1,11 @@
+zuul:
+  retryable: true
+  ignored-services: "*"
+  prefix: /api
+  strip-prefix: false
+  routes:
+    accounting:
+      path: /accounting/**
+      serviceId: accounting
+      strip-prefix: false
+

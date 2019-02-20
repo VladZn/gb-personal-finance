@@ -2,9 +2,6 @@ package ru.gb.dev.spring.pfs.notifying.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.jetbrains.annotations.NotNull;
-import ru.gb.dev.spring.pfs.notifying.dto.base.ResultDto;
-
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
@@ -12,9 +9,6 @@ import java.util.Date;
 @XmlRootElement
 @NoArgsConstructor
 public class UserDto {
-
-    @NotNull
-    private ResultDto result;
 
     private String id = "";
 

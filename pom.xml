@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.gb.dev.spring</groupId>
-    <artifactId>pi</artifactId>
+    <artifactId>pfs</artifactId>
     <version>1.0.0</version>
     <description>Personal Finance Service</description>
     <name>${project.artifactId}</name>
@@ -24,11 +24,6 @@
             <id>skubatko</id>
             <name>Sergey Kubatko</name>
             <email>skubatko@gmail.com</email>
-        </developer>
-        <developer>
-            <id>alexeyshcheglov3</id>
-            <name>Alexey Shcheglov</name>
-            <email>as.shcheglov@gmail.com</email>
         </developer>
         <developer>
             <id>nurutdinov</id>
@@ -90,11 +85,12 @@
     </repositories>
 
     <modules>
-        <module>pi-accounting</module>
-        <module>pi-notification</module>
-        <module>pi-server-config</module>
-        <module>pi-server-discovery</module>
-        <module>pi-server-gateway</module>
+        <module>pfs-accounting</module>
+        <module>pfs-notification</module>
+        <module>pfs-ui</module>
+        <module>pfs-server-config</module>
+        <module>pfs-server-discovery</module>
+        <module>pfs-server-gateway</module>
     </modules>
 
 </project>

@@ -1,9 +1,0 @@
-server:
-  port: 8888
-
-spring:
-  application:
-    name: pi-server-config
-  cloud.config:
-    server.native.search-locations: classpath:/shared
-    discovery.enabled: true

@@ -19,8 +19,8 @@ public class NotificationServiceImpl implements NotificationService{
 
     @Nullable
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = ErrorDatabase.class)
-    public Notification save(Notification notification) {
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Notification save(Notification notification) throws ErrorDatabase {
        if (notification == null)
             throw new ErrorDatabase("Error save database, parameter 1 is null");
         return notificationRepository.save(notification);
@@ -28,7 +28,7 @@ public class NotificationServiceImpl implements NotificationService{
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
-    public Notification findById(String id) {
+    public Notification findById(String id) throws ErrorDatabase{
         if (id == null || id.isEmpty())
             throw new ErrorDatabase("Error save database, parameter 1 is null");
         Optional<Notification>  optionalNotification = notificationRepository.findById(id);
@@ -49,14 +49,14 @@ public class NotificationServiceImpl implements NotificationService{
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, noRollbackFor = ErrorDatabase.class)
-    public Notification update(Notification notification) {
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Notification update(Notification notification) throws ErrorDatabase {
         return save(notification);
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, noRollbackFor = ErrorDatabase.class)
-    public void deleteById(String id)  {
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void deleteById(String id) throws ErrorDatabase {
         if (id == null || id.isEmpty())
             throw new ErrorDatabase("Error save database, parameter 1 is null");
         notificationRepository.deleteById(id);
