@@ -4,12 +4,10 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import ru.gb.dev.spring.pfs.statistics.model.entity.base.AbstractNamedEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +57,11 @@ public class Client extends AbstractNamedEntity {
     @Column(name = "active")
     private boolean isActice = false;
 
+    @Nullable
+    @ManyToOne
+    @JoinColumn(name ="logo_id")
+    private Logo logo;
+
     @NotNull
     @OneToMany(mappedBy = "client")
     private List<Operation> operations = new ArrayList<>();
@@ -66,9 +69,5 @@ public class Client extends AbstractNamedEntity {
     @NotNull
     @Column(name = "user_id")
     private String userId = "";
-
-    @NotNull
-    @Column(name = "logo_id")
-    private String logoId = "";
 
 }

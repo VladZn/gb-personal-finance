@@ -36,4 +36,12 @@ public class Logo extends AbstractNamedEntity {
     @OneToMany(mappedBy = "logo")
     private List<Operation> operations = new ArrayList<>();
 
+    @NotNull
+    @OneToMany(mappedBy = "logo")
+    private List<Client> clients = new ArrayList<>();
+
+    @NotNull
+    @OneToMany(mappedBy = "logo")
+    private List<Category> categories = new ArrayList<>();
+
 }
