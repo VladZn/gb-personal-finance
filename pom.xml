@@ -87,6 +87,7 @@
     <modules>
         <module>pfs-accounting</module>
         <module>pfs-notification</module>
+        <module>pfs-statistics</module>
         <module>pfs-ui</module>
         <module>pfs-server-config</module>
         <module>pfs-server-discovery</module>

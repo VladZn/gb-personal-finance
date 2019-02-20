@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Table(name = "account")
+@Table(name = "accounts")
 public class Account extends AbstractNamedEntity {
 
     @NotNull
