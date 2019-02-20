@@ -24,7 +24,7 @@ import java.util.stream.StreamSupport;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
 @RestController
-@RequestMapping("/api/account")
+@RequestMapping("/api/accounts")
 public class AccountsController {
 
     private final AccountService service;
@@ -43,13 +43,13 @@ public class AccountsController {
     }
 
     @GetMapping(value = "{id}", produces = APPLICATION_JSON_UTF8_VALUE)
-    public AccountDto get(@PathVariable("id") final String id) {
+    public AccountDto getAccount(@PathVariable("id") final String id) {
         return service.findById(id)
                 .map(account -> modelMapper.map(account, AccountDto.class))
                 .orElseThrow(() -> new EntityNotFoundException("Account with id " + id + "not found"));
     }
     @GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-    public List<AccountDto> get() {
+    public List<AccountDto> getListAccount() {
         final Iterable<Account> accounts = service.findAll();
         return StreamSupport
                 .stream(accounts.spliterator(), false)
@@ -70,7 +70,7 @@ public class AccountsController {
     }
 
     @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-    public ResultDto delete(final AccountDto accountDto) {
+    public ResultDto deleteAccount(final AccountDto accountDto) {
         service.delete(accountDto);
         return new ResultDto();
     }
@@ -79,7 +79,7 @@ public class AccountsController {
             consumes = APPLICATION_JSON_UTF8_VALUE,
             produces = APPLICATION_JSON_UTF8_VALUE
     )
-    public ResultDto delete(final AccountDto[] accounts) {
+    public ResultDto deleteAccounts(final AccountDto[] accounts) {
         for (final AccountDto account : accounts) {
             service.delete(account);
         }
