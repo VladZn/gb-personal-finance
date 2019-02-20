@@ -4,7 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.gb.dev.spring.pfs.accounting.model.dto.UserDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.UserDto;
 
 import java.util.List;
 

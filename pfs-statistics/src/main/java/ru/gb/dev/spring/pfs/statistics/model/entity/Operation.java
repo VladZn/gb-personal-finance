@@ -68,8 +68,4 @@ public class Operation extends AbstractBaseEntity {
     @Column(name = "account_id")
     private String accountId = "";
 
-    @NotNull
-    @Column(name = "file_id")
-    private String fileId = "";
-
 }
