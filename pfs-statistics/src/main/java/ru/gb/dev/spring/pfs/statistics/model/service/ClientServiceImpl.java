@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting.model.service;
+package ru.gb.dev.spring.pfs.statistics.model.service;
 
 import org.jetbrains.annotations.Nullable;
 import org.modelmapper.ModelMapper;
@@ -7,44 +7,45 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
-import ru.gb.dev.spring.pfs.accounting.exception.EntityNotFoundException;
-import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
-import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
-import ru.gb.dev.spring.pfs.accounting.model.repository.AccountRepository;
+import ru.gb.dev.spring.pfs.statistics.exception.EntityNotFoundException;
+import ru.gb.dev.spring.pfs.statistics.model.dto.ClientDto;
+import ru.gb.dev.spring.pfs.statistics.model.entity.Client;
+import ru.gb.dev.spring.pfs.statistics.model.entity.Logo;
+import ru.gb.dev.spring.pfs.statistics.model.repository.ClientRepository;
 
 import java.util.Optional;
 
 @Service
-public class AccountServiceImpl implements AccountService {
+public class ClientServiceImpl implements ClientService {
 
-    private final AccountRepository repository;
+    private final ClientRepository repository;
 
     private final ModelMapper modelMapper;
 
     @Autowired
-    public AccountServiceImpl(final AccountRepository repository, ModelMapper modelMapper) {
+    public ClientServiceImpl(final ClientRepository repository, final ModelMapper modelMapper) {
         this.repository = repository;
         this.modelMapper = modelMapper;
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public @Nullable <S extends Account> S save(final @Nullable S account) {
-        if (account == null || StringUtils.isEmpty(account.getId())) {
-            throw new EntityNotFoundException("account is not valid");
+    public @Nullable <S extends Client> S save(final @Nullable S client) {
+        if (client == null || StringUtils.isEmpty(client.getId())) {
+            throw new EntityNotFoundException("client is not valid");
         }
-        return repository.save(account);
+        return repository.save(client);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public <S extends Account> Iterable<S> saveAll(final Iterable<S> ads) {
+    public <S extends Client> Iterable<S> saveAll(final Iterable<S> ads) {
         return repository.saveAll(ads);
     }
 
     @Override
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    public Optional<Account> findById(final String id) {
+    public Optional<Client> findById(final String id) {
         return repository.findById(id);
     }
 
@@ -56,14 +57,19 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    public Iterable<Account> findAll() {
+    public Iterable<Client> findAll() {
         return repository.findAll();
     }
 
     @Override
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    public Iterable<Account> findAllById(final Iterable<String> ids) {
+    public Iterable<Client> findAllById(final Iterable<String> ids) {
         return repository.findAllById(ids);
+    }
+
+    @Override
+    public Iterable<Client> findAllByLogo(final Logo logo) {
+        return repository.findAllByLogo(logo);
     }
 
     @Override
@@ -80,16 +86,16 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void delete(final @Nullable Account account) throws EntityNotFoundException {
-        if (account == null || StringUtils.isEmpty(account.getId())) {
-            throw new EntityNotFoundException("account is not valid");
+    public void delete(final @Nullable Client client) throws EntityNotFoundException {
+        if (client == null || StringUtils.isEmpty(client.getId())) {
+            throw new EntityNotFoundException("client is not valid");
         }
-        repository.delete(account);
+        repository.delete(client);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void deleteAll(final Iterable<? extends Account> ads) {
+    public void deleteAll(final Iterable<? extends Client> ads) {
         repository.deleteAll(ads);
     }
 
@@ -101,22 +107,22 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void save(final AccountDto accountDto) {
-        if (accountDto == null) {
+    public void save(final ClientDto clientDto) {
+        if (clientDto == null) {
             return;
         }
-        Account account = modelMapper.map(accountDto, Account.class);
-        account.setId(accountDto.getId());
-        save(account);
+        final Client client = modelMapper.map(clientDto, Client.class);
+        client.setId(clientDto.getId());
+        save(client);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void delete(final AccountDto accountDto) {
-        if (accountDto == null) {
+    public void delete(final ClientDto clientDto) {
+        if (clientDto == null) {
             return;
         }
-        deleteById(accountDto.getId());
+        deleteById(clientDto.getId());
     }
 
 }

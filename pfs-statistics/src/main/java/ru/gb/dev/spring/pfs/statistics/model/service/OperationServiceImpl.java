@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting.model.service;
+package ru.gb.dev.spring.pfs.statistics.model.service;
 
 import org.jetbrains.annotations.Nullable;
 import org.modelmapper.ModelMapper;
@@ -7,44 +7,47 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
-import ru.gb.dev.spring.pfs.accounting.exception.EntityNotFoundException;
-import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
-import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
-import ru.gb.dev.spring.pfs.accounting.model.repository.AccountRepository;
+import ru.gb.dev.spring.pfs.statistics.exception.EntityNotFoundException;
+import ru.gb.dev.spring.pfs.statistics.model.dto.OperationDto;
+import ru.gb.dev.spring.pfs.statistics.model.entity.Category;
+import ru.gb.dev.spring.pfs.statistics.model.entity.Client;
+import ru.gb.dev.spring.pfs.statistics.model.entity.Logo;
+import ru.gb.dev.spring.pfs.statistics.model.entity.Operation;
+import ru.gb.dev.spring.pfs.statistics.model.repository.OperationRepository;
 
 import java.util.Optional;
 
 @Service
-public class AccountServiceImpl implements AccountService {
+public class OperationServiceImpl implements OperationService {
 
-    private final AccountRepository repository;
+    private final OperationRepository repository;
 
     private final ModelMapper modelMapper;
 
     @Autowired
-    public AccountServiceImpl(final AccountRepository repository, ModelMapper modelMapper) {
+    public OperationServiceImpl(final OperationRepository repository, final ModelMapper modelMapper) {
         this.repository = repository;
         this.modelMapper = modelMapper;
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public @Nullable <S extends Account> S save(final @Nullable S account) {
-        if (account == null || StringUtils.isEmpty(account.getId())) {
-            throw new EntityNotFoundException("account is not valid");
+    public @Nullable <S extends Operation> S save(final @Nullable S operation) {
+        if (operation == null || StringUtils.isEmpty(operation.getId())) {
+            throw new EntityNotFoundException("operation is not valid");
         }
-        return repository.save(account);
+        return repository.save(operation);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public <S extends Account> Iterable<S> saveAll(final Iterable<S> ads) {
+    public <S extends Operation> Iterable<S> saveAll(final Iterable<S> ads) {
         return repository.saveAll(ads);
     }
 
     @Override
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    public Optional<Account> findById(final String id) {
+    public Optional<Operation> findById(final String id) {
         return repository.findById(id);
     }
 
@@ -56,14 +59,29 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    public Iterable<Account> findAll() {
+    public Iterable<Operation> findAll() {
         return repository.findAll();
     }
 
     @Override
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    public Iterable<Account> findAllById(final Iterable<String> ids) {
+    public Iterable<Operation> findAllById(final Iterable<String> ids) {
         return repository.findAllById(ids);
+    }
+
+    @Override
+    public Iterable<Operation> findAllByClient(final Client client) {
+        return repository.findAllByClient(client);
+    }
+
+    @Override
+    public Iterable<Operation> findAllByCategory(final Category category) {
+        return repository.findAllByCategory(category);
+    }
+
+    @Override
+    public Iterable<Operation> findAllByLogo(final Logo logo) {
+        return repository.findAllByLogo(logo);
     }
 
     @Override
@@ -80,16 +98,16 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void delete(final @Nullable Account account) throws EntityNotFoundException {
-        if (account == null || StringUtils.isEmpty(account.getId())) {
-            throw new EntityNotFoundException("account is not valid");
+    public void delete(final @Nullable Operation operation) throws EntityNotFoundException {
+        if (operation == null || StringUtils.isEmpty(operation.getId())) {
+            throw new EntityNotFoundException("operation is not valid");
         }
-        repository.delete(account);
+        repository.delete(operation);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void deleteAll(final Iterable<? extends Account> ads) {
+    public void deleteAll(final Iterable<? extends Operation> ads) {
         repository.deleteAll(ads);
     }
 
@@ -101,22 +119,22 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void save(final AccountDto accountDto) {
-        if (accountDto == null) {
+    public void save(final OperationDto operationDto) {
+        if (operationDto == null) {
             return;
         }
-        Account account = modelMapper.map(accountDto, Account.class);
-        account.setId(accountDto.getId());
-        save(account);
+        final Operation operation = modelMapper.map(operationDto, Operation.class);
+        operation.setId(operationDto.getId());
+        save(operation);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void delete(final AccountDto accountDto) {
-        if (accountDto == null) {
+    public void delete(final OperationDto operationDto) {
+        if (operationDto == null) {
             return;
         }
-        deleteById(accountDto.getId());
+        deleteById(operationDto.getId());
     }
 
 }

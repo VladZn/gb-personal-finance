@@ -1,47 +1,50 @@
 package ru.gb.dev.spring.pfs.statistics.model.service;
 
 import org.jetbrains.annotations.Nullable;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
-import ru.gb.dev.spring.pfs.accounting.exception.EntityNotFoundException;
-import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
-import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
-import ru.gb.dev.spring.pfs.accounting.model.repository.AccountRepository;
+import ru.gb.dev.spring.pfs.statistics.exception.EntityNotFoundException;
+import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDto;
+import ru.gb.dev.spring.pfs.statistics.model.entity.Logo;
+import ru.gb.dev.spring.pfs.statistics.model.repository.LogoRepository;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 
 @Service
-public class AccountServiceImpl implements AccountService {
+public class LogoServiceImpl implements LogoService {
 
-    private final AccountRepository repository;
+    private final LogoRepository repository;
+
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public AccountServiceImpl(final AccountRepository repository) {
+    public LogoServiceImpl(final LogoRepository repository, final ModelMapper modelMapper) {
         this.repository = repository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public @Nullable <S extends Account> S save(final @Nullable S account) {
-        if (account == null || StringUtils.isEmpty(account.getId())) {
-            throw new EntityNotFoundException("account is not valid");
+    public @Nullable <S extends Logo> S save(final @Nullable S logo) {
+        if (logo == null || StringUtils.isEmpty(logo.getId())) {
+            throw new EntityNotFoundException("logo is not valid");
         }
-        return repository.save(account);
+        return repository.save(logo);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public <S extends Account> Iterable<S> saveAll(final Iterable<S> ads) {
+    public <S extends Logo> Iterable<S> saveAll(final Iterable<S> ads) {
         return repository.saveAll(ads);
     }
 
     @Override
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    public Optional<Account> findById(final String id) {
+    public Optional<Logo> findById(final String id) {
         return repository.findById(id);
     }
 
@@ -53,13 +56,13 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    public Iterable<Account> findAll() {
+    public Iterable<Logo> findAll() {
         return repository.findAll();
     }
 
     @Override
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    public Iterable<Account> findAllById(final Iterable<String> ids) {
+    public Iterable<Logo> findAllById(final Iterable<String> ids) {
         return repository.findAllById(ids);
     }
 
@@ -77,16 +80,16 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void delete(final @Nullable Account account) throws EntityNotFoundException {
-        if (account == null || StringUtils.isEmpty(account.getId())) {
-            throw new EntityNotFoundException("account is not valid");
+    public void delete(final @Nullable Logo logo) throws EntityNotFoundException {
+        if (logo == null || StringUtils.isEmpty(logo.getId())) {
+            throw new EntityNotFoundException("logo is not valid");
         }
-        repository.delete(account);
+        repository.delete(logo);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void deleteAll(final Iterable<? extends Account> ads) {
+    public void deleteAll(final Iterable<? extends Logo> ads) {
         repository.deleteAll(ads);
     }
 
@@ -98,28 +101,22 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void save(final AccountDto accountDto) {
-        if (accountDto == null) {
+    public void save(final LogoDto logoDto) {
+        if (logoDto == null) {
             return;
         }
-        //TODO final? мы же меняем его дальше
-        final Account account = findById(accountDto.getId()).orElseGet(Account::new);
-        account.setId(accountDto.getId());  //TODO переделать на mapper
-        account.setName(accountDto.getName());
-        account.setAmount(new BigDecimal(accountDto.getAmount()));
-        account.setUserId(accountDto.getUserId());
-        account.setTypeId(accountDto.getTypeId());
-        account.setIconId(accountDto.getIconId());
-        save(account);
+        Logo logo = modelMapper.map(logoDto, Logo.class);
+        logo.setId(logoDto.getId());
+        save(logo);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void delete(final AccountDto accountDto) {
-        if (accountDto == null) {
+    public void delete(final LogoDto logoDto) {
+        if (logoDto == null) {
             return;
         }
-        deleteById(accountDto.getId());
+        deleteById(logoDto.getId());
     }
 
 }
