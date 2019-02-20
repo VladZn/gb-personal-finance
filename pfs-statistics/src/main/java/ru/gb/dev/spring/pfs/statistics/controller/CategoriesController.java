@@ -51,21 +51,21 @@ public class CategoriesController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE
+    )
     public ResultDto post(final CategoryDto categoryDto) {
         service.save(categoryDto);
         return new ResultDto();
     }
 
-    @PutMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    @PutMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE
+    )
     public ResultDto put(final CategoryDto categoryDto) {
         service.save(categoryDto);
-        return new ResultDto();
-    }
-
-    @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-    public ResultDto delete(final CategoryDto categoryDto) {
-        service.delete(categoryDto);
         return new ResultDto();
     }
 
@@ -73,10 +73,8 @@ public class CategoriesController {
             consumes = APPLICATION_JSON_UTF8_VALUE,
             produces = APPLICATION_JSON_UTF8_VALUE
     )
-    public ResultDto deleteCategories(final CategoryDto[] categories) {
-        for (final CategoryDto category : categories) {
-            service.delete(category);
-        }
+    public ResultDto delete(final CategoryDto categoryDto) {
+        service.delete(categoryDto);
         return new ResultDto();
     }
 

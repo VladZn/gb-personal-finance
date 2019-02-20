@@ -51,21 +51,21 @@ public class OperationsController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE
+    )
     public ResultDto post(final OperationDto operationDto) {
         service.save(operationDto);
         return new ResultDto();
     }
 
-    @PutMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    @PutMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE
+    )
     public ResultDto put(final OperationDto operationDto) {
         service.save(operationDto);
-        return new ResultDto();
-    }
-
-    @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-    public ResultDto delete(final OperationDto operationDto) {
-        service.delete(operationDto);
         return new ResultDto();
     }
 
@@ -73,10 +73,8 @@ public class OperationsController {
             consumes = APPLICATION_JSON_UTF8_VALUE,
             produces = APPLICATION_JSON_UTF8_VALUE
     )
-    public ResultDto deleteOperations(final OperationDto[] operations) {
-        for (final OperationDto operation : operations) {
-            service.delete(operation);
-        }
+    public ResultDto delete(final OperationDto operationDto) {
+        service.delete(operationDto);
         return new ResultDto();
     }
 

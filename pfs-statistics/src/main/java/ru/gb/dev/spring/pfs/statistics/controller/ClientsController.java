@@ -51,21 +51,21 @@ public class ClientsController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE
+    )
     public ResultDto post(final ClientDto clientDto) {
         service.save(clientDto);
         return new ResultDto();
     }
 
-    @PutMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    @PutMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE
+    )
     public ResultDto put(final ClientDto clientDto) {
         service.save(clientDto);
-        return new ResultDto();
-    }
-
-    @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-    public ResultDto delete(final ClientDto clientDto) {
-        service.delete(clientDto);
         return new ResultDto();
     }
 
@@ -73,10 +73,8 @@ public class ClientsController {
             consumes = APPLICATION_JSON_UTF8_VALUE,
             produces = APPLICATION_JSON_UTF8_VALUE
     )
-    public ResultDto deleteClients(final ClientDto[] clients) {
-        for (final ClientDto client : clients) {
-            service.delete(client);
-        }
+    public ResultDto delete(final ClientDto clientDto) {
+        service.delete(clientDto);
         return new ResultDto();
     }
 

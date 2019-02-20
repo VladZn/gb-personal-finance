@@ -51,32 +51,27 @@ public class AccountsController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE)
     public ResultDto post(final AccountDto accountDto) {
         service.save(accountDto);
         return new ResultDto();
     }
 
-    @PutMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    @PutMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE)
     public ResultDto put(final AccountDto accountDto) {
         service.save(accountDto);
         return new ResultDto();
     }
 
-    @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-    public ResultDto delete(final AccountDto accountDto) {
-        service.delete(accountDto);
-        return new ResultDto();
-    }
-
     @DeleteMapping(
             consumes = APPLICATION_JSON_UTF8_VALUE,
-            produces = APPLICATION_JSON_UTF8_VALUE
-    )
-    public ResultDto deleteAccounts(final AccountDto[] accounts) {
-        for (final AccountDto account : accounts) {
-            service.delete(account);
-        }
+            produces = APPLICATION_JSON_UTF8_VALUE)
+    public ResultDto delete(final AccountDto accountDto) {
+        service.delete(accountDto);
         return new ResultDto();
     }
 

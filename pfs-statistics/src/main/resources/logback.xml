@@ -8,10 +8,10 @@
 
     <appender name="rollingFileAppender"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>./statistics.log</File>
+        <File>./log/statistics.log</File>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>./statistics-%d{yyyy-MM-dd---HH-mm}.log</FileNamePattern>
+            <FileNamePattern>./log/statistics-%d{yyyy-MM-dd---HH-mm}.log</FileNamePattern>
             <maxHistory>1</maxHistory>
         </rollingPolicy>
 

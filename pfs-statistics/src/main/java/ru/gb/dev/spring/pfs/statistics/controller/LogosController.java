@@ -51,21 +51,21 @@ public class LogosController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE
+    )
     public ResultDto post(final LogoDto logoDto) {
         service.save(logoDto);
         return new ResultDto();
     }
 
-    @PutMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    @PutMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE
+    )
     public ResultDto put(final LogoDto logoDto) {
         service.save(logoDto);
-        return new ResultDto();
-    }
-
-    @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-    public ResultDto delete(final LogoDto logoDto) {
-        service.delete(logoDto);
         return new ResultDto();
     }
 
@@ -73,10 +73,8 @@ public class LogosController {
             consumes = APPLICATION_JSON_UTF8_VALUE,
             produces = APPLICATION_JSON_UTF8_VALUE
     )
-    public ResultDto deleteLogos(final LogoDto[] logos) {
-        for (final LogoDto logo : logos) {
-            service.delete(logo);
-        }
+    public ResultDto delete(final LogoDto logoDto) {
+        service.delete(logoDto);
         return new ResultDto();
     }
 
