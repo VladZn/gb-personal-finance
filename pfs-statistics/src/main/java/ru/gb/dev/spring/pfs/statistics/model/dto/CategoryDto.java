@@ -20,7 +20,7 @@ public class CategoryDto {
     private String name = "";
 
     @NotNull
-    private String isActive = "";
+    private String active = "";
 
     @NotNull
     private String logo_id = "";

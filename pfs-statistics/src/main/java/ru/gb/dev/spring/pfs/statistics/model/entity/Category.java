@@ -19,7 +19,7 @@ import java.util.List;
 public class Category extends AbstractNamedEntity {
 
     @Column(name = "active")
-    private boolean isActice;
+    private Boolean active;
 
     @Nullable
     @ManyToOne
