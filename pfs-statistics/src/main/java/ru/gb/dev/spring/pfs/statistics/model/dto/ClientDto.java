@@ -14,33 +14,45 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ClientDto {
 
     @NotNull
-    private String id="";
+    private String id = "";
 
     @NotNull
-    private String comment="";
+    private String name = "";
 
     @NotNull
-    private String amount="";
+    private String fullName = "";
 
     @NotNull
-    private String date="";
+    private String email = "";
 
     @NotNull
-    private String typeId="";
+    private String phone = "";
 
     @NotNull
-    private String accountId="";
+    private String code = "";
 
     @NotNull
-    private String userId="";
+    private String inn = "";
 
     @NotNull
-    private String categoryId="";
+    private String kpp = "";
 
     @NotNull
-    private String fileId="";
+    private String urAddress = "";
 
     @NotNull
-    private String counterpartId="";
+    private String physAddress = "";
+
+    @NotNull
+    private String comment = "";
+
+    @NotNull
+    private String isActice = "";
+
+    @NotNull
+    private String logo_id = "";
+
+    @NotNull
+    private String userId = "";
 
 }

@@ -14,33 +14,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class CategoryDto {
 
     @NotNull
-    private String id="";
+    private String id = "";
 
     @NotNull
-    private String comment="";
+    private String name = "";
 
     @NotNull
-    private String amount="";
+    private String isActive = "";
 
     @NotNull
-    private String date="";
+    private String logo_id = "";
 
     @NotNull
-    private String typeId="";
-
-    @NotNull
-    private String accountId="";
-
-    @NotNull
-    private String userId="";
-
-    @NotNull
-    private String categoryId="";
-
-    @NotNull
-    private String fileId="";
-
-    @NotNull
-    private String counterpartId="";
+    private String userId = "";
 
 }
