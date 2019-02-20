@@ -2,20 +2,13 @@ package ru.gb.dev.spring.pfs.accounting.controller;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import ru.gb.dev.spring.pfs.accounting.exception.EntityNotFoundException;
 import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
 import ru.gb.dev.spring.pfs.accounting.model.dto.util.ResultDto;
 import ru.gb.dev.spring.pfs.accounting.model.dto.util.SuccessDto;
 import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
 import ru.gb.dev.spring.pfs.accounting.model.service.AccountService;
-import ru.gb.dev.spring.pfs.accounting.exception.EntityNotFoundException;
-
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,13 +36,14 @@ public class AccountsController {
     }
 
     @GetMapping(value = "{id}", produces = APPLICATION_JSON_UTF8_VALUE)
-    public AccountDto getAccount(@PathVariable("id") final String id) {
+    public AccountDto get(@PathVariable("id") final String id) {
         return service.findById(id)
                 .map(account -> modelMapper.map(account, AccountDto.class))
                 .orElseThrow(() -> new EntityNotFoundException("Account with id " + id + "not found"));
     }
+
     @GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-    public List<AccountDto> getListAccount() {
+    public List<AccountDto> getAll() {
         final Iterable<Account> accounts = service.findAll();
         return StreamSupport
                 .stream(accounts.spliterator(), false)
@@ -70,7 +64,7 @@ public class AccountsController {
     }
 
     @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-    public ResultDto deleteAccount(final AccountDto accountDto) {
+    public ResultDto delete(final AccountDto accountDto) {
         service.delete(accountDto);
         return new ResultDto();
     }
@@ -83,6 +77,12 @@ public class AccountsController {
         for (final AccountDto account : accounts) {
             service.delete(account);
         }
+        return new ResultDto();
+    }
+
+    @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    public ResultDto deleteAll() {
+        service.deleteAll();
         return new ResultDto();
     }
 

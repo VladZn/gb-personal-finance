@@ -3,12 +3,12 @@ package ru.gb.dev.spring.pfs.statistics.controller;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.dev.spring.pfs.accounting.exception.EntityNotFoundException;
-import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
-import ru.gb.dev.spring.pfs.accounting.model.dto.util.ResultDto;
-import ru.gb.dev.spring.pfs.accounting.model.dto.util.SuccessDto;
-import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
-import ru.gb.dev.spring.pfs.accounting.model.service.AccountService;
+import ru.gb.dev.spring.pfs.statistics.exception.EntityNotFoundException;
+import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.util.ResultDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.util.SuccessDto;
+import ru.gb.dev.spring.pfs.statistics.model.entity.Logo;
+import ru.gb.dev.spring.pfs.statistics.model.service.LogoService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,15 +17,15 @@ import java.util.stream.StreamSupport;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
 @RestController
-@RequestMapping("/api/account")
-public class AccountsController {
+@RequestMapping("/api/logos")
+public class LogosController {
 
-    private final AccountService service;
+    private final LogoService service;
 
     private final ModelMapper modelMapper;
 
     @Autowired
-    public AccountsController(final AccountService service, final ModelMapper modelMapper) {
+    public LogosController(final LogoService service, final ModelMapper modelMapper) {
         this.service = service;
         this.modelMapper = modelMapper;
     }
@@ -36,35 +36,36 @@ public class AccountsController {
     }
 
     @GetMapping(value = "{id}", produces = APPLICATION_JSON_UTF8_VALUE)
-    public AccountDto get(@PathVariable("id") final String id) {
+    public LogoDto get(@PathVariable("id") final String id) {
         return service.findById(id)
-                .map(account -> modelMapper.map(account, AccountDto.class))
+                .map(logo -> modelMapper.map(logo, LogoDto.class))
                 .orElseThrow(() -> new EntityNotFoundException("Logo with id " + id + "not found"));
     }
+
     @GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-    public List<AccountDto> get() {
-        final Iterable<Account> accounts = service.findAll();
+    public List<LogoDto> getAll() {
+        final Iterable<Logo> logos = service.findAll();
         return StreamSupport
-                .stream(accounts.spliterator(), false)
-                .map(account -> modelMapper.map(account, AccountDto.class))
+                .stream(logos.spliterator(), false)
+                .map(logo -> modelMapper.map(logo, LogoDto.class))
                 .collect(Collectors.toList());
     }
 
     @PostMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-    public ResultDto post(final AccountDto accountDto) {
-        service.save(accountDto);
+    public ResultDto post(final LogoDto logoDto) {
+        service.save(logoDto);
         return new ResultDto();
     }
 
     @PutMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-    public ResultDto put(final AccountDto accountDto) {
-        service.save(accountDto);
+    public ResultDto put(final LogoDto logoDto) {
+        service.save(logoDto);
         return new ResultDto();
     }
 
     @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-    public ResultDto delete(final AccountDto accountDto) {
-        service.delete(accountDto);
+    public ResultDto delete(final LogoDto logoDto) {
+        service.delete(logoDto);
         return new ResultDto();
     }
 
@@ -72,10 +73,16 @@ public class AccountsController {
             consumes = APPLICATION_JSON_UTF8_VALUE,
             produces = APPLICATION_JSON_UTF8_VALUE
     )
-    public ResultDto delete(final AccountDto[] accounts) {
-        for (final AccountDto account : accounts) {
-            service.delete(account);
+    public ResultDto deleteLogos(final LogoDto[] logos) {
+        for (final LogoDto logo : logos) {
+            service.delete(logo);
         }
+        return new ResultDto();
+    }
+
+    @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    public ResultDto deleteAll() {
+        service.deleteAll();
         return new ResultDto();
     }
 
