@@ -9,7 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.util.UUID;
 
+@Data
 @MappedSuperclass
+@NoArgsConstructor
 public abstract class AbstractBaseEntity {
 
     @Id
