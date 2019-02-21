@@ -3,11 +3,13 @@ package ru.gb.dev.spring.pfs.notifying.service;
 import ru.gb.dev.spring.pfs.notifying.exception.ErrorDatabase;
 import ru.gb.dev.spring.pfs.notifying.model.Notification;
 
+import java.util.Optional;
+
 public interface NotificationService {
 
     Notification save(Notification notification) throws ErrorDatabase;
 
-    Notification  findById(String  id);
+    Optional<Notification> findById(String  id);
 
     Iterable<Notification> findAll();
 
