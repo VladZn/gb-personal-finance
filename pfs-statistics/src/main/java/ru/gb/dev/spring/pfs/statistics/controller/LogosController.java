@@ -79,8 +79,8 @@ public class LogosController {
 			consumes = APPLICATION_JSON_UTF8_VALUE,
 			produces = APPLICATION_JSON_UTF8_VALUE
 	)
-	public ResultDto delete(final LogoDto logoDto) {
-		service.delete(logoDto);
+	public ResultDto delete(final String logoId) {
+		service.deleteById(logoId);
 		return new ResultDto();
 	}
 

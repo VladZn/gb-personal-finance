@@ -79,8 +79,8 @@ public class OperationsController {
 			consumes = APPLICATION_JSON_UTF8_VALUE,
 			produces = APPLICATION_JSON_UTF8_VALUE
 	)
-	public ResultDto delete(final OperationDto operationDto) {
-		service.delete(operationDto);
+	public ResultDto delete(final String operationId) {
+		service.deleteById(operationId);
 		return new ResultDto();
 	}
 

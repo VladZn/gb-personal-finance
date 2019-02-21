@@ -79,8 +79,8 @@ public class ClientsController {
 			consumes = APPLICATION_JSON_UTF8_VALUE,
 			produces = APPLICATION_JSON_UTF8_VALUE
 	)
-	public ResultDto delete(final ClientDto clientDto) {
-		service.delete(clientDto);
+	public ResultDto delete(final String clientId) {
+		service.deleteById(clientId);
 		return new ResultDto();
 	}
 

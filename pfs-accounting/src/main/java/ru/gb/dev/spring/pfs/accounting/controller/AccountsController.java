@@ -76,8 +76,8 @@ public class AccountsController {
 	@DeleteMapping(
 			consumes = APPLICATION_JSON_UTF8_VALUE,
 			produces = APPLICATION_JSON_UTF8_VALUE)
-	public ResultDto delete(final AccountDto accountDto) {
-		service.delete(accountDto);
+	public ResultDto delete(final String accountId) {
+		service.deleteById(accountId);
 		return new ResultDto();
 	}
 

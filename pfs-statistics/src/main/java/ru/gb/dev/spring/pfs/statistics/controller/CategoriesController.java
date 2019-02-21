@@ -79,8 +79,8 @@ public class CategoriesController {
 			consumes = APPLICATION_JSON_UTF8_VALUE,
 			produces = APPLICATION_JSON_UTF8_VALUE
 	)
-	public ResultDto delete(final CategoryDto categoryDto) {
-		service.delete(categoryDto);
+	public ResultDto delete(final String categoryId) {
+		service.deleteById(categoryId);
 		return new ResultDto();
 	}
 
