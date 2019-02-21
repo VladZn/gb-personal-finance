@@ -8,7 +8,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDiscoveryClient
 public class PfsNotificationApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(PfsNotificationApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(PfsNotificationApplication.class, args);
+	}
 }

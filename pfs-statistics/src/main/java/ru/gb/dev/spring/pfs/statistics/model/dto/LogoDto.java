@@ -13,19 +13,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class LogoDto {
 
-    @NotNull
-    private String id = "";
+	@NotNull
+	private String id = "";
 
-    @NotNull
-    private String name = "";
+	@NotNull
+	private String name = "";
 
-    @NotNull
-    private String userId = "";
+	@NotNull
+	private String userId = "";
 
-    @NotNull
-    private String path = "";
+	@NotNull
+	private String path = "";
 
-    @NotNull
-    private String extension = "";
+	@NotNull
+	private String extension = "";
 
 }

@@ -2,7 +2,7 @@
 <configuration>
     <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <Pattern>%d{HH:mm:ss.SSS} >> %-3relative [%thread] %-5level	%logger{25} - %msg %n</Pattern>
+            <Pattern>%d{HH:mm:ss.SSS} >> %-3relative [%thread] %-5level %logger{25} - %msg %n</Pattern>
         </encoder>
     </appender>
 
@@ -27,8 +27,8 @@
     </logger>
 
     <root level="INFO">
-        <appender-ref ref="consoleAppender"/>
-        <appender-ref ref="rollingFileAppender"/>
+        <appender-ref ref="consoleAppender" />
+        <appender-ref ref="rollingFileAppender" />
     </root>
 
 </configuration>

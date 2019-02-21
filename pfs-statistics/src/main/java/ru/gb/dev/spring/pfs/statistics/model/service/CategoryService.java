@@ -8,32 +8,32 @@ import java.util.Optional;
 
 public interface CategoryService {
 
-    <S extends Category> S save(S category);
+	<S extends Category> S save(S category);
 
-    <S extends Category> Iterable<S> saveAll(Iterable<S> ads);
+	<S extends Category> Iterable<S> saveAll(Iterable<S> ads);
 
-    Optional<Category> findById(String id);
+	Optional<Category> findById(String id);
 
-    boolean existsById(String id);
+	boolean existsById(String id);
 
-    Iterable<Category> findAll();
+	Iterable<Category> findAll();
 
-    Iterable<Category> findAllById(Iterable<String> ids);
+	Iterable<Category> findAllById(Iterable<String> ids);
 
-    Iterable<Category> findAllByLogo(Logo logo);
+	Iterable<Category> findAllByLogo(Logo logo);
 
-    long count();
+	long count();
 
-    void deleteById(String id);
+	void deleteById(String id);
 
-    void delete(Category category);
+	void delete(Category category);
 
-    void deleteAll(Iterable<? extends Category> ads);
+	void deleteAll(Iterable<? extends Category> ads);
 
-    void deleteAll();
+	void deleteAll();
 
-    void save(CategoryDto categoryDto);
+	void save(CategoryDto categoryDto);
 
-    void delete(CategoryDto categoryDto);
+	void delete(CategoryDto categoryDto);
 
 }

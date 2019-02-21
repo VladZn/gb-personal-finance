@@ -13,13 +13,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class UserDto {
 
-    @NotNull
-    private String id = "";
+	@NotNull
+	private String id = "";
 
-    @NotNull
-    private String login = "";
+	@NotNull
+	private String login = "";
 
-    @NotNull
-    private String email = "";
+	@NotNull
+	private String email = "";
 
 }

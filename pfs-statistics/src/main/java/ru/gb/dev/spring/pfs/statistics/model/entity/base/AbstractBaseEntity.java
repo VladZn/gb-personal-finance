@@ -13,8 +13,8 @@ import java.util.UUID;
 @MappedSuperclass
 public abstract class AbstractBaseEntity {
 
-    @Id
-    @Column(name = "id")
-    private String id = UUID.randomUUID().toString();
+	@Id
+	@Column(name = "id")
+	private String id = UUID.randomUUID().toString();
 
 }

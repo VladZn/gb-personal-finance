@@ -8,12 +8,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
 /**
- *
  * http://localhost:10151/api/account/ping
  * http://localhost:10151/api/accounts/ping
  * http://localhost:10151/api/account
  * http://localhost:10151/api/accounts
- *
  */
 
 @EnableFeignClients
@@ -21,13 +19,13 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class PfsAccountingApplication {
 
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
+	}
 
-    public static void main(String[] args) {
-        SpringApplication.run(PfsAccountingApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(PfsAccountingApplication.class, args);
+	}
 
 }

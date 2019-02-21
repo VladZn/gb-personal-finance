@@ -7,30 +7,30 @@ import java.util.Optional;
 
 public interface AccountService {
 
-    <S extends Account> S save(S account);
+	<S extends Account> S save(S account);
 
-    <S extends Account> Iterable<S> saveAll(Iterable<S> ads);
+	<S extends Account> Iterable<S> saveAll(Iterable<S> ads);
 
-    Optional<Account> findById(String id);
+	Optional<Account> findById(String id);
 
-    boolean existsById(String id);
+	boolean existsById(String id);
 
-    Iterable<Account> findAll();
+	Iterable<Account> findAll();
 
-    Iterable<Account> findAllById(Iterable<String> ids);
+	Iterable<Account> findAllById(Iterable<String> ids);
 
-    long count();
+	long count();
 
-    void deleteById(String id);
+	void deleteById(String id);
 
-    void delete(Account account);
+	void delete(Account account);
 
-    void deleteAll(Iterable<? extends Account> ads);
+	void deleteAll(Iterable<? extends Account> ads);
 
-    void deleteAll();
+	void deleteAll();
 
-    void save(AccountDto accountDto);
+	void save(AccountDto accountDto);
 
-    void delete(AccountDto accountDto);
+	void delete(AccountDto accountDto);
 
 }

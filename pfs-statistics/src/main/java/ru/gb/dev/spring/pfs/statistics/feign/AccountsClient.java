@@ -15,13 +15,13 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 @FeignClient(name = "account")
 public interface AccountsClient {
 
-    @GetMapping(value = "/ping",  produces = APPLICATION_JSON_UTF8_VALUE)
-    ResultDto ping();
+	@GetMapping(value = "/ping", produces = APPLICATION_JSON_UTF8_VALUE)
+	ResultDto ping();
 
-    @GetMapping(value = "{id}",  produces = APPLICATION_JSON_UTF8_VALUE)
-    OperationDto getAccount(@PathVariable("id") final String accountId);
-    
-    @GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-    List<OperationDto> getAccounts();
+	@GetMapping(value = "{id}", produces = APPLICATION_JSON_UTF8_VALUE)
+	OperationDto getAccount(@PathVariable("id") final String accountId);
+
+	@GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+	List<OperationDto> getAccounts();
 
 }

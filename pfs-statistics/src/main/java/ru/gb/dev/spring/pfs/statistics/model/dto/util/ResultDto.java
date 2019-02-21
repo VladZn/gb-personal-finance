@@ -11,10 +11,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class ResultDto {
 
-    @Nullable
-    private String message = "";
+	@Nullable
+	private String message = "";
 
-    @Nullable
-    private Boolean success = true;
+	@Nullable
+	private Boolean success = true;
 
 }

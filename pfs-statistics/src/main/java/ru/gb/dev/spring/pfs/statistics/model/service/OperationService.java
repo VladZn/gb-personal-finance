@@ -10,36 +10,36 @@ import java.util.Optional;
 
 public interface OperationService {
 
-    <S extends Operation> S save(S operation);
+	<S extends Operation> S save(S operation);
 
-    <S extends Operation> Iterable<S> saveAll(Iterable<S> ads);
+	<S extends Operation> Iterable<S> saveAll(Iterable<S> ads);
 
-    Optional<Operation> findById(String id);
+	Optional<Operation> findById(String id);
 
-    boolean existsById(String id);
+	boolean existsById(String id);
 
-    Iterable<Operation> findAll();
+	Iterable<Operation> findAll();
 
-    Iterable<Operation> findAllById(Iterable<String> ids);
+	Iterable<Operation> findAllById(Iterable<String> ids);
 
-    Iterable<Operation> findAllByClient(Client client);
+	Iterable<Operation> findAllByClient(Client client);
 
-    Iterable<Operation> findAllByCategory(Category category);
+	Iterable<Operation> findAllByCategory(Category category);
 
-    Iterable<Operation> findAllByLogo(Logo logo);
+	Iterable<Operation> findAllByLogo(Logo logo);
 
-    long count();
+	long count();
 
-    void deleteById(String id);
+	void deleteById(String id);
 
-    void delete(Operation operation);
+	void delete(Operation operation);
 
-    void deleteAll(Iterable<? extends Operation> ads);
+	void deleteAll(Iterable<? extends Operation> ads);
 
-    void deleteAll();
+	void deleteAll();
 
-    void save(OperationDto operationDto);
+	void save(OperationDto operationDto);
 
-    void delete(OperationDto operationDto);
+	void delete(OperationDto operationDto);
 
 }

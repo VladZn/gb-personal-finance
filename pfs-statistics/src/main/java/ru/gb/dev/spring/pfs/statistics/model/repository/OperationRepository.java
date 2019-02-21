@@ -12,10 +12,10 @@ import java.util.List;
 @Repository
 public interface OperationRepository extends JpaRepository<Operation, String> {
 
-    List<Operation> findAllByClient(Client client);
+	List<Operation> findAllByClient(Client client);
 
-    List<Operation> findAllByCategory(Category category);
+	List<Operation> findAllByCategory(Category category);
 
-    List<Operation> findAllByLogo(Logo logo);
+	List<Operation> findAllByLogo(Logo logo);
 
 }

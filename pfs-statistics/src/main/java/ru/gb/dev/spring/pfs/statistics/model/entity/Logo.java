@@ -20,28 +20,28 @@ import java.util.List;
 @Table(name = "files")
 public class Logo extends AbstractNamedEntity {
 
-    @NotNull
-    @Column(name = "user_id")
-    private String userId = "";
+	@NotNull
+	@Column(name = "user_id")
+	private String userId = "";
 
-    @NotNull
-    @Column(name = "path")
-    private String path = "";
+	@NotNull
+	@Column(name = "path")
+	private String path = "";
 
-    @NotNull
-    @Column(name = "extension")
-    private String extension = "";
+	@NotNull
+	@Column(name = "extension")
+	private String extension = "";
 
-    @NotNull
-    @OneToMany(mappedBy = "logo")
-    private List<Operation> operations = new ArrayList<>();
+	@NotNull
+	@OneToMany(mappedBy = "logo")
+	private List<Operation> operations = new ArrayList<>();
 
-    @NotNull
-    @OneToMany(mappedBy = "logo")
-    private List<Client> clients = new ArrayList<>();
+	@NotNull
+	@OneToMany(mappedBy = "logo")
+	private List<Client> clients = new ArrayList<>();
 
-    @NotNull
-    @OneToMany(mappedBy = "logo")
-    private List<Category> categories = new ArrayList<>();
+	@NotNull
+	@OneToMany(mappedBy = "logo")
+	private List<Category> categories = new ArrayList<>();
 
 }

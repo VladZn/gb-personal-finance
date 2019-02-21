@@ -8,32 +8,32 @@ import java.util.Optional;
 
 public interface ClientService {
 
-    <S extends Client> S save(S client);
+	<S extends Client> S save(S client);
 
-    <S extends Client> Iterable<S> saveAll(Iterable<S> ads);
+	<S extends Client> Iterable<S> saveAll(Iterable<S> ads);
 
-    Optional<Client> findById(String id);
+	Optional<Client> findById(String id);
 
-    boolean existsById(String id);
+	boolean existsById(String id);
 
-    Iterable<Client> findAll();
+	Iterable<Client> findAll();
 
-    Iterable<Client> findAllById(Iterable<String> ids);
+	Iterable<Client> findAllById(Iterable<String> ids);
 
-    Iterable<Client> findAllByLogo(Logo logo);
+	Iterable<Client> findAllByLogo(Logo logo);
 
-    long count();
+	long count();
 
-    void deleteById(String id);
+	void deleteById(String id);
 
-    void delete(Client client);
+	void delete(Client client);
 
-    void deleteAll(Iterable<? extends Client> ads);
+	void deleteAll(Iterable<? extends Client> ads);
 
-    void deleteAll();
+	void deleteAll();
 
-    void save(ClientDto clientDto);
+	void save(ClientDto clientDto);
 
-    void delete(ClientDto clientDto);
+	void delete(ClientDto clientDto);
 
 }

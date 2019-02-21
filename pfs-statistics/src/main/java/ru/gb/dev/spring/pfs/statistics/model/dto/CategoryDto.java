@@ -13,19 +13,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class CategoryDto {
 
-    @NotNull
-    private String id = "";
+	@NotNull
+	private String id = "";
 
-    @NotNull
-    private String name = "";
+	@NotNull
+	private String name = "";
 
-    @NotNull
-    private String active = "";
+	@NotNull
+	private String active = "";
 
-    @NotNull
-    private String logo_id = "";
+	@NotNull
+	private String logo_id = "";
 
-    @NotNull
-    private String userId = "";
+	@NotNull
+	private String userId = "";
 
 }

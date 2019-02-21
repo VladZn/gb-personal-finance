@@ -13,7 +13,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
-    @Column(name = "name")
-    private String name = "";
+	@Column(name = "name")
+	private String name = "";
 
 }

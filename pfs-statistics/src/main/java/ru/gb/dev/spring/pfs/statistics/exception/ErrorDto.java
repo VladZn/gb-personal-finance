@@ -7,6 +7,7 @@ import lombok.Setter;
 
 /**
  * DTO class for errors
+ *
  * @author V. Zinchenko
  */
 
@@ -15,6 +16,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ErrorDto {
-    private String code;
-    private String message;
+	private String code;
+	private String message;
 }

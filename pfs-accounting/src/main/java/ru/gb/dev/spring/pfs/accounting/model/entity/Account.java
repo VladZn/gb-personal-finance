@@ -18,20 +18,20 @@ import java.math.BigDecimal;
 @Table(name = "accounts")
 public class Account extends AbstractNamedEntity {
 
-    @NotNull
-    @Column(name = "amount")
-    private BigDecimal amount = BigDecimal.ZERO;
+	@NotNull
+	@Column(name = "amount")
+	private BigDecimal amount = BigDecimal.ZERO;
 
-    @NotNull
-    @Column(name = "user_id")
-    private String userId = "";
+	@NotNull
+	@Column(name = "user_id")
+	private String userId = "";
 
-    @NotNull
-    @Column(name = "type_id")
-    private String typeId = "";
+	@NotNull
+	@Column(name = "type_id")
+	private String typeId = "";
 
-    @NotNull
-    @Column(name = "icon_id")
-    private String iconId = "";
+	@NotNull
+	@Column(name = "icon_id")
+	private String iconId = "";
 
 }

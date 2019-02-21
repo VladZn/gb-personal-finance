@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, String> {
 
-    List<Category> findAllByLogo(Logo logo);
+	List<Category> findAllByLogo(Logo logo);
 
 }

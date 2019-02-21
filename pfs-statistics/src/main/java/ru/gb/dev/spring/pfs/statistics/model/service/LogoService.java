@@ -7,30 +7,30 @@ import java.util.Optional;
 
 public interface LogoService {
 
-    <S extends Logo> S save(S logo);
+	<S extends Logo> S save(S logo);
 
-    <S extends Logo> Iterable<S> saveAll(Iterable<S> ads);
+	<S extends Logo> Iterable<S> saveAll(Iterable<S> ads);
 
-    Optional<Logo> findById(String id);
+	Optional<Logo> findById(String id);
 
-    boolean existsById(String id);
+	boolean existsById(String id);
 
-    Iterable<Logo> findAll();
+	Iterable<Logo> findAll();
 
-    Iterable<Logo> findAllById(Iterable<String> ids);
+	Iterable<Logo> findAllById(Iterable<String> ids);
 
-    long count();
+	long count();
 
-    void deleteById(String id);
+	void deleteById(String id);
 
-    void delete(Logo logo);
+	void delete(Logo logo);
 
-    void deleteAll(Iterable<? extends Logo> ads);
+	void deleteAll(Iterable<? extends Logo> ads);
 
-    void deleteAll();
+	void deleteAll();
 
-    void save(LogoDto logoDto);
+	void save(LogoDto logoDto);
 
-    void delete(LogoDto logoDto);
+	void delete(LogoDto logoDto);
 
 }

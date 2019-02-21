@@ -11,22 +11,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class AccountDto {
 
-    @NotNull
-    private String id = "";
+	@NotNull
+	private String id = "";
 
-    @NotNull
-    private String name = "";
+	@NotNull
+	private String name = "";
 
-    @NotNull
-    private String amount = "";
+	@NotNull
+	private String amount = "";
 
-    @NotNull
-    private String userId = "";
+	@NotNull
+	private String userId = "";
 
-    @NotNull
-    private String typeId = "";
+	@NotNull
+	private String typeId = "";
 
-    @NotNull
-    private String iconId = "";
+	@NotNull
+	private String iconId = "";
 
 }
