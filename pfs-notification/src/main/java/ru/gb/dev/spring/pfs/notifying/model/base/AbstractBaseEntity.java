@@ -23,6 +23,6 @@ public abstract class AbstractBaseEntity {
     private boolean isActive;
 
     @Column(name = "user_id", nullable = false)
-    private String user_id;
+    private String userId;
 
 }

@@ -18,19 +18,15 @@ public class NotificationDtoUpdate {
     private boolean isActive;
 
     @NotNull
-    private String user_id;
+    private String userId;
 
     @NotNull
-    private Date date_time;
+    private Date dateTime;
 
     @NotNull
     private String title;
 
     @NotNull
     private String body;
-
-    public String getId() {
-        return id;
-    }
 
 }

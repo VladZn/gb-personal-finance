@@ -17,7 +17,7 @@ public class Notification extends AbstractBaseEntity {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date_time", nullable = false)
-    private Date date_time;
+    private Date dateTime;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -25,8 +25,8 @@ public class Notification extends AbstractBaseEntity {
     @Column(name = "body", nullable = false)
     private String body;
 
-    public Notification(Date date_time, String title, String body) {
-        this.date_time = date_time;
+    public Notification(Date dateTime, String title, String body) {
+        this.dateTime = dateTime;
         this.title = title;
         this.body = body;
     }
