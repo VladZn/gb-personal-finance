@@ -2,15 +2,14 @@ package ru.gb.dev.spring.pfs.notifying.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.gb.dev.spring.pfs.notifying.model.base.AbstractBaseEntity;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
-import java.util.UUID;
 
 
 @Data
+@NoArgsConstructor
 @XmlRootElement
 public class NotificationDtoUpdate {
 
