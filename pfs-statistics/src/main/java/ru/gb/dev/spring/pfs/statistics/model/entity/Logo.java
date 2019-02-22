@@ -17,7 +17,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Table(name = "files")
+@Table(name = "logos")
 public class Logo extends AbstractNamedEntity {
 
 	@NotNull
