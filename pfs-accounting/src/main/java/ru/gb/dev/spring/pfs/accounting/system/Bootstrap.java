@@ -17,7 +17,7 @@ import java.util.List;
 public class Bootstrap implements InitializingBean {
 
 	@Autowired
-	private AccountService service;
+	private AccountService accountService;
 
 	@Autowired(required = false)
 	private ClientService clientService;
@@ -27,15 +27,22 @@ public class Bootstrap implements InitializingBean {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		final List<ClientDto> clients = clientService.getAll();
-		final List<LogoDto> logos = logoService.getAll();
+		final Account account;
+		if (accountService.count() == 0) {
+			account = new Account();
+			account.setName("TestAccount");
+			account.setAmount(BigDecimal.TEN);
+		} else {
+			account = accountService.findAll().iterator().next();
+		}
 
-		final Account account = new Account();
-		account.setName("TestAccount");
-		account.setAmount(BigDecimal.TEN);
-		if(!clients.isEmpty()) account.setClientId(clients.get(0).getId());
-		if(!logos.isEmpty()) account.setLogoId(logos.get(0).getId());
-		service.initAccount(account);
+		final List<ClientDto> clients = clientService.getAll();
+		if (!clients.isEmpty()) account.setClientId(clients.get(0).getId());
+
+		final List<LogoDto> logos = logoService.getAll();
+		if (!logos.isEmpty()) account.setLogoId(logos.get(0).getId());
+
+		accountService.save(account);
 	}
 
 }

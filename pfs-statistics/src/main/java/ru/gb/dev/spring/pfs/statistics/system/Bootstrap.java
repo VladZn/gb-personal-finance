@@ -41,48 +41,56 @@ public class Bootstrap implements InitializingBean {
 	}
 
 	private void initStatistics() {
-		if (categoryService.count() > 0 ||
-				clientService.count() > 0 ||
-				logoService.count() > 0 ||
-				operationService.count() > 0) return;
+		final Category category;
+		final Client client;
+		final Logo logo;
+		final Operation operation;
 
-		final Category category = new Category();
-		category.setName("TestCategory");
-		category.setActive(true);
-		categoryService.save(category);
+		if (categoryService.count() == 0 &&
+				clientService.count() == 0 &&
+				logoService.count() == 0 &&
+				operationService.count() == 0) {
+			category = new Category();
+			category.setName("TestCategory");
+			category.setActive(true);
 
-		final Client client = new Client();
-		client.setName("TestClient");
-		client.setActive(true);
-		client.setCode("TestClientCode");
-		client.setComment("TestCLientComment");
-		clientService.save(client);
+			client = new Client();
+			client.setName("TestClient");
+			client.setActive(true);
+			client.setCode("TestClientCode");
+			client.setComment("TestCLientComment");
 
-		final Logo logo = new Logo();
-		logo.setName("TestLogo");
-		logo.setExtension("PNG");
-		logo.setPath("testPath");
-		logoService.save(logo);
+			logo = new Logo();
+			logo.setName("TestLogo");
+			logo.setExtension("PNG");
+			logo.setPath("testPath");
 
-		final Operation operation = new Operation();
-		operation.setNumber("TestOperationNumber");
-		operation.setActive(true);
-		operation.setAmount(BigDecimal.TEN);
-		operation.setComment("TestOperationComment");
-		operationService.save(operation);
+			operation = new Operation();
+			operation.setNumber("TestOperationNumber");
+			operation.setActive(true);
+			operation.setAmount(BigDecimal.TEN);
+			operation.setComment("TestOperationComment");
 
-		List<AccountDto> accounts = accountsClient.getAll();
+			category.setLogo(logo);
 
-		category.setLogo(logo);
-		categoryService.save(category);
+			client.setLogo(logo);
 
-		client.setLogo(logo);
-		clientService.save(client);
+			operation.setCategory(category);
+			operation.setClient(client);
+			operation.setLogo(logo);
+		} else {
+			category = categoryService.findAll().iterator().next();
+			client = clientService.findAll().iterator().next();
+			logo = logoService.findAll().iterator().next();
+			operation = operationService.findAll().iterator().next();
+		}
 
+		final List<AccountDto> accounts = accountsClient.getAll();
 		if (!accounts.isEmpty()) operation.setAccountId(accounts.get(0).getId());
-		operation.setCategory(category);
-		operation.setClient(client);
-		operation.setLogo(logo);
+
+		categoryService.save(category);
+		clientService.save(client);
+		logoService.save(logo);
 		operationService.save(operation);
 	}
 

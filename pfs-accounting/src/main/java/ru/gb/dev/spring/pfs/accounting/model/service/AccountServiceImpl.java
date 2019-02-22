@@ -104,10 +104,4 @@ public class AccountServiceImpl implements AccountService {
 		deleteById(accountDto.getId());
 	}
 
-	@Override
-	public void initAccount(Account account) {
-		if (repository.count() > 0) return;
-		repository.save(account);
-	}
-
 }
