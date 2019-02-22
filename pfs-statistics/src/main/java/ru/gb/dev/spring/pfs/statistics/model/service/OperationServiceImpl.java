@@ -31,7 +31,6 @@ public class OperationServiceImpl implements OperationService {
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public @Nullable <S extends Operation> S save(final @Nullable S operation) {
 		if (operation == null || StringUtils.isEmpty(operation.getId())) {
 			throw new EntityNotFoundException("operation is not valid");
@@ -40,31 +39,26 @@ public class OperationServiceImpl implements OperationService {
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public <S extends Operation> Iterable<S> saveAll(final Iterable<S> ads) {
 		return repository.saveAll(ads);
 	}
 
 	@Override
-	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public Optional<Operation> findById(final String id) {
 		return repository.findById(id);
 	}
 
 	@Override
-	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public boolean existsById(final String id) {
 		return repository.existsById(id);
 	}
 
 	@Override
-	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public Iterable<Operation> findAll() {
 		return repository.findAll();
 	}
 
 	@Override
-	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public Iterable<Operation> findAllById(final Iterable<String> ids) {
 		return repository.findAllById(ids);
 	}
@@ -85,19 +79,16 @@ public class OperationServiceImpl implements OperationService {
 	}
 
 	@Override
-	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public long count() {
 		return repository.count();
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void deleteById(final String id) {
 		repository.deleteById(id);
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void delete(final @Nullable Operation operation) throws EntityNotFoundException {
 		if (operation == null || StringUtils.isEmpty(operation.getId())) {
 			throw new EntityNotFoundException("operation is not valid");
@@ -106,19 +97,16 @@ public class OperationServiceImpl implements OperationService {
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void deleteAll(final Iterable<? extends Operation> ads) {
 		repository.deleteAll(ads);
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void deleteAll() {
 		repository.deleteAll();
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void save(final OperationDto operationDto) {
 		if (operationDto == null) {
 			return;
@@ -129,7 +117,6 @@ public class OperationServiceImpl implements OperationService {
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void delete(final OperationDto operationDto) {
 		if (operationDto == null) {
 			return;

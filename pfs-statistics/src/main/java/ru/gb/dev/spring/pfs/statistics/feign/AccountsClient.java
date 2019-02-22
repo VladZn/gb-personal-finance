@@ -16,7 +16,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
 @RequestMapping("/api/accounts")
 @FeignClient(name = "account")
-interface AccountsClient {
+public interface AccountsClient {
 
 	@GetMapping(value = "/ping", produces = APPLICATION_JSON_UTF8_VALUE)
 	ResultDto ping();

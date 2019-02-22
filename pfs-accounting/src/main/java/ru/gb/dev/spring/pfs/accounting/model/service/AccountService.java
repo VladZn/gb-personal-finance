@@ -33,4 +33,6 @@ public interface AccountService {
 
 	void delete(AccountDto accountDto);
 
+	void initAccount(Account account);
+
 }

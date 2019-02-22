@@ -60,7 +60,7 @@ public class Client extends AbstractNamedEntity {
 	private String comment = "";
 
 	@Column(name = "active")
-	private boolean isActice = false;
+	private Boolean active = false;
 
 	@Nullable
 	@ManyToOne

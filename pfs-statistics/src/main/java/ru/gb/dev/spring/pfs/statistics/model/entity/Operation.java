@@ -47,7 +47,7 @@ public class Operation extends AbstractBaseEntity {
 	private Date operationDate = new Date();
 
 	@Column(name = "active")
-	private boolean isActice = false;
+	private Boolean active = false;
 
 	@Nullable
 	@ManyToOne
