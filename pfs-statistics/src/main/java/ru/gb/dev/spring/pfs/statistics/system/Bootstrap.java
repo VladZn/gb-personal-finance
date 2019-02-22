@@ -3,7 +3,7 @@ package ru.gb.dev.spring.pfs.statistics.system;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.gb.dev.spring.pfs.statistics.feign.AccountsClient;
+import ru.gb.dev.spring.pfs.statistics.feign.AccountService;
 import ru.gb.dev.spring.pfs.statistics.model.dto.AccountDto;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Category;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Client;
@@ -33,7 +33,7 @@ public class Bootstrap implements InitializingBean {
 	private OperationService operationService;
 
 	@Autowired(required = false)
-	private AccountsClient accountsClient;
+	private AccountService accountsClient;
 
 	@Override
 	public void afterPropertiesSet() throws Exception {

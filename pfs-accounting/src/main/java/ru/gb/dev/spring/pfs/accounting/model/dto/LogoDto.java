@@ -11,36 +11,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement
-public class OperationDto {
+public class LogoDto {
 
 	@NotNull
 	private String id = "";
 
 	@NotNull
-	private String comment = "";
-
-	@NotNull
-	private String amount = "";
-
-	@NotNull
-	private String date = "";
-
-	@NotNull
-	private String typeId = "";
-
-	@NotNull
-	private String accountId = "";
+	private String name = "";
 
 	@NotNull
 	private String userId = "";
 
 	@NotNull
-	private String categoryId = "";
+	private String path = "";
 
 	@NotNull
-	private String fileId = "";
-
-	@NotNull
-	private String counterpartId = "";
+	private String extension = "";
 
 }
