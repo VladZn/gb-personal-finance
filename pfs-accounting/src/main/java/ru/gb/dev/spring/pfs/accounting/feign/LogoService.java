@@ -15,7 +15,7 @@ import java.util.List;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
 @RequestMapping("/api/logos")
-@FeignClient(name = "logo")
+@FeignClient(name = "statistics")
 public interface LogoService {
 
 	@GetMapping(value = "/ping", produces = APPLICATION_JSON_UTF8_VALUE)
