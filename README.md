@@ -1,5 +1,5 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c5ca9f8ec0f948d58ef53abd6fb1ee2e)](https://www.codacy.com/app/skubatko/gb-personal-finance?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=skubatko/gb-personal-finance&amp;utm_campaign=Badge_Grade)
-
+[![Build Status](https://travis-ci.org/skubatko/gb-personal-finance.svg?branch=develop)](https://travis-ci.org/skubatko/gb-personal-finance)
 # Personal Finance Service
 Team project as the next part of Java development education
 
