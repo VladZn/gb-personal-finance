@@ -15,6 +15,7 @@ import ru.gb.dev.spring.pfs.statistics.model.service.LogoService;
 import ru.gb.dev.spring.pfs.statistics.model.service.OperationService;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Component
 public class Bootstrap implements InitializingBean {
@@ -70,7 +71,7 @@ public class Bootstrap implements InitializingBean {
 		operation.setComment("TestOperationComment");
 		operationService.save(operation);
 
-		AccountDto account = accountsClient.getAll().get(0);
+		List<AccountDto> accounts = accountsClient.getAll();
 
 		category.setLogo(logo);
 		categoryService.save(category);
@@ -78,7 +79,7 @@ public class Bootstrap implements InitializingBean {
 		client.setLogo(logo);
 		clientService.save(client);
 
-		operation.setAccountId(account.getId());
+		if (!accounts.isEmpty()) operation.setAccountId(accounts.get(0).getId());
 		operation.setCategory(category);
 		operation.setClient(client);
 		operation.setLogo(logo);
