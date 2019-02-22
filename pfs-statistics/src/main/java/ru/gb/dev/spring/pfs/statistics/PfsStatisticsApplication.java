@@ -8,8 +8,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
 /**
- * http://localhost:10151/api/statistics
- * http://localhost:10151/api/statistics/ping
+ * http://localhost:10152/api/categories
+ * http://localhost:10152/api/clients
+ * http://localhost:10152/api/logos
+ * http://localhost:10152/api/operations
  */
 
 @EnableFeignClients
