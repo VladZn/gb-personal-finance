@@ -2,7 +2,6 @@ package ru.gb.dev.spring.pfs.accounting.system;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import ru.gb.dev.spring.pfs.accounting.feign.ClientService;
 import ru.gb.dev.spring.pfs.accounting.feign.LogoService;
 import ru.gb.dev.spring.pfs.accounting.model.dto.ClientDto;
@@ -13,7 +12,7 @@ import ru.gb.dev.spring.pfs.accounting.model.service.AccountService;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Component
+//@Component
 public class Bootstrap implements InitializingBean {
 
 	@Autowired

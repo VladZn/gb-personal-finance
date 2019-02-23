@@ -20,7 +20,7 @@ public class AccountServiceImpl implements AccountService {
 	private final ModelMapper modelMapper;
 
 	@Autowired
-	public AccountServiceImpl(final AccountRepository repository, ModelMapper modelMapper) {
+	public AccountServiceImpl(final AccountRepository repository, final ModelMapper modelMapper) {
 		this.repository = repository;
 		this.modelMapper = modelMapper;
 	}
@@ -88,19 +88,14 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public void save(final AccountDto accountDto) {
-		if (accountDto == null) {
-			return;
-		}
-		Account account = modelMapper.map(accountDto, Account.class);
-		account.setId(accountDto.getId());
+		if (accountDto == null) return;
+		final Account account = new Account(accountDto);
 		save(account);
 	}
 
 	@Override
 	public void delete(final AccountDto accountDto) {
-		if (accountDto == null) {
-			return;
-		}
+		if (accountDto == null) return;
 		deleteById(accountDto.getId());
 	}
 
