@@ -12,12 +12,12 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
 @RequestMapping("/api/users")
 @FeignClient(name = "user")
-public interface UsersClient {
+public interface UserService {
 
-    @GetMapping(value = "{id}", produces = APPLICATION_JSON_UTF8_VALUE)
-    UserDto getOperation(@PathVariable("id") final String userId);
+	@GetMapping(value = "{id}", produces = APPLICATION_JSON_UTF8_VALUE)
+	UserDto getOperation(@PathVariable("id") final String userId);
 
-    @GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-    List<UserDto> getUsers();
+	@GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+	List<UserDto> getUsers();
 
 }

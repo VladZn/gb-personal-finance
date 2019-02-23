@@ -46,7 +46,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.1.2.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath /> <!-- lookup parent from repository -->
     </parent>
 
     <dependencyManagement>
@@ -72,6 +72,7 @@
     <modules>
         <module>pfs-accounting</module>
         <module>pfs-notification</module>
+        <module>pfs-statistics</module>
         <module>pfs-ui</module>
         <module>pfs-server-config</module>
         <module>pfs-server-discovery</module>
