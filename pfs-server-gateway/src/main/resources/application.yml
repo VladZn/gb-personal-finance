@@ -7,7 +7,7 @@ cloud:
     fail-fast: true
 
 server:
-  port: 8080
+  port: 7777
 
 zuul:
   routes:
