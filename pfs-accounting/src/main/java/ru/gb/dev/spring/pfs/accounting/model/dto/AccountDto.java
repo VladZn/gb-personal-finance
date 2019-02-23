@@ -41,17 +41,4 @@ public class AccountDto {
 	@NotNull
 	private String logoId = "";
 
-	public AccountDto(@Nullable final Account account) {
-		if (account == null) return;
-		id = account.getId();
-		name = account.getName();
-		amount = account.getAmount().toString();
-		comment = account.getComment();
-		active = account.getActive().toString();
-		userId = account.getUserId();
-		typeId = account.getTypeId();
-		clientId = account.getClientId();
-		logoId = account.getLogoId();
-	}
-
 }

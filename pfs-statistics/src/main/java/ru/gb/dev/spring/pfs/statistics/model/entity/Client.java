@@ -64,7 +64,7 @@ public class Client extends AbstractNamedEntity {
 
 	@Nullable
 	@ManyToOne
-	@JoinColumn(name = "logo_id")
+	@JoinColumn(name = "logoId")
 	private Logo logo;
 
 	@NotNull

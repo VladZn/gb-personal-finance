@@ -23,7 +23,7 @@ public class CategoryDto {
 	private String active = "";
 
 	@NotNull
-	private String logo_id = "";
+	private String logoId = "";
 
 	@NotNull
 	private String userId = "";

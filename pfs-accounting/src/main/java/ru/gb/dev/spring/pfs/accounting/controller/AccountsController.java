@@ -1,6 +1,5 @@
 package ru.gb.dev.spring.pfs.accounting.controller;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,12 +27,9 @@ public class AccountsController {
 
 	private final AccountService service;
 
-	private final ModelMapper modelMapper;
-
 	@Autowired
-	public AccountsController(final AccountService service, final ModelMapper modelMapper) {
+	public AccountsController(final AccountService service) {
 		this.service = service;
-		this.modelMapper = modelMapper;
 	}
 
 	@GetMapping(value = "/ping", produces = APPLICATION_JSON_UTF8_VALUE)
@@ -44,7 +40,7 @@ public class AccountsController {
 	@GetMapping(value = "{id}", produces = APPLICATION_JSON_UTF8_VALUE)
 	public AccountDto get(@PathVariable("id") final String id) {
 		return service.findById(id)
-				.map(account -> modelMapper.map(account, AccountDto.class))
+				.map(service::toDto)
 				.orElseThrow(() -> new EntityNotFoundException("Account with id " + id + "not found"));
 	}
 
@@ -53,7 +49,7 @@ public class AccountsController {
 		final Iterable<Account> accounts = service.findAll();
 		return StreamSupport
 				.stream(accounts.spliterator(), false)
-				.map(account -> modelMapper.map(account, AccountDto.class))
+				.map(service::toDto)
 				.collect(Collectors.toList());
 	}
 
