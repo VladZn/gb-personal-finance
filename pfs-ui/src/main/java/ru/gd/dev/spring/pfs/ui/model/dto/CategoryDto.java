@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.statistics.model.dto;
+package ru.gd.dev.spring.pfs.ui.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,15 +11,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement
-public class UserDto {
+public class CategoryDto {
 
 	@NotNull
 	private String id = "";
 
 	@NotNull
-	private String login = "";
+	private String name = "";
 
 	@NotNull
-	private String email = "";
+	private String active = "";
+
+	@NotNull
+	private String logo_id = "";
+
+	@NotNull
+	private String userId = "";
 
 }

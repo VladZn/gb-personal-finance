@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting.feign;
+package ru.gd.dev.spring.pfs.ui.model.service;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
