@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting.feign;
+package ru.gb.dev.spring.pfs.accounting.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,34 +18,34 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 @FeignClient(name = "statistics")
 public interface LogoService {
 
-	@GetMapping(value = "/ping", produces = APPLICATION_JSON_UTF8_VALUE)
-	ResultDto ping();
+    @GetMapping(value = "/ping", produces = APPLICATION_JSON_UTF8_VALUE)
+    ResultDto ping();
 
-	@GetMapping(value = "{id}", produces = APPLICATION_JSON_UTF8_VALUE)
-	LogoDto get(@PathVariable("id") final String id);
+    @GetMapping(value = "{id}", produces = APPLICATION_JSON_UTF8_VALUE)
+    LogoDto get(@PathVariable("id") final String id);
 
-	@GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-	List<LogoDto> getAll();
+    @GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    List<LogoDto> getAll();
 
-	@PostMapping(
-			consumes = APPLICATION_JSON_UTF8_VALUE,
-			produces = APPLICATION_JSON_UTF8_VALUE
-	)
-	ResultDto post(final LogoDto logoDto);
+    @PostMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE
+    )
+    ResultDto post(final LogoDto logoDto);
 
-	@PutMapping(
-			consumes = APPLICATION_JSON_UTF8_VALUE,
-			produces = APPLICATION_JSON_UTF8_VALUE
-	)
-	ResultDto put(final LogoDto logoDto);
+    @PutMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE
+    )
+    ResultDto put(final LogoDto logoDto);
 
-	@DeleteMapping(
-			consumes = APPLICATION_JSON_UTF8_VALUE,
-			produces = APPLICATION_JSON_UTF8_VALUE
-	)
-	ResultDto delete(final String logoId);
+    @DeleteMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE
+    )
+    ResultDto delete(final String logoId);
 
-	@DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-	ResultDto deleteAll();
+    @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    ResultDto deleteAll();
 
 }
