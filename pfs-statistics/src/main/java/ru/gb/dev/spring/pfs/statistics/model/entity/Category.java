@@ -28,7 +28,7 @@ public class Category extends AbstractNamedEntity {
 
 	@Nullable
 	@ManyToOne
-	@JoinColumn(name = "logoId")
+	@JoinColumn(name = "logo_id")
 	private Logo logo;
 
 	@NotNull

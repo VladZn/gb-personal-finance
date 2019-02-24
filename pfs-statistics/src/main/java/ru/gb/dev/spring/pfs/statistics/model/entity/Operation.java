@@ -61,7 +61,7 @@ public class Operation extends AbstractBaseEntity {
 
 	@Nullable
 	@ManyToOne
-	@JoinColumn(name = "logoId")
+	@JoinColumn(name = "logo_id")
 	private Logo logo;
 
 	@NotNull
