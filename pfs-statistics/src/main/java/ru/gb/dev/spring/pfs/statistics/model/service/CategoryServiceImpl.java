@@ -1,7 +1,6 @@
 package ru.gb.dev.spring.pfs.statistics.model.service;
 
 import org.jetbrains.annotations.Nullable;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -20,13 +19,10 @@ public class CategoryServiceImpl implements CategoryService {
 	private final CategoryRepository categoryRepository;
 	private final LogoRepository logoRepository;
 
-	private final ModelMapper modelMapper;
-
 	@Autowired
-	public CategoryServiceImpl(final CategoryRepository repository, final LogoRepository logoRepository, final ModelMapper modelMapper) {
+	public CategoryServiceImpl(final CategoryRepository repository, final LogoRepository logoRepository) {
 		categoryRepository = repository;
 		this.logoRepository = logoRepository;
-		this.modelMapper = modelMapper;
 	}
 
 	@Override

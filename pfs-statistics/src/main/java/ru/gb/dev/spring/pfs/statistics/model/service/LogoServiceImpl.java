@@ -4,8 +4,6 @@ import org.jetbrains.annotations.Nullable;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import ru.gb.dev.spring.pfs.statistics.exception.EntityNotFoundException;
 import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDto;
@@ -90,19 +88,17 @@ public class LogoServiceImpl implements LogoService {
 
 	@Override
 	public void save(final LogoDto logoDto) {
-		if (logoDto == null) {
-			return;
-		}
-		Logo logo = modelMapper.map(logoDto, Logo.class);
+		if (logoDto == null) return;
+
+		final Logo logo = modelMapper.map(logoDto, Logo.class);
 		logo.setId(logoDto.getId());
 		save(logo);
 	}
 
 	@Override
 	public void delete(final LogoDto logoDto) {
-		if (logoDto == null) {
-			return;
-		}
+		if (logoDto == null) return;
+
 		deleteById(logoDto.getId());
 	}
 

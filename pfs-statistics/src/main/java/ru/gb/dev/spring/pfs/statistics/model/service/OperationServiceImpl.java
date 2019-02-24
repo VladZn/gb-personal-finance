@@ -4,8 +4,6 @@ import org.jetbrains.annotations.Nullable;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import ru.gb.dev.spring.pfs.statistics.exception.EntityNotFoundException;
 import ru.gb.dev.spring.pfs.statistics.model.dto.OperationDto;
@@ -108,9 +106,8 @@ public class OperationServiceImpl implements OperationService {
 
 	@Override
 	public void save(final OperationDto operationDto) {
-		if (operationDto == null) {
-			return;
-		}
+		if (operationDto == null) return;
+
 		final Operation operation = modelMapper.map(operationDto, Operation.class);
 		operation.setId(operationDto.getId());
 		save(operation);
@@ -118,9 +115,8 @@ public class OperationServiceImpl implements OperationService {
 
 	@Override
 	public void delete(final OperationDto operationDto) {
-		if (operationDto == null) {
-			return;
-		}
+		if (operationDto == null) return;
+
 		deleteById(operationDto.getId());
 	}
 
