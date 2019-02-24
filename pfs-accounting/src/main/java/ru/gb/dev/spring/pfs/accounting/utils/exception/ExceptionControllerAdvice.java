@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting.exception;
+package ru.gb.dev.spring.pfs.accounting.utils.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

@@ -4,23 +4,25 @@ import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import ru.gb.dev.spring.pfs.accounting.exception.EntityNotFoundException;
 import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
 import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
+import ru.gb.dev.spring.pfs.accounting.model.mapper.AccountMapper;
 import ru.gb.dev.spring.pfs.accounting.model.repository.AccountRepository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
-
-import static ru.gb.dev.spring.pfs.accounting.utils.Utils.getBigDecimalOfString;
 
 @Service
 public class AccountServiceImpl implements AccountService {
 
 	private final AccountRepository repository;
 
+	private final AccountMapper mapper;
+
 	@Autowired
-	public AccountServiceImpl(final AccountRepository repository) {
+	public AccountServiceImpl(final AccountRepository repository, AccountMapper mapper) {
 		this.repository = repository;
+		this.mapper = mapper;
 	}
 
 	@Override
@@ -88,7 +90,7 @@ public class AccountServiceImpl implements AccountService {
 	public void save(final AccountDto accountDto) {
 		if (accountDto == null) return;
 
-		final Account account = fromDto(accountDto);
+		final Account account = mapper.toEntity(accountDto);
 		if (account != null) save(account);
 	}
 
@@ -96,44 +98,6 @@ public class AccountServiceImpl implements AccountService {
 	public void delete(final AccountDto accountDto) {
 		if (accountDto == null) return;
 		deleteById(accountDto.getId());
-	}
-
-	@Nullable
-	@Override
-	public Account fromDto(final AccountDto accountDto) {
-		if (accountDto == null) return null;
-
-		final Account account = new Account();
-		account.setId(accountDto.getId());
-		account.setName(accountDto.getName());
-		account.setAmount(getBigDecimalOfString(accountDto.getAmount()));
-		account.setComment(accountDto.getComment());
-		account.setActive(Boolean.valueOf(accountDto.getActive()));
-		account.setUserId(accountDto.getUserId());
-		account.setTypeId(accountDto.getTypeId());
-		account.setClientId(accountDto.getClientId());
-		account.setLogoId(accountDto.getLogoId());
-
-		return account;
-	}
-
-	@Nullable
-	@Override
-	public AccountDto toDto(final Account account) {
-		if (account == null) return null;
-
-		final AccountDto accountDto = new AccountDto();
-		accountDto.setId(account.getId());
-		accountDto.setName(account.getName());
-		accountDto.setAmount(account.getAmount().toString());
-		accountDto.setComment(account.getComment());
-		accountDto.setActive(account.getActive().toString());
-		accountDto.setUserId(account.getUserId());
-		accountDto.setTypeId(account.getTypeId());
-		accountDto.setClientId(account.getClientId());
-		accountDto.setLogoId(account.getLogoId());
-
-		return accountDto;
 	}
 
 }

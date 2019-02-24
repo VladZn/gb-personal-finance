@@ -33,8 +33,4 @@ public interface AccountService {
 
 	void delete(AccountDto accountDto);
 
-	Account fromDto(AccountDto accountDto);
-
-	AccountDto toDto(Account account);
-
 }

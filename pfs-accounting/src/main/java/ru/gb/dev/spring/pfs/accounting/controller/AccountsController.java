@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.gb.dev.spring.pfs.accounting.exception.EntityNotFoundException;
 import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
-import ru.gb.dev.spring.pfs.accounting.model.dto.util.ResultDto;
-import ru.gb.dev.spring.pfs.accounting.model.dto.util.SuccessDto;
+import ru.gb.dev.spring.pfs.accounting.controller.dto.ResultDto;
+import ru.gb.dev.spring.pfs.accounting.controller.dto.SuccessDto;
 import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
+import ru.gb.dev.spring.pfs.accounting.model.mapper.AccountMapper;
 import ru.gb.dev.spring.pfs.accounting.model.service.AccountService;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -26,10 +27,12 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 public class AccountsController {
 
 	private final AccountService service;
+	private final AccountMapper mapper;
 
 	@Autowired
-	public AccountsController(final AccountService service) {
+	public AccountsController(final AccountService service, AccountMapper mapper) {
 		this.service = service;
+		this.mapper = mapper;
 	}
 
 	@GetMapping(value = "/ping", produces = APPLICATION_JSON_UTF8_VALUE)
@@ -40,7 +43,7 @@ public class AccountsController {
 	@GetMapping(value = "{id}", produces = APPLICATION_JSON_UTF8_VALUE)
 	public AccountDto get(@PathVariable("id") final String id) {
 		return service.findById(id)
-				.map(service::toDto)
+				.map(mapper::toDto)
 				.orElseThrow(() -> new EntityNotFoundException("Account with id " + id + "not found"));
 	}
 
@@ -49,7 +52,7 @@ public class AccountsController {
 		final Iterable<Account> accounts = service.findAll();
 		return StreamSupport
 				.stream(accounts.spliterator(), false)
-				.map(service::toDto)
+				.map(mapper::toDto)
 				.collect(Collectors.toList());
 	}
 

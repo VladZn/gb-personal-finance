@@ -1,5 +1,6 @@
 package ru.gb.dev.spring.pfs.statistics.model.entity.base;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -7,10 +8,11 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
-@Data
-@NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @MappedSuperclass
+@Data
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
 public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
 	@Column(name = "name")

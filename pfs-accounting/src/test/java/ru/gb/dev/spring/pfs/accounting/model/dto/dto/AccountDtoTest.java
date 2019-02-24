@@ -1,27 +1,26 @@
 package ru.gb.dev.spring.pfs.accounting.model.dto.dto;
 
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
 import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
-import ru.gb.dev.spring.pfs.accounting.model.service.AccountService;
+import ru.gb.dev.spring.pfs.accounting.model.mapper.AccountMapper;
 
 import java.math.BigDecimal;
 
 import static org.apache.commons.lang.RandomStringUtils.randomAlphabetic;
 import static org.junit.Assert.assertEquals;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
 public class AccountDtoTest {
 
 	private static final String AMOUNT = "10";
 
-	@Autowired
-	private AccountService accountService;
+	private AccountMapper mapper;
+
+	@Before
+	public void init() {
+		mapper = new AccountMapper();
+	}
 
 	@Test
 	public void whenConvertAccountToAccountDto_thenCorrect() {
@@ -30,11 +29,11 @@ public class AccountDtoTest {
 		account.setAmount(BigDecimal.TEN);
 		account.setActive(true);
 
-		final AccountDto accountDto = accountService.toDto(account);
+		final AccountDto accountDto = mapper.toDto(account);
 		assertEquals(account.getId(), accountDto.getId());
 		assertEquals(account.getName(), accountDto.getName());
 		assertEquals(account.getAmount().toString(), accountDto.getAmount());
-		assertEquals(account.getActive().toString(), accountDto.getActive());
+		assertEquals(account.getActive(), accountDto.getActive());
 	}
 
 	@Test
@@ -42,9 +41,9 @@ public class AccountDtoTest {
 		final AccountDto accountDto = new AccountDto();
 		accountDto.setName(randomAlphabetic(8));
 		accountDto.setAmount(AMOUNT);
-		accountDto.setActive("true");
+		accountDto.setActive(true);
 
-		final Account account = accountService.fromDto(accountDto);
+		final Account account = mapper.toEntity(accountDto);
 		assertEquals(accountDto.getId(), account.getId());
 		assertEquals(accountDto.getName(), account.getName());
 		assertEquals(BigDecimal.TEN, account.getAmount());

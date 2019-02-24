@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting.exception;
+package ru.gb.dev.spring.pfs.accounting.utils.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

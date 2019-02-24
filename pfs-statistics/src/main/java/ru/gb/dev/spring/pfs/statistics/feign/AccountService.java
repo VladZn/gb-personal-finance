@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.gb.dev.spring.pfs.statistics.model.dto.AccountDto;
-import ru.gb.dev.spring.pfs.statistics.model.dto.util.ResultDto;
+import ru.gb.dev.spring.pfs.statistics.controller.dto.ResultDto;
 
 import java.util.List;
 
