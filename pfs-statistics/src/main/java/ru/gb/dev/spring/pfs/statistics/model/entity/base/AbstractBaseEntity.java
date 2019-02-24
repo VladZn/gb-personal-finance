@@ -6,12 +6,13 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @MappedSuperclass
-public abstract class AbstractBaseEntity {
+public abstract class AbstractBaseEntity implements Serializable {
 
 	@Id
 	@Column(name = "id")
