@@ -1,4 +1,4 @@
-package ru.gd.dev.spring.pfs.ui.model.dto.util;
+package ru.gd.dev.spring.pfs.ui.controller.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

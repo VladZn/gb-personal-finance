@@ -3,12 +3,16 @@ package ru.gd.dev.spring.pfs.ui.system;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.gb.dev.spring.pfs.accounting.feign.ClientService;
-import ru.gb.dev.spring.pfs.accounting.feign.LogoService;
-import ru.gb.dev.spring.pfs.accounting.model.dto.ClientDto;
-import ru.gb.dev.spring.pfs.accounting.model.dto.LogoDto;
-import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
-import ru.gb.dev.spring.pfs.accounting.model.service.AccountService;
+import ru.gd.dev.spring.pfs.ui.model.dto.AccountDto;
+import ru.gd.dev.spring.pfs.ui.model.dto.CategoryDto;
+import ru.gd.dev.spring.pfs.ui.model.dto.ClientDto;
+import ru.gd.dev.spring.pfs.ui.model.dto.LogoDto;
+import ru.gd.dev.spring.pfs.ui.model.dto.OperationDto;
+import ru.gd.dev.spring.pfs.ui.model.service.AccountService;
+import ru.gd.dev.spring.pfs.ui.model.service.CategoryService;
+import ru.gd.dev.spring.pfs.ui.model.service.ClientService;
+import ru.gd.dev.spring.pfs.ui.model.service.LogoService;
+import ru.gd.dev.spring.pfs.ui.model.service.OperationService;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -31,17 +35,25 @@ public class Bootstrap implements InitializingBean {
 	@Autowired(required = false)
 	private OperationService operationService;
 
+//	@Autowired(required = false)
+//	private UserService userService;
+
 	@Override
 	public void afterPropertiesSet() throws Exception {
+		initAccounting();
 		initStatistics();
+//		initUsers();
+	}
 
-		final Account account;
-		if (accountService.count() == 0) {
-			account = new Account();
+	private void initAccounting() {
+		final AccountDto account;
+		final boolean isNew = accountService.getAll().isEmpty();
+		if (isNew) {
+			account = new AccountDto();
 			account.setName("TestAccount");
-			account.setAmount(BigDecimal.TEN);
+			account.setAmount(BigDecimal.TEN.toString());
 		} else {
-			account = accountService.findAll().iterator().next();
+			account = accountService.getAll().get(0);
 		}
 
 		final List<ClientDto> clients = clientService.getAll();
@@ -50,60 +62,89 @@ public class Bootstrap implements InitializingBean {
 		final List<LogoDto> logos = logoService.getAll();
 		if (!logos.isEmpty()) account.setLogoId(logos.get(0).getId());
 
-		accountService.save(account);
+		if (isNew) accountService.post(account);
+		else accountService.put(account);
 	}
+
 	private void initStatistics() {
-		final Category category;
-		final Client client;
-		final Logo logo;
-		final Operation operation;
+		final CategoryDto category;
+		final ClientDto client;
+		final LogoDto logo;
+		final OperationDto operation;
 
-		if (categoryService.count() == 0 &&
-				clientService.count() == 0 &&
-				logoService.count() == 0 &&
-				operationService.count() == 0) {
-			category = new Category();
+		final boolean isCategoryNew = categoryService.getAll().isEmpty();
+		final boolean isClientNew = clientService.getAll().isEmpty();
+		final boolean isLogoNew = logoService.getAll().isEmpty();
+		final boolean isOperationNew = operationService.getAll().isEmpty();
+
+		if (isCategoryNew) {
+			category = new CategoryDto();
 			category.setName("TestCategory");
-			category.setActive(true);
+			category.setActive(Boolean.TRUE.toString());
+		} else {
+			category = categoryService.getAll().get(0);
+		}
 
-			client = new Client();
+		if (isClientNew) {
+			client = new ClientDto();
 			client.setName("TestClient");
-			client.setActive(true);
+			client.setIsActice(Boolean.TRUE.toString());
 			client.setCode("TestClientCode");
 			client.setComment("TestCLientComment");
+		} else {
+			client = clientService.getAll().get(0);
+		}
 
-			logo = new Logo();
+		if (isLogoNew) {
+			logo = new LogoDto();
 			logo.setName("TestLogo");
 			logo.setExtension("PNG");
 			logo.setPath("testPath");
-
-			operation = new Operation();
-			operation.setNumber("TestOperationNumber");
-			operation.setActive(true);
-			operation.setAmount(BigDecimal.TEN);
-			operation.setComment("TestOperationComment");
-
-			category.setLogo(logo);
-
-			client.setLogo(logo);
-
-			operation.setCategory(category);
-			operation.setClient(client);
-			operation.setLogo(logo);
 		} else {
-			category = categoryService.findAll().iterator().next();
-			client = clientService.findAll().iterator().next();
-			logo = logoService.findAll().iterator().next();
-			operation = operationService.findAll().iterator().next();
+			logo = logoService.getAll().get(0);
 		}
 
-		final List<AccountDto> accounts = accountsClient.getAll();
-		if (!accounts.isEmpty()) operation.setAccountId(accounts.get(0).getId());
+		if (isOperationNew) {
+			operation = new OperationDto();
+			operation.setAmount(BigDecimal.TEN.toString());
+			operation.setComment("TestOperationComment");
+		} else {
+			operation = operationService.getAll().get(0);
+		}
 
-		categoryService.save(category);
-		clientService.save(client);
-		logoService.save(logo);
-		operationService.save(operation);
+		category.setLogo_id(logo.getId());
+
+		client.setLogo_id(logo.getId());
+
+		operation.setCategoryId(category.getId());
+		operation.setFileId(logo.getId());
+
+		if (isCategoryNew) categoryService.post(category);
+		else categoryService.put(category);
+
+		if (isClientNew) clientService.post(client);
+		else clientService.put(client);
+
+		if (isLogoNew) logoService.post(logo);
+		else logoService.put(logo);
+
+		if (isOperationNew) operationService.post(operation);
+		else operationService.put(operation);
 	}
+
+//	private void initUsers() {
+//		if (!userService.getAll().isEmpty()) return;
+//		final UserDto admin = new UserDto();
+//		final UserDto user = new UserDto();
+//
+//		user.setLogin("user");
+//		user.setEmail("user@pfs.com");
+//
+//		admin.setLogin("admin");
+//		admin.setEmail("admin@pfs.com");
+//
+//		userService.post(admin);
+//		userService.post(user);
+//	}
 
 }
