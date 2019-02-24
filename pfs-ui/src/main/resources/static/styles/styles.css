@@ -1,0 +1,39 @@
+.rootView {
+    height: 100%;
+    width: 100%;
+}
+
+.menuView {
+    max-width: 15%;
+    background-color: hsl(214, 35%, 21%);
+}
+
+.personalInformationBox img {
+    margin: 10px auto;
+    width: 80px;
+    height: 80px;
+}
+
+.personalInformationBox span {
+    margin: 0 auto;
+    color: hsla(214, 96%, 96%, 0.9);
+    font-size: 18px;
+}
+
+.menuLinksBox a {
+    margin: 10px auto;
+    color: hsl(214, 100%, 70%);
+    text-decoration: none;
+    font-size: 24px;
+    text-align: center;
+}
+
+.contentView {
+    max-width: 85%;
+    background-color: hsla(214, 96%, 96%, 0.9);
+}
+
+.contentView label{
+    font-size: 24px;
+}
+
