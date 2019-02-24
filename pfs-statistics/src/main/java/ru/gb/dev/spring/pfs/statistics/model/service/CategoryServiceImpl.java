@@ -1,6 +1,7 @@
 package ru.gb.dev.spring.pfs.statistics.model.service;
 
 import org.jetbrains.annotations.Nullable;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -18,11 +19,13 @@ public class CategoryServiceImpl implements CategoryService {
 
 	private final CategoryRepository categoryRepository;
 	private final LogoRepository logoRepository;
+	private final ModelMapper mapper;
 
 	@Autowired
-	public CategoryServiceImpl(final CategoryRepository repository, final LogoRepository logoRepository) {
+	public CategoryServiceImpl(final CategoryRepository repository, final LogoRepository logoRepository, ModelMapper mapper) {
 		categoryRepository = repository;
 		this.logoRepository = logoRepository;
+		this.mapper = mapper;
 	}
 
 	@Override
@@ -95,8 +98,9 @@ public class CategoryServiceImpl implements CategoryService {
 	public void save(final CategoryDto categoryDto) {
 		if (categoryDto == null) return;
 
-		final Category category = fromDto(categoryDto);
-		if (category != null) save(category);
+		final Category category = mapper.map(categoryDto, Category.class);
+		category.setId(categoryDto.getId());
+		save(category);
 	}
 
 	@Override
@@ -104,43 +108,6 @@ public class CategoryServiceImpl implements CategoryService {
 		if (categoryDto == null) return;
 
 		deleteById(categoryDto.getId());
-	}
-
-	@Nullable
-	@Override
-	public Category fromDto(@Nullable final CategoryDto categoryDto) {
-		if (categoryDto == null) return null;
-
-		final Category category = new Category();
-		category.setId(categoryDto.getId());
-		category.setName(categoryDto.getName());
-
-		final String logoId = categoryDto.getLogoId();
-		if (!StringUtils.isEmpty(logoId)) {
-			final Logo logo = logoRepository.findById(categoryDto.getLogoId()).orElseGet(Logo::new);
-			logo.setId(logoId);
-		}
-
-		category.setUserId(categoryDto.getUserId());
-
-		return category;
-	}
-
-	@Nullable
-	@Override
-	public CategoryDto toDto(final Category category) {
-		if (category == null) return null;
-		final CategoryDto categoryDto = new CategoryDto();
-		categoryDto.setId(category.getId());
-		categoryDto.setName(category.getName());
-		categoryDto.setActive(category.getActive().toString());
-
-		final Logo logo = category.getLogo();
-		if (logo != null) categoryDto.setLogoId(logo.getId());
-
-		categoryDto.setUserId(category.getUserId());
-
-		return categoryDto;
 	}
 
 }

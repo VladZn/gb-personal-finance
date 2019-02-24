@@ -42,7 +42,7 @@ public class OperationDtoTest {
 		assertEquals(operation.getId(), operationDto.getId());
 		assertEquals(operation.getComment(), operationDto.getComment());
 		assertEquals(operation.getAmount().toString(), operationDto.getAmount());
-		assertEquals(operation.getActive().toString(), operationDto.getActive());
+		assertEquals(operation.getActive(), operationDto.getActive());
 		assertEquals(operation.getOperationDate(), operationDto.getOperationDate());
 	}
 
@@ -52,7 +52,7 @@ public class OperationDtoTest {
 		final OperationDto operationDto = new OperationDto();
 		operationDto.setComment(randomAlphabetic(8));
 		operationDto.setAmount(BigDecimal.TEN.toString());
-		operationDto.setActive(Boolean.TRUE.toString());
+		operationDto.setActive(Boolean.TRUE);
 
 		// when
 		final Operation operation = mapper.map(operationDto, Operation.class);
@@ -61,7 +61,7 @@ public class OperationDtoTest {
 		assertEquals(operationDto.getId(), operation.getId());
 		assertEquals(operationDto.getComment(), operation.getComment());
 		assertEquals(operationDto.getAmount(), operation.getAmount().toString());
-		assertEquals(operationDto.getActive(), operation.getActive().toString());
+		assertEquals(operationDto.getActive(), operation.getActive());
 		assertEquals(operationDto.getOperationDate(), operation.getOperationDate());
 	}
 

@@ -47,7 +47,7 @@ public class Operation extends AbstractBaseEntity {
 	private LocalDateTime operationDate = LocalDateTime.now();
 
 	@Column(name = "active")
-	private Boolean active = false;
+	private Boolean active = Boolean.FALSE;
 
 	@Nullable
 	@ManyToOne

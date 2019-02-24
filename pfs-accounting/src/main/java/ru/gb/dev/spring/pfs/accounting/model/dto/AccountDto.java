@@ -20,7 +20,7 @@ public class AccountDto extends AbstractNamedDto {
 	private String comment = "";
 
 	@NotNull
-	private Boolean active = false;
+	private Boolean active = Boolean.FALSE;
 
 	@NotNull
 	private String userId = "";

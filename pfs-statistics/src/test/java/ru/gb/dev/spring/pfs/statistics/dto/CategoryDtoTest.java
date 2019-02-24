@@ -38,7 +38,7 @@ public class CategoryDtoTest {
 		// then
 		assertEquals(category.getId(), categoryDto.getId());
 		assertEquals(category.getName(), categoryDto.getName());
-		assertEquals(category.getActive(), Boolean.valueOf(categoryDto.getActive()));
+		assertEquals(category.getActive(), categoryDto.getActive());
 	}
 
 	@Test
@@ -46,7 +46,7 @@ public class CategoryDtoTest {
 		// given
 		final CategoryDto categoryDto = new CategoryDto();
 		categoryDto.setName(randomAlphabetic(8));
-		categoryDto.setActive(Boolean.TRUE.toString());
+		categoryDto.setActive(Boolean.TRUE);
 
 		// when
 		final Category category = mapper.map(categoryDto, Category.class);
@@ -54,7 +54,7 @@ public class CategoryDtoTest {
 		// then
 		assertEquals(categoryDto.getId(), category.getId());
 		assertEquals(categoryDto.getName(), category.getName());
-		assertEquals(categoryDto.getActive(), String.valueOf(category.getActive()));
+		assertEquals(categoryDto.getActive(), category.getActive());
 	}
 
 }

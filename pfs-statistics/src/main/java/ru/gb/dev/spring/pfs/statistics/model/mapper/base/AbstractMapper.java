@@ -16,7 +16,7 @@ public abstract class AbstractMapper<E extends AbstractBaseEntity, D extends Abs
 	private final Class<E> entityClass;
 	private final Class<D> dtoClass;
 
-	AbstractMapper(final Class<E> entityClass, final Class<D> dtoClass) {
+	protected AbstractMapper(final Class<E> entityClass, final Class<D> dtoClass) {
 		this.entityClass = entityClass;
 		this.dtoClass = dtoClass;
 	}
@@ -35,7 +35,7 @@ public abstract class AbstractMapper<E extends AbstractBaseEntity, D extends Abs
 				: mapper.map(entity, dtoClass);
 	}
 
-	Converter<E, D> toDtoConverter() {
+	protected Converter<E, D> toDtoConverter() {
 		return context -> {
 			final E source = context.getSource();
 			final D destination = context.getDestination();
@@ -44,7 +44,7 @@ public abstract class AbstractMapper<E extends AbstractBaseEntity, D extends Abs
 		};
 	}
 
-	Converter<D, E> toEntityConverter() {
+	protected Converter<D, E> toEntityConverter() {
 		return context -> {
 			final D source = context.getSource();
 			final E destination = context.getDestination();
@@ -53,10 +53,10 @@ public abstract class AbstractMapper<E extends AbstractBaseEntity, D extends Abs
 		};
 	}
 
-	void mapSpecificFields(final E source, final D destination) {
+	protected void mapSpecificFields(final E source, final D destination) {
 	}
 
-	void mapSpecificFields(final D source, final E destination) {
+	protected void mapSpecificFields(final D source, final E destination) {
 	}
 
 }

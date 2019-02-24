@@ -36,8 +36,4 @@ public interface CategoryService {
 
 	void delete(CategoryDto categoryDto);
 
-	Category fromDto(CategoryDto categoryDto);
-
-	CategoryDto toDto(Category category);
-
 }

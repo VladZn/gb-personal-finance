@@ -1,21 +1,21 @@
 package ru.gb.dev.spring.pfs.statistics.model.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import ru.gb.dev.spring.pfs.statistics.model.dto.base.AbstractBaseDto;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDateTime;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-@AllArgsConstructor
 @XmlRootElement
-public class OperationDto {
+public class OperationDto extends AbstractBaseDto {
 
-	@NotNull
-	private String id = "";
+	private static final long serialVersionUID = -6268060818229181878L;
 
 	@NotNull
 	private String amount = "";
@@ -36,7 +36,7 @@ public class OperationDto {
 	private LocalDateTime operationDate = LocalDateTime.now();
 
 	@NotNull
-	private String active = "";
+	private Boolean active = Boolean.FALSE;
 
 	@NotNull
 	private String clientId = "";

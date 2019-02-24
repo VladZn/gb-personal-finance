@@ -3,6 +3,7 @@ package ru.gb.dev.spring.pfs.accounting.model.entity.base;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -19,6 +20,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public abstract class AbstractBaseEntity implements Serializable {
 
+	@NotNull
 	@Id
 	@Column(name = "id")
 	private String id = UUID.randomUUID().toString();
@@ -28,11 +30,6 @@ public abstract class AbstractBaseEntity implements Serializable {
 
 	@Column(name = "updated", insertable = false)
 	LocalDateTime updated;
-
-
-	public String getId() {
-		return id;
-	}
 
 	@PrePersist
 	public void toCreate() {

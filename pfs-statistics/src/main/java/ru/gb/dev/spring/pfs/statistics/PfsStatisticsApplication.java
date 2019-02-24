@@ -5,7 +5,6 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
 import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
@@ -17,7 +16,6 @@ import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
  * http://localhost:10152/api/operations
  */
 
-@EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
 public class PfsStatisticsApplication {
