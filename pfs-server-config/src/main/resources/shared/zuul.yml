@@ -6,7 +6,7 @@ zuul:
   strip-prefix: false
   routes:
     accounting:
-      path: /accounting/**
+      path: /accounts/**
       serviceId: accounting
       strip-prefix: false
 
