@@ -1,0 +1,14 @@
+# https://docs.travis-ci.com/user/languages/java/
+language: java
+jdk: oraclejdk8
+services: postgresql
+
+#https://dzone.com/articles/travis-ci-tutorial-java-projects
+cache:
+  directories:
+  - $HOME/.m2
+
+# https://docs.travis-ci.com/user/database-setup/#PostgreSQL
+before_script:
+  - psql -c 'create database test' -U postgres
+  - psql -c 'create user "test"; grant all privileges on database test to "test"' -U postgres
