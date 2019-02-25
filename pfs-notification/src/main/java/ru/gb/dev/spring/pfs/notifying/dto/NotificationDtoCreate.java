@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class NotificationDtoCreate extends NotificationAbstractDto{
 
-    private boolean isActive;
+    private Boolean isActive;
 
     @NotNull
     private String userId;

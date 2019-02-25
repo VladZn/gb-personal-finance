@@ -19,7 +19,7 @@ public class NotificationDtoView extends NotificationAbstractDto {
     @Setter
     private String id;
 
-    private boolean isActive;
+    private Boolean isActive;
 
     @NotNull
     private String userId;
