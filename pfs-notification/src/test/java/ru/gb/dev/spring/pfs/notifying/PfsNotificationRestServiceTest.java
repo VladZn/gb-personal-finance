@@ -18,7 +18,6 @@ import ru.gb.dev.spring.pfs.notifying.dto.util.ConvertUtil;
 import ru.gb.dev.spring.pfs.notifying.dto.view.NotificationDtoView;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 /**
