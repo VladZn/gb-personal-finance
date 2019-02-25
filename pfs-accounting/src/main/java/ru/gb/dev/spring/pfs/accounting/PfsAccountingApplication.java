@@ -12,7 +12,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.web.client.RestTemplate;
 import ru.gb.dev.spring.pfs.accounting.util.UserContextInterceptor;
 
-import java.util.Collections;
 import java.util.List;
 
 /**

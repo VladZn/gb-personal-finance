@@ -1,5 +1,6 @@
 package ru.gb.dev.spring.pfs.authentication.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -8,6 +9,7 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import ru.gb.dev.spring.pfs.authentication.config.ServiceConfig;
 
 /**
  * @author V. Zinchenko
@@ -16,8 +18,13 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @Configuration
 public class JwtTokenStoreConfig {
 
-    //    @Autowired
-//    private ServiConf
+    private final ServiceConfig serviceConfig;
+
+    @Autowired
+    public JwtTokenStoreConfig(ServiceConfig serviceConfig) {
+        this.serviceConfig = serviceConfig;
+    }
+
     @Bean
     public TokenStore tokenStore() {
         return new JwtTokenStore(jwtAccessTokenConverter());
@@ -43,7 +50,7 @@ public class JwtTokenStoreConfig {
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey("123"); //TODO вынести настройку в отдельный класс
+        converter.setSigningKey(serviceConfig.getJwtSigningKey());
         return converter;
     }
 

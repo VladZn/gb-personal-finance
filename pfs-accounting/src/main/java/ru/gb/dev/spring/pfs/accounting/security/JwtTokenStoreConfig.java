@@ -7,6 +7,7 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import ru.gb.dev.spring.pfs.accounting.config.ServiceConfig;
 
 /**
  * @author V. Zinchenko
@@ -14,6 +15,12 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
 public class JwtTokenStoreConfig {
+
+    private final ServiceConfig serviceConfig;
+
+    public JwtTokenStoreConfig(ServiceConfig serviceConfig) {
+        this.serviceConfig = serviceConfig;
+    }
 
     //JWT
     @Bean
@@ -36,8 +43,7 @@ public class JwtTokenStoreConfig {
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-//        converter.setSigningKey(serviceConfig.getJwtSigningKey());
-        converter.setSigningKey("123");
+        converter.setSigningKey(serviceConfig.getJwtSigningKey());
         return converter;
     }
 
