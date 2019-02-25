@@ -26,65 +26,65 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 @RequestMapping("/api/accounts")
 public class AccountsController {
 
-	private final AccountService service;
+    private final AccountService service;
 
-	private final ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
-	@Autowired
-	public AccountsController(final AccountService service, final ModelMapper modelMapper) {
-		this.service = service;
-		this.modelMapper = modelMapper;
-	}
+    @Autowired
+    public AccountsController(final AccountService service, final ModelMapper modelMapper) {
+        this.service = service;
+        this.modelMapper = modelMapper;
+    }
 
-	@GetMapping(value = "/ping", produces = APPLICATION_JSON_UTF8_VALUE)
-	public ResultDto ping() {
-		return new SuccessDto();
-	}
+    @GetMapping(value = "/ping", produces = APPLICATION_JSON_UTF8_VALUE)
+    public ResultDto ping() {
+        return new SuccessDto();
+    }
 
-	@GetMapping(value = "{id}", produces = APPLICATION_JSON_UTF8_VALUE)
-	public AccountDto get(@PathVariable("id") final String id) {
-		return service.findById(id)
-				.map(account -> modelMapper.map(account, AccountDto.class))
-				.orElseThrow(() -> new EntityNotFoundException("Account with id " + id + "not found"));
-	}
+    @GetMapping(value = "{id}", produces = APPLICATION_JSON_UTF8_VALUE)
+    public AccountDto get(@PathVariable("id") final String id) {
+        return service.findById(id)
+                .map(account -> modelMapper.map(account, AccountDto.class))
+                .orElseThrow(() -> new EntityNotFoundException("Account with id " + id + "not found"));
+    }
 
-	@GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-	public List<AccountDto> getAll() {
-		final Iterable<Account> accounts = service.findAll();
-		return StreamSupport
-				.stream(accounts.spliterator(), false)
-				.map(account -> modelMapper.map(account, AccountDto.class))
-				.collect(Collectors.toList());
-	}
+    @GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    public List<AccountDto> getAll() {
+        final Iterable<Account> accounts = service.findAll();
+        return StreamSupport
+                .stream(accounts.spliterator(), false)
+                .map(account -> modelMapper.map(account, AccountDto.class))
+                .collect(Collectors.toList());
+    }
 
-	@PostMapping(
-			consumes = APPLICATION_JSON_UTF8_VALUE,
-			produces = APPLICATION_JSON_UTF8_VALUE)
-	public ResultDto post(final AccountDto accountDto) {
-		service.save(accountDto);
-		return new ResultDto();
-	}
+    @PostMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE)
+    public ResultDto post(final AccountDto accountDto) {
+        service.save(accountDto);
+        return new ResultDto();
+    }
 
-	@PutMapping(
-			consumes = APPLICATION_JSON_UTF8_VALUE,
-			produces = APPLICATION_JSON_UTF8_VALUE)
-	public ResultDto put(final AccountDto accountDto) {
-		service.save(accountDto);
-		return new ResultDto();
-	}
+    @PutMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE)
+    public ResultDto put(final AccountDto accountDto) {
+        service.save(accountDto);
+        return new ResultDto();
+    }
 
-	@DeleteMapping(
-			consumes = APPLICATION_JSON_UTF8_VALUE,
-			produces = APPLICATION_JSON_UTF8_VALUE)
-	public ResultDto delete(final String accountId) {
-		service.deleteById(accountId);
-		return new ResultDto();
-	}
+    @DeleteMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE)
+    public ResultDto delete(final String accountId) {
+        service.deleteById(accountId);
+        return new ResultDto();
+    }
 
-	@DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-	public ResultDto deleteAll() {
-		service.deleteAll();
-		return new ResultDto();
-	}
+    @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    public ResultDto deleteAll() {
+        service.deleteAll();
+        return new ResultDto();
+    }
 
 }

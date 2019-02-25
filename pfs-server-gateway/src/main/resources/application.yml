@@ -9,11 +9,11 @@ cloud:
 server:
   port: 7777
 
-zuul:
-  routes:
-    date:
-      path: /**
-      serviceId: ui
+#zuul:
+#  routes:
+#    date:
+#      path: /**
+#      serviceId: ui
 
 ribbon:
   eureka:
