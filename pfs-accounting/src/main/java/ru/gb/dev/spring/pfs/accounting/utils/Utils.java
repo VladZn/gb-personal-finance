@@ -8,8 +8,10 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 
-public enum Utils {
-	INSTANCE;
+public class Utils {
+
+	private Utils() {
+	}
 
 	public static BigDecimal getBigDecimalOfString(@Nullable final String amount) {
 		if (StringUtils.isEmpty(amount)) return BigDecimal.ZERO;
