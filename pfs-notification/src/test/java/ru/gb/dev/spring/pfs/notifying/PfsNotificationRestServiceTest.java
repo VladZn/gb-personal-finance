@@ -47,6 +47,7 @@ public class PfsNotificationRestServiceTest {
     public void testRestService(){
         ResponseEntity<NotificationDtoView> entity = testRestTemplate.postForEntity(HOST_NAME + "/createNotify",
                 notificationDtoCreate, NotificationDtoView.class);
+
         Assert.assertEquals(entity.getStatusCodeValue(), 201);
         Assert.assertNotNull(entity.getBody().getId());
         Assert.assertEquals(entity.getBody().getBody(), notificationDtoCreate.getBody());
