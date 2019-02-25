@@ -33,8 +33,6 @@ public class PfsNotificationRestServiceTest {
 
     private NotificationDtoCreate notificationDtoCreate = null;
 
-    private NotificationDtoUpdate notificationDtoUpdate = null;
-
     private final String HOST_NAME = "http://localhost:10151/api/notify";
 
     @Before
@@ -55,7 +53,7 @@ public class PfsNotificationRestServiceTest {
         Assert.assertEquals(entity.getBody().getUserId(), notificationDtoCreate.getUserId());
         Assert.assertEquals(entity.getBody().getDateTime(), notificationDtoCreate.getDateTime());
 
-        notificationDtoUpdate = ConvertUtil.converDtoToDto(entity.getBody(),NotificationDtoUpdate.class);
+        NotificationDtoUpdate notificationDtoUpdate = ConvertUtil.converDtoToDto(entity.getBody(),NotificationDtoUpdate.class);
         Assert.assertEquals(entity.getBody().getId(), notificationDtoUpdate.getId());
         Assert.assertEquals(entity.getBody().getTitle(), notificationDtoUpdate.getTitle());
         Assert.assertEquals(entity.getBody().isActive(), notificationDtoUpdate.isActive());
