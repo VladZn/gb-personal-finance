@@ -1,6 +1,5 @@
 package ru.gd.dev.spring.pfs.ui;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +19,12 @@ import static org.junit.Assert.assertNotNull;
 
 /**
  * @autor Eremin Artem on 24.02.2019.
+ * <p>
+ * For running tests you must download geckodriver for FirefoxDriver from
+ * @link <a href="https://github.com/mozilla/geckodriver/releases/tag/v0.24.0">geckodriver</a>"
+ * to directory "resources/drivers"
+ * <p>
+ * You must start appplication for run tests with Selenium2
  */
 
 @SpringBootTest
@@ -39,7 +44,8 @@ public class MenuTest {
 
     @BeforeClass
     public static void init() throws InterruptedException {
-        System.setProperty("webdriver.gecko.driver", "C://geckodriver-v0.24.0-win64/geckodriver.exe");
+        final String path = TestUtils.getDriverPath();
+        System.setProperty("webdriver.gecko.driver", path);
         driver = new FirefoxDriver();
         driver.get("http://localhost:8080/accounts");
         Thread.sleep(4000);

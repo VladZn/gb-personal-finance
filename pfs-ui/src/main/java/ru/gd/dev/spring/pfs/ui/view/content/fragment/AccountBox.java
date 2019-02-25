@@ -20,13 +20,14 @@ public class AccountBox extends HorizontalLayout {
         if(accountDto == null) return;
         if(accountDto.getLogoId().isEmpty()) return;
         if(accountDto.getName().isEmpty()) return;
+        if(accountDto.getAmount().isEmpty()) return;
         getClassNames().add("accountBox");
         final Image icon = new Image(accountDto.getLogoId(), "account");
         String route = UI.getCurrent().getRouter().getUrl(AccountView.class);
         final Anchor name = new Anchor(route, accountDto.getName());
         final Div amountBox = new Div();
         amountBox.getClassNames().add("amountBox");
-        final Label amount = new Label(accountDto.getAmount().toString());
+        final Label amount = new Label(accountDto.getAmount());
         final Label currency = new Label("руб");
         amountBox.add(amount, currency);
         add(icon, name, amountBox);
