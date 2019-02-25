@@ -10,7 +10,7 @@ public class TestUtils {
         final StringBuilder path = new StringBuilder();
         path.append("src/main/resources/drivers/geckodriver");
         final String oc = System.getProperty("os.name");
-        if(oc.contains("win")) path.append(".exe");
+        if(oc.contains("Win")) path.append(".exe");
         return path.toString();
     }
 }
