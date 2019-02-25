@@ -10,6 +10,7 @@ spring:
       min-idle: 15
       max-idle: 20
     driver-class-name: org.postgresql.Driver
+    validationQuery: "SELECT 1"
   jpa:
     hibernate:
       ddl-auto: update
