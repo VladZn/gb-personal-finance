@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 @XmlRootElement
 @NoArgsConstructor
-public class NotificationDtoUpdate extends NotificationAbstractDto{
+public class NotificationDtoDelete extends NotificationAbstractDto{
 
     private String id;
 
@@ -29,7 +29,7 @@ public class NotificationDtoUpdate extends NotificationAbstractDto{
     @NotNull
     private String body;
 
-    public NotificationDtoUpdate(String id, boolean isActive, @NotNull String userId,
+    public NotificationDtoDelete(String id, boolean isActive, @NotNull String userId,
                                  @NotNull Date dateTime, @NotNull String title,
                                  @NotNull String body) {
         this.id = id;
