@@ -8,7 +8,7 @@ import ru.gb.dev.spring.pfs.notifying.dto.NotificationAbstractDto;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @XmlRootElement
@@ -25,7 +25,7 @@ public class NotificationDtoView extends NotificationAbstractDto {
     private String userId;
 
     @NotNull
-    private Date dateTime;
+    private LocalDateTime dateTime;
 
     @NotNull
     private String title;

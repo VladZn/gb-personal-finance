@@ -17,6 +17,7 @@ import ru.gb.dev.spring.pfs.notifying.dto.NotificationDtoUpdate;
 import ru.gb.dev.spring.pfs.notifying.dto.util.ConvertUtil;
 import ru.gb.dev.spring.pfs.notifying.dto.view.NotificationDtoView;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class PfsNotificationRestServiceTest {
 
     @Before
     public void initObjects(){
-        notificationDtoCreate  = new NotificationDtoCreate(true,"1",new Date(),
+        notificationDtoCreate  = new NotificationDtoCreate(true,"1", LocalDateTime.now(),
                 "Test title", "Test body");
     }
 

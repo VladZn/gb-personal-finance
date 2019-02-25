@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -13,6 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class NotificationDtoUpdate extends NotificationAbstractDto{
 
+    @NotNull
     private String id;
 
     private boolean isActive;
@@ -21,7 +23,7 @@ public class NotificationDtoUpdate extends NotificationAbstractDto{
     private String userId;
 
     @NotNull
-    private Date dateTime;
+    private LocalDateTime dateTime;
 
     @NotNull
     private String title;
@@ -29,8 +31,8 @@ public class NotificationDtoUpdate extends NotificationAbstractDto{
     @NotNull
     private String body;
 
-    public NotificationDtoUpdate(String id, boolean isActive, @NotNull String userId,
-                                 @NotNull Date dateTime, @NotNull String title,
+    public NotificationDtoUpdate(@NotNull String id, boolean isActive, @NotNull String userId,
+                                 @NotNull LocalDateTime dateTime, @NotNull String title,
                                  @NotNull String body) {
         this.id = id;
         this.isActive = isActive;

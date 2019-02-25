@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @XmlRootElement
@@ -20,7 +20,7 @@ public class NotificationDtoCreate extends NotificationAbstractDto{
     private String userId;
 
     @NotNull
-    private Date dateTime;
+    private LocalDateTime dateTime;
 
     @NotNull
     private String title;
@@ -29,7 +29,7 @@ public class NotificationDtoCreate extends NotificationAbstractDto{
     private String body;
 
     public NotificationDtoCreate(boolean isActive, String userId,
-                                 Date dateTime,
+                                 LocalDateTime dateTime,
                                  String title,
                                  String body) {
         this.isActive = isActive;
