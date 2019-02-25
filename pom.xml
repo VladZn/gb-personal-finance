@@ -61,16 +61,9 @@
         </dependencies>
     </dependencyManagement>
 
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-        </repository>
-    </repositories>
-
     <modules>
         <module>pfs-accounting</module>
+        <module>pfs-authentication</module>
         <module>pfs-notification</module>
         <module>pfs-statistics</module>
         <module>pfs-ui</module>
