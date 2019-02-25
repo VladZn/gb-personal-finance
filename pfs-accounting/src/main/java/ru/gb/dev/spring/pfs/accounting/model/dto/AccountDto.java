@@ -21,12 +21,21 @@ public class AccountDto {
     private String amount = "";
 
     @NotNull
+    private String comment = "";
+
+    @NotNull
+    private String active = "";
+
+    @NotNull
     private String userId = "";
 
     @NotNull
     private String typeId = "";
 
     @NotNull
-    private String iconId = "";
+    private String clientId = "";
+
+    @NotNull
+    private String logoId = "";
 
 }

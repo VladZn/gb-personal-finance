@@ -1,0 +1,36 @@
+#info:
+#  app:
+#    name: accounting
+#    version: 1.0.0
+
+spring:
+  application:
+    name: accounting
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    config:
+      discovery:
+        service-id: accounting
+        enabled: true
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+
+# For detailed logging during development
+logging:
+  level:
+    org:
+      com: ERROR
+      springframework: ERROR
+      hibernate:
+        sql: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: ERROR
