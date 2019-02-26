@@ -1,0 +1,88 @@
+package ru.gb.dev.spring.pfs.statistics.model.mapper;
+
+import org.jetbrains.annotations.Nullable;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+import ru.gb.dev.spring.pfs.statistics.model.dto.OperationDto;
+import ru.gb.dev.spring.pfs.statistics.model.entity.Operation;
+import ru.gb.dev.spring.pfs.statistics.model.mapper.base.AbstractMapper;
+import ru.gb.dev.spring.pfs.statistics.model.repository.CategoryRepository;
+import ru.gb.dev.spring.pfs.statistics.model.repository.ClientRepository;
+import ru.gb.dev.spring.pfs.statistics.model.repository.LogoRepository;
+
+import javax.annotation.PostConstruct;
+import java.util.Objects;
+
+@Component
+public class OperationMapper extends AbstractMapper<Operation, OperationDto> {
+
+	private final ModelMapper mapper;
+	private final ClientRepository clientRepository;
+	private final CategoryRepository categoryRepository;
+	private final LogoRepository logoRepository;
+
+	OperationMapper(
+			final ModelMapper mapper,
+			final ClientRepository clientRepository,
+			final CategoryRepository categoryRepository,
+			final LogoRepository logoRepository
+	) {
+		super(Operation.class, OperationDto.class);
+		this.mapper = mapper;
+		this.clientRepository = clientRepository;
+		this.categoryRepository = categoryRepository;
+		this.logoRepository = logoRepository;
+	}
+
+	@PostConstruct
+	public void setupMapper() {
+		mapper.createTypeMap(Operation.class, OperationDto.class)
+				.addMappings(m -> m.skip(OperationDto::setClientId)).setPostConverter(toDtoConverter());
+		mapper.createTypeMap(OperationDto.class, Operation.class)
+				.addMappings(m -> m.skip(Operation::setClient)).setPostConverter(toEntityConverter());
+		mapper.createTypeMap(Operation.class, OperationDto.class)
+				.addMappings(m -> m.skip(OperationDto::setCategoryId)).setPostConverter(toDtoConverter());
+		mapper.createTypeMap(OperationDto.class, Operation.class)
+				.addMappings(m -> m.skip(Operation::setCategory)).setPostConverter(toEntityConverter());
+		mapper.createTypeMap(Operation.class, OperationDto.class)
+				.addMappings(m -> m.skip(OperationDto::setLogoId)).setPostConverter(toDtoConverter());
+		mapper.createTypeMap(OperationDto.class, Operation.class)
+				.addMappings(m -> m.skip(Operation::setLogo)).setPostConverter(toEntityConverter());
+	}
+
+	@Override
+	protected void mapSpecificFields(final Operation source, final OperationDto destination) {
+		final String clientId = getClientId(source);
+		if (!StringUtils.isEmpty(clientId)) destination.setLogoId(clientId);
+
+		final String categoryId = getCategoryId(source);
+		if (!StringUtils.isEmpty(categoryId)) destination.setLogoId(categoryId);
+
+		final String logoId = getLogoId(source);
+		if (!StringUtils.isEmpty(logoId)) destination.setLogoId(logoId);
+	}
+
+	@Nullable
+	private String getClientId(final Operation source) {
+		return Objects.isNull(source) || Objects.isNull(source.getLogo()) ? null : source.getLogo().getId();
+	}
+
+	@Nullable
+	private String getCategoryId(final Operation source) {
+		return Objects.isNull(source) || Objects.isNull(source.getLogo()) ? null : source.getLogo().getId();
+	}
+
+	@Nullable
+	private String getLogoId(final Operation source) {
+		return Objects.isNull(source) || Objects.isNull(source.getLogo()) ? null : source.getLogo().getId();
+	}
+
+	@Override
+	protected void mapSpecificFields(final OperationDto source, final Operation destination) {
+		destination.setClient(clientRepository.findById(source.getClientId()).orElse(null));
+		destination.setCategory(categoryRepository.findById(source.getCategoryId()).orElse(null));
+		destination.setLogo(logoRepository.findById(source.getLogoId()).orElse(null));
+	}
+
+}

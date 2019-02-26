@@ -1,6 +1,5 @@
 package ru.gb.dev.spring.pfs.accounting;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -22,11 +21,6 @@ import java.util.List;
 @EnableDiscoveryClient
 @SpringBootApplication
 public class PfsAccountingApplication {
-
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
 
     @Primary
     @Bean

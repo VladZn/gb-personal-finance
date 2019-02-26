@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting.model.dto.util;
+package ru.gb.dev.spring.pfs.accounting.controller.dto;
 
 public class FailDto extends ResultDto {
 

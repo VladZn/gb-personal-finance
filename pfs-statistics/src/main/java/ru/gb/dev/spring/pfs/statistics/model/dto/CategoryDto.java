@@ -1,29 +1,31 @@
 package ru.gb.dev.spring.pfs.statistics.model.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import ru.gb.dev.spring.pfs.statistics.model.dto.base.AbstractNamedDto;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-@AllArgsConstructor
 @XmlRootElement
-public class CategoryDto {
+public class CategoryDto extends AbstractNamedDto {
+
+	private static final long serialVersionUID = -3476100187582748829L;
 
 	@NotNull
-	private String id = "";
+	private Boolean active = Boolean.FALSE;
 
 	@NotNull
-	private String name = "";
+	private String logoId = "";
 
 	@NotNull
-	private String active = "";
-
-	@NotNull
-	private String logo_id = "";
+	private List<OperationDto> operations = new ArrayList<>();
 
 	@NotNull
 	private String userId = "";

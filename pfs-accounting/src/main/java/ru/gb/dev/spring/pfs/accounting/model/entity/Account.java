@@ -12,10 +12,10 @@ import javax.persistence.Table;
 import java.math.BigDecimal;
 
 @Entity
+@Table(name = "accounts")
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Table(name = "accounts")
 public class Account extends AbstractNamedEntity {
 
 	@NotNull
@@ -43,7 +43,7 @@ public class Account extends AbstractNamedEntity {
 	private String clientId = "";
 
 	@NotNull
-	@Column(name = "logo_id")
+	@Column(name = "logoId")
 	private String logoId = "";
 
 }

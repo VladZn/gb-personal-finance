@@ -1,15 +1,15 @@
 package ru.gb.dev.spring.pfs.accounting.model.service;
 
 import org.jetbrains.annotations.Nullable;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import ru.gb.dev.spring.pfs.accounting.exception.EntityNotFoundException;
 import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
 import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
+import ru.gb.dev.spring.pfs.accounting.model.mapper.AccountMapper;
 import ru.gb.dev.spring.pfs.accounting.model.repository.AccountRepository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
@@ -17,12 +17,12 @@ public class AccountServiceImpl implements AccountService {
 
 	private final AccountRepository repository;
 
-	private final ModelMapper modelMapper;
+	private final AccountMapper mapper;
 
 	@Autowired
-	public AccountServiceImpl(final AccountRepository repository, ModelMapper modelMapper) {
+	public AccountServiceImpl(final AccountRepository repository, AccountMapper mapper) {
 		this.repository = repository;
-		this.modelMapper = modelMapper;
+		this.mapper = mapper;
 	}
 
 	@Override
@@ -88,19 +88,15 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public void save(final AccountDto accountDto) {
-		if (accountDto == null) {
-			return;
-		}
-		Account account = modelMapper.map(accountDto, Account.class);
-		account.setId(accountDto.getId());
-		save(account);
+		if (accountDto == null) return;
+
+		final Account account = mapper.toEntity(accountDto);
+		if (account != null) save(account);
 	}
 
 	@Override
 	public void delete(final AccountDto accountDto) {
-		if (accountDto == null) {
-			return;
-		}
+		if (accountDto == null) return;
 		deleteById(accountDto.getId());
 	}
 

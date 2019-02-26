@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.gb.dev.spring.pfs.statistics.exception.EntityNotFoundException;
 import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDto;
-import ru.gb.dev.spring.pfs.statistics.model.dto.util.ResultDto;
-import ru.gb.dev.spring.pfs.statistics.model.dto.util.SuccessDto;
+import ru.gb.dev.spring.pfs.statistics.controller.dto.ResultDto;
+import ru.gb.dev.spring.pfs.statistics.controller.dto.SuccessDto;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Logo;
 import ru.gb.dev.spring.pfs.statistics.model.service.LogoService;
 

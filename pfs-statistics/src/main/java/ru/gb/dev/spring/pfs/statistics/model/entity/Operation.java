@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -44,10 +44,10 @@ public class Operation extends AbstractBaseEntity {
 
 	@NotNull
 	@Column(name = "operation_date")
-	private Date operationDate = new Date();
+	private LocalDateTime operationDate = LocalDateTime.now();
 
 	@Column(name = "active")
-	private Boolean active = false;
+	private Boolean active = Boolean.FALSE;
 
 	@Nullable
 	@ManyToOne
@@ -65,11 +65,11 @@ public class Operation extends AbstractBaseEntity {
 	private Logo logo;
 
 	@NotNull
-	@Column(name = "user_id")
-	private String userId = "";
-
-	@NotNull
 	@Column(name = "account_id")
 	private String accountId = "";
+
+	@NotNull
+	@Column(name = "user_id")
+	private String userId = "";
 
 }
