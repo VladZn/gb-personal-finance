@@ -14,9 +14,9 @@ spring:
         service-id: notification
         enabled: true
   datasource:
-    url: jdbc:postgresql://localhost:5432/pfnotify
-    username: sa
-    password: 123
+    url: jdbc:postgresql://localhost:5432/notification
+    username: user
+    password: password
     tomcat:
       max-wait: 200
       max-active: 50

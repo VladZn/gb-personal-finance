@@ -32,6 +32,7 @@ public class AccountServiceTest {
 
 		// then
 		assertThat(account.getName()).isEqualTo(accountDto.getName());
+		accountService.delete(accountDto);
 	}
 
 }

@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting.util;
+package ru.gb.dev.spring.pfs.accounting.util.user_context;
 
 import org.springframework.util.Assert;
 
