@@ -4,7 +4,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
@@ -15,15 +14,10 @@ import ru.gb.dev.spring.pfs.accounting.util.UserContextInterceptor;
 import java.util.List;
 
 /**
- *
- * http://localhost:10151/api/account/ping
- * http://localhost:10151/api/accounts/ping
- * http://localhost:10151/api/account
  * http://localhost:10151/api/accounts
  *
  */
 
-@EnableFeignClients
 @EnableResourceServer
 @EnableDiscoveryClient
 @SpringBootApplication

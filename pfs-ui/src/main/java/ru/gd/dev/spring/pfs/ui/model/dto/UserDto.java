@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting.model.dto;
+package ru.gd.dev.spring.pfs.ui.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,21 +11,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement
-public class LogoDto {
+public class UserDto {
 
 	@NotNull
 	private String id = "";
 
 	@NotNull
-	private String name = "";
+	private String login = "";
 
 	@NotNull
-	private String userId = "";
-
-	@NotNull
-	private String path = "";
-
-	@NotNull
-	private String extension = "";
+	private String email = "";
 
 }
