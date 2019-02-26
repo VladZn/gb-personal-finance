@@ -35,10 +35,10 @@ public class AccountsController {
 		this.mapper = mapper;
 	}
 
-	@GetMapping(value = "/ping", produces = APPLICATION_JSON_UTF8_VALUE)
-	public ResultDto ping() {
-		return new SuccessDto();
-	}
+    @GetMapping(value = "/ping", produces = APPLICATION_JSON_UTF8_VALUE)
+    public ResultDto ping() {
+        return new SuccessDto();
+    }
 
 	@GetMapping(value = "{id}", produces = APPLICATION_JSON_UTF8_VALUE)
 	public AccountDto get(@PathVariable("id") final String id) {
@@ -56,34 +56,34 @@ public class AccountsController {
 				.collect(Collectors.toList());
 	}
 
-	@PostMapping(
-			consumes = APPLICATION_JSON_UTF8_VALUE,
-			produces = APPLICATION_JSON_UTF8_VALUE)
-	public ResultDto post(final AccountDto accountDto) {
-		service.save(accountDto);
-		return new ResultDto();
-	}
+    @PostMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE)
+    public ResultDto post(final AccountDto accountDto) {
+        service.save(accountDto);
+        return new ResultDto();
+    }
 
-	@PutMapping(
-			consumes = APPLICATION_JSON_UTF8_VALUE,
-			produces = APPLICATION_JSON_UTF8_VALUE)
-	public ResultDto put(final AccountDto accountDto) {
-		service.save(accountDto);
-		return new ResultDto();
-	}
+    @PutMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE)
+    public ResultDto put(final AccountDto accountDto) {
+        service.save(accountDto);
+        return new ResultDto();
+    }
 
-	@DeleteMapping(
-			consumes = APPLICATION_JSON_UTF8_VALUE,
-			produces = APPLICATION_JSON_UTF8_VALUE)
-	public ResultDto delete(final String accountId) {
-		service.deleteById(accountId);
-		return new ResultDto();
-	}
+    @DeleteMapping(
+            consumes = APPLICATION_JSON_UTF8_VALUE,
+            produces = APPLICATION_JSON_UTF8_VALUE)
+    public ResultDto delete(final String accountId) {
+        service.deleteById(accountId);
+        return new ResultDto();
+    }
 
-	@DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-	public ResultDto deleteAll() {
-		service.deleteAll();
-		return new ResultDto();
-	}
+    @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    public ResultDto deleteAll() {
+        service.deleteAll();
+        return new ResultDto();
+    }
 
 }

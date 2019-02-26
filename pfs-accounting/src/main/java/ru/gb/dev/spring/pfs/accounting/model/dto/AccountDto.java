@@ -13,25 +13,25 @@ public class AccountDto extends AbstractNamedDto {
 
 	private static final long serialVersionUID = 1596263169401921474L;
 
-	@NotNull
-	private String amount = "";
+    @NotNull
+    private String amount = "";
 
-	@NotNull
-	private String comment = "";
+    @NotNull
+    private String comment = "";
 
 	@NotNull
 	private Boolean active = Boolean.FALSE;
 
-	@NotNull
-	private String userId = "";
+    @NotNull
+    private String userId = "";
 
-	@NotNull
-	private String typeId = "";
+    @NotNull
+    private String typeId = "";
 
-	@NotNull
-	private String clientId = "";
+    @NotNull
+    private String clientId = "";
 
-	@NotNull
-	private String logoId = "";
+    @NotNull
+    private String logoId = "";
 
 }
