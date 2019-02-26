@@ -4,8 +4,6 @@ import org.jetbrains.annotations.Nullable;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import ru.gb.dev.spring.pfs.statistics.exception.EntityNotFoundException;
 import ru.gb.dev.spring.pfs.statistics.model.dto.ClientDto;
@@ -96,9 +94,8 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public void save(final ClientDto clientDto) {
-		if (clientDto == null) {
-			return;
-		}
+		if (clientDto == null) return;
+
 		final Client client = modelMapper.map(clientDto, Client.class);
 		client.setId(clientDto.getId());
 		save(client);
@@ -106,9 +103,8 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public void delete(final ClientDto clientDto) {
-		if (clientDto == null) {
-			return;
-		}
+		if (clientDto == null) return;
+
 		deleteById(clientDto.getId());
 	}
 

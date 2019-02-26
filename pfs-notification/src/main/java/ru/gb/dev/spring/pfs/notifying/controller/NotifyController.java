@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import ru.gb.dev.spring.pfs.notifying.controller.service.RestPreconditions;
 import ru.gb.dev.spring.pfs.notifying.dto.NotificationDtoCreate;
+import ru.gb.dev.spring.pfs.notifying.dto.NotificationDtoDelete;
 import ru.gb.dev.spring.pfs.notifying.dto.NotificationDtoUpdate;
 import ru.gb.dev.spring.pfs.notifying.dto.service.HealthCheck;
+import ru.gb.dev.spring.pfs.notifying.dto.util.ConvertUtil;
 import ru.gb.dev.spring.pfs.notifying.dto.view.NotificationDtoView;
 import ru.gb.dev.spring.pfs.notifying.exception.RecordNotFoundException;
 import ru.gb.dev.spring.pfs.notifying.model.Notification;
@@ -53,18 +55,18 @@ public class NotifyController {
     @PostMapping(value = "/createNotify", produces = APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public NotificationDtoView createNotify(@Valid @RequestBody NotificationDtoCreate resource){
+
         RestPreconditions.checkFound(resource);
-        Notification notificationOut = service.save(modelMapper
-                .map(resource, Notification.class));
-        return modelMapper
-                .map(notificationOut, NotificationDtoView.class);
+        Notification notificationOut = service.save(ConvertUtil.convertDtoToNotification(resource));
+
+        return ConvertUtil.convertNotificationToDto(notificationOut, NotificationDtoView.class);
 
     }
 
     @GetMapping(value = "/{id}", produces = APPLICATION_JSON_UTF8_VALUE)
     public NotificationDtoView getNotifyById(@PathVariable("id") final String id){
         return service.findById(id)
-                .map(notification -> modelMapper.map(notification, NotificationDtoView.class))
+                .map(notification -> ConvertUtil.convertNotificationToDto(notification, NotificationDtoView.class))
                 .orElseThrow(() -> new RecordNotFoundException("Notify with id " + id + " not found"));
     }
 
@@ -73,15 +75,15 @@ public class NotifyController {
         final Iterable<Notification> notifications = service.findAll();
         return StreamSupport
                 .stream(notifications.spliterator(), false)
-                .map(notify -> modelMapper.map(notify, NotificationDtoView.class))
+                .map(notify -> ConvertUtil.convertNotificationToDto(notify, NotificationDtoView.class))
                 .collect(Collectors.toList());
     }
 
     @PutMapping(value = "/updateNotify", produces = APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public NotificationDtoView updateNotify(@Valid @RequestBody NotificationDtoUpdate resource){
-        return modelMapper.map(
-                service.update(modelMapper.map(resource, Notification.class)),
+        return ConvertUtil.convertNotificationToDto(
+                service.update(ConvertUtil.convertDtoToNotification(resource)),
                 NotificationDtoView.class);
     }
 
@@ -93,8 +95,8 @@ public class NotifyController {
 
     @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public void delete(@Valid @RequestBody NotificationDtoUpdate resource){
-        service.delete(modelMapper.map(resource, Notification.class));
+    public void delete(@Valid @RequestBody NotificationDtoDelete resource){
+        service.delete(ConvertUtil.convertDtoToNotification(resource));
     }
 
 }

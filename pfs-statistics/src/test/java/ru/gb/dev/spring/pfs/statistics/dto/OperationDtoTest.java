@@ -1,42 +1,68 @@
 package ru.gb.dev.spring.pfs.statistics.dto;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.modelmapper.ModelMapper;
-import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDto;
-import ru.gb.dev.spring.pfs.statistics.model.entity.Logo;
+import org.modelmapper.convention.MatchingStrategies;
+import ru.gb.dev.spring.pfs.statistics.model.dto.OperationDto;
+import ru.gb.dev.spring.pfs.statistics.model.entity.Operation;
+
+import java.math.BigDecimal;
 
 import static org.apache.commons.lang.RandomStringUtils.randomAlphabetic;
 import static org.junit.Assert.assertEquals;
+import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
 
 public class OperationDtoTest {
 
-	private final ModelMapper modelMapper = new ModelMapper();
+	private ModelMapper mapper;
 
-	@Test
-	public void whenConvertLogoToLogoDto_thenCorrect() {
-		final Logo logo = new Logo();
-		logo.setName(randomAlphabetic(8));
-		logo.setPath(randomAlphabetic(8));
-		logo.setExtension(randomAlphabetic(8));
-
-		final LogoDto logoDto = modelMapper.map(logo, LogoDto.class);
-		assertEquals(logo.getId(), logoDto.getId());
-		assertEquals(logo.getName(), logoDto.getName());
-		assertEquals(logo.getPath(), logoDto.getPath());
-		assertEquals(logo.getExtension(), logoDto.getExtension());
+	@Before
+	public void init() {
+		mapper = new ModelMapper();
+		mapper.getConfiguration()
+				.setMatchingStrategy(MatchingStrategies.STRICT)
+				.setFieldMatchingEnabled(true)
+				.setSkipNullEnabled(true)
+				.setFieldAccessLevel(PRIVATE);
 	}
 
 	@Test
-	public void whenConvertPostDtoToPostEntity_thenCorrect() {
-		final LogoDto logoDto = new LogoDto();
-		logoDto.setName(randomAlphabetic(8));
-		logoDto.setPath(randomAlphabetic(8));
-		logoDto.setExtension(randomAlphabetic(8));
+	public void whenConvertOperationEntityToOperationDto_thenCorrect() {
+		// given
+		final Operation operation = new Operation();
+		operation.setComment(randomAlphabetic(8));
+		operation.setAmount(BigDecimal.TEN);
+		operation.setActive(true);
 
-		final Logo logo = modelMapper.map(logoDto, Logo.class);
-		assertEquals(logoDto.getId(), logo.getId());
-		assertEquals(logoDto.getName(), logo.getName());
-		assertEquals(logoDto.getPath(), logo.getPath());
+		// when
+		final OperationDto operationDto = mapper.map(operation, OperationDto.class);
+
+		// then
+		assertEquals(operation.getId(), operationDto.getId());
+		assertEquals(operation.getComment(), operationDto.getComment());
+		assertEquals(operation.getAmount().toString(), operationDto.getAmount());
+		assertEquals(operation.getActive(), operationDto.getActive());
+		assertEquals(operation.getOperationDate(), operationDto.getOperationDate());
+	}
+
+	@Test
+	public void whenConvertOperationDtoToOperationEntity_thenCorrect() {
+		// given
+		final OperationDto operationDto = new OperationDto();
+		operationDto.setComment(randomAlphabetic(8));
+		operationDto.setAmount(BigDecimal.TEN.toString());
+		operationDto.setActive(Boolean.TRUE);
+
+		// when
+		final Operation operation = mapper.map(operationDto, Operation.class);
+
+		// then
+		assertEquals(operationDto.getId(), operation.getId());
+		assertEquals(operationDto.getComment(), operation.getComment());
+		assertEquals(operationDto.getAmount(), operation.getAmount().toString());
+		assertEquals(operationDto.getActive(), operation.getActive());
+		assertEquals(operationDto.getOperationDate(), operation.getOperationDate());
 	}
 
 }

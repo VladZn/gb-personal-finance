@@ -1,42 +1,48 @@
 package ru.gb.dev.spring.pfs.statistics.dto;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.modelmapper.ModelMapper;
-import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDto;
-import ru.gb.dev.spring.pfs.statistics.model.entity.Logo;
+import org.modelmapper.convention.MatchingStrategies;
+import ru.gb.dev.spring.pfs.statistics.model.dto.ClientDto;
+import ru.gb.dev.spring.pfs.statistics.model.entity.Client;
 
 import static org.apache.commons.lang.RandomStringUtils.randomAlphabetic;
 import static org.junit.Assert.assertEquals;
+import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
 
 public class ClientDtoTest {
 
-	private final ModelMapper modelMapper = new ModelMapper();
+	private ModelMapper mapper;
 
-	@Test
-	public void whenConvertLogoToLogoDto_thenCorrect() {
-		final Logo logo = new Logo();
-		logo.setName(randomAlphabetic(8));
-		logo.setPath(randomAlphabetic(8));
-		logo.setExtension(randomAlphabetic(8));
-
-		final LogoDto logoDto = modelMapper.map(logo, LogoDto.class);
-		assertEquals(logo.getId(), logoDto.getId());
-		assertEquals(logo.getName(), logoDto.getName());
-		assertEquals(logo.getPath(), logoDto.getPath());
-		assertEquals(logo.getExtension(), logoDto.getExtension());
+	@Before
+	public void init() {
+		mapper = new ModelMapper();
+		mapper.getConfiguration()
+				.setMatchingStrategy(MatchingStrategies.STRICT)
+				.setFieldMatchingEnabled(true)
+				.setSkipNullEnabled(true)
+				.setFieldAccessLevel(PRIVATE);
 	}
 
 	@Test
-	public void whenConvertPostDtoToPostEntity_thenCorrect() {
-		final LogoDto logoDto = new LogoDto();
-		logoDto.setName(randomAlphabetic(8));
-		logoDto.setPath(randomAlphabetic(8));
-		logoDto.setExtension(randomAlphabetic(8));
+	public void whenConvertClientEntityToClientDto_thenCorrect() {
+		final Client client = new Client();
+		client.setName(randomAlphabetic(8));
 
-		final Logo logo = modelMapper.map(logoDto, Logo.class);
-		assertEquals(logoDto.getId(), logo.getId());
-		assertEquals(logoDto.getName(), logo.getName());
-		assertEquals(logoDto.getPath(), logo.getPath());
+		final ClientDto clientDto = mapper.map(client, ClientDto.class);
+		assertEquals(client.getId(), clientDto.getId());
+		assertEquals(client.getName(), clientDto.getName());
+	}
+
+	@Test
+	public void whenConvertClientDtoToClientEntity_thenCorrect() {
+		final ClientDto clientDto = new ClientDto();
+		clientDto.setName(randomAlphabetic(8));
+
+		final Client client = mapper.map(clientDto, Client.class);
+		assertEquals(clientDto.getId(), client.getId());
+		assertEquals(clientDto.getName(), client.getName());
 	}
 
 }
