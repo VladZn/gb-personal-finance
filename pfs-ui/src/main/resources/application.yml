@@ -4,5 +4,4 @@ server:
 spring:
   application:
     name: ui
-  main:
     allow-bean-definition-overriding: true
