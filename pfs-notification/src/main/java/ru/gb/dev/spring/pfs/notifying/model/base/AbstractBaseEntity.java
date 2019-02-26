@@ -20,7 +20,7 @@ public abstract class AbstractBaseEntity {
     private String id = UUID.randomUUID().toString();
 
     @Column(name = "isActive")
-    private boolean isActive;
+    private Boolean isActive;
 
     @Column(name = "user_id", nullable = false)
     private String userId;
