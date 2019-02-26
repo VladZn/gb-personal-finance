@@ -56,10 +56,10 @@ public class PfsNotificationRestServiceTest {
         NotificationDtoUpdate notificationDtoUpdate = ConvertUtil.converDtoToDto(entity.getBody(),NotificationDtoUpdate.class);
         Assert.assertEquals(entity.getBody().getId(), notificationDtoUpdate.getId());
         Assert.assertEquals(entity.getBody().getTitle(), notificationDtoUpdate.getTitle());
-        Assert.assertEquals(entity.getBody().isActive(), notificationDtoUpdate.isActive());
+        Assert.assertEquals(entity.getBody().getIsActive(), notificationDtoUpdate.getIsActive());
         Assert.assertEquals(entity.getBody().getBody(), notificationDtoUpdate.getBody());
 
-        notificationDtoUpdate.setActive(false);
+        notificationDtoUpdate.setIsActive(false);
 
         testRestTemplate.put(HOST_NAME + "/updateNotify", notificationDtoUpdate);
 
@@ -68,7 +68,7 @@ public class PfsNotificationRestServiceTest {
         ResponseEntity<NotificationDtoView> entityGetId = testRestTemplate.getForEntity(urlId,
                                                              NotificationDtoView.class);
         Assert.assertEquals(entityGetId.getStatusCodeValue(),  200);
-        Assert.assertFalse(entityGetId.getBody().isActive());
+        Assert.assertFalse(entityGetId.getBody().getIsActive());
 
         ResponseEntity<List<NotificationDtoView>>  listResponseEntity =
                 testRestTemplate.exchange(HOST_NAME + "/getAllNotify",

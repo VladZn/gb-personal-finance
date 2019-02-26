@@ -7,6 +7,7 @@ import lombok.Setter;
 
 /**
  * DTO class for errors
+ *
  * @author V. Zinchenko
  */
 

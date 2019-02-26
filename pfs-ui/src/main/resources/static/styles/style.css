@@ -130,7 +130,7 @@ footer {
     font-family: 'Open Sans', 'sans-serif', 'FontAwesome';
 }
 
-.loginContainer, .container{
+.loginContainer, .container {
     background: rgb(52, 56, 61);
     padding: 80px;
     height: 100%;
@@ -151,7 +151,6 @@ h1 {
     top: 50%;
     margin-top: -75px;
 }
-
 
 /* === Sign in Form === */
 

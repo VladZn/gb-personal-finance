@@ -2,16 +2,16 @@
 <configuration>
     <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <Pattern>%d{HH:mm:ss.SSS} >> %-3relative [%thread] %-5level	%logger{25} - %msg %n</Pattern>
+            <Pattern>%d{HH:mm:ss.SSS} >> %-3relative [%thread] %-5level %logger{25} - %msg %n</Pattern>
         </encoder>
     </appender>
 
     <appender name="rollingFileAppender"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>./accounting.log</File>
+        <File>./log/accounting.log</File>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>./accounting-%d{yyyy-MM-dd---HH-mm}.log</FileNamePattern>
+            <FileNamePattern>./log/accounting-%d{yyyy-MM-dd---HH-mm}.log</FileNamePattern>
             <maxHistory>1</maxHistory>
         </rollingPolicy>
 
@@ -27,8 +27,8 @@
     </logger>
 
     <root level="INFO">
-        <appender-ref ref="consoleAppender"/>
-        <appender-ref ref="rollingFileAppender"/>
+        <appender-ref ref="consoleAppender" />
+        <appender-ref ref="rollingFileAppender" />
     </root>
 
 </configuration>

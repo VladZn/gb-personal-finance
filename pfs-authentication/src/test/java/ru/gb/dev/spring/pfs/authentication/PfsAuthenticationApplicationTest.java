@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting;
+package ru.gb.dev.spring.pfs.authentication;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,11 +7,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class PfsAccountingApplicationTests {
+public class PfsAuthenticationApplicationTest {
 
     @Test
     public void contextLoads() {
     }
-
 }
-

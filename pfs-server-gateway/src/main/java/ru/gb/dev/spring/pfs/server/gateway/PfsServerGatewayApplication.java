@@ -10,9 +10,9 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @SpringBootApplication
 public class PfsServerGatewayApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(PfsServerGatewayApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(PfsServerGatewayApplication.class, args);
+	}
 
 }
 

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * In this class we will handle all exceptions thrown by controllers
+ *
  * @author V. Zinchenko
  */
 
@@ -29,6 +30,7 @@ public class ExceptionControllerAdvice {
         log.error("Entity not found exception at {}: {}", request.getRequestURI(), exception);
         return new ErrorDto(ENTITY_NOT_FOUND, exception.getLocalizedMessage());
     }
+
     @ResponseBody
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

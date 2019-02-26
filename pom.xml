@@ -26,21 +26,6 @@
             <email>skubatko@gmail.com</email>
         </developer>
         <developer>
-            <id>nurutdinov</id>
-            <name>Rustam Nurutdinov</name>
-            <email>nurutdinov.rustam@mail.ru</email>
-        </developer>
-        <developer>
-            <id>exalax</id>
-            <name>Alexey Gousev</name>
-            <email>alex@gousev.ru</email>
-        </developer>
-        <developer>
-            <id>evgeniyvolkov2</id>
-            <name>Evgeniy Volkov</name>
-            <email>rokot108@yandex.ru</email>
-        </developer>
-        <developer>
             <id>sergeyko69</id>
             <name>Sergey Kogut</name>
             <email>koguts@yandex.ru</email>
@@ -61,7 +46,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.1.2.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath /> <!-- lookup parent from repository -->
     </parent>
 
     <dependencyManagement>
@@ -76,17 +61,11 @@
         </dependencies>
     </dependencyManagement>
 
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-        </repository>
-    </repositories>
-
     <modules>
         <module>pfs-accounting</module>
+        <module>pfs-authentication</module>
         <module>pfs-notification</module>
+        <module>pfs-statistics</module>
         <module>pfs-ui</module>
         <module>pfs-server-config</module>
         <module>pfs-server-discovery</module>

@@ -1,0 +1,27 @@
+spring:
+  profile: dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/accounts
+    username: user
+    password: password
+    tomcat:
+      max-wait: 200
+      max-active: 50
+      min-idle: 15
+      max-idle: 20
+    driver-class-name: org.postgresql.Driver
+    validationQuery: "SELECT 1"
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        show_sql: true
+        max_fetch_depth: 3
+        temp:
+          use_jdbc_metadata_defaults: false
+---
+server:
+  port: 9050
