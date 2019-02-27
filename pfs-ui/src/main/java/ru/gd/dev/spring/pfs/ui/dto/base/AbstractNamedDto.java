@@ -1,4 +1,4 @@
-package ru.gd.dev.spring.pfs.ui.model.dto.base;
+package ru.gd.dev.spring.pfs.ui.dto.base;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

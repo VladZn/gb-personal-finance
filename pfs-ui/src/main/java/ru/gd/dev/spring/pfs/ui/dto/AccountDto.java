@@ -1,10 +1,10 @@
-package ru.gd.dev.spring.pfs.ui.model.dto;
+package ru.gd.dev.spring.pfs.ui.dto;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
-import ru.gd.dev.spring.pfs.ui.model.dto.base.AbstractNamedDto;
+import ru.gd.dev.spring.pfs.ui.dto.base.AbstractNamedDto;
 
 @Data
 @EqualsAndHashCode(callSuper = true)

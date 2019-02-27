@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting.system.security;
+package ru.gb.dev.spring.pfs.accounting.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

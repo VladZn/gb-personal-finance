@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting.util.user_context;
+package ru.gb.dev.spring.pfs.accounting.util;
 
 import org.springframework.stereotype.Component;
 

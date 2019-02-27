@@ -2,16 +2,16 @@ package ru.gd.dev.spring.pfs.ui.system;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.gd.dev.spring.pfs.ui.model.dto.AccountDto;
-import ru.gd.dev.spring.pfs.ui.model.dto.CategoryDto;
-import ru.gd.dev.spring.pfs.ui.model.dto.ClientDto;
-import ru.gd.dev.spring.pfs.ui.model.dto.LogoDto;
-import ru.gd.dev.spring.pfs.ui.model.dto.OperationDto;
-import ru.gd.dev.spring.pfs.ui.model.service.AccountService;
-import ru.gd.dev.spring.pfs.ui.model.service.CategoryService;
-import ru.gd.dev.spring.pfs.ui.model.service.ClientService;
-import ru.gd.dev.spring.pfs.ui.model.service.LogoService;
-import ru.gd.dev.spring.pfs.ui.model.service.OperationService;
+import ru.gd.dev.spring.pfs.ui.dto.AccountDto;
+import ru.gd.dev.spring.pfs.ui.dto.CategoryDto;
+import ru.gd.dev.spring.pfs.ui.dto.ClientDto;
+import ru.gd.dev.spring.pfs.ui.dto.LogoDto;
+import ru.gd.dev.spring.pfs.ui.dto.OperationDto;
+import ru.gd.dev.spring.pfs.ui.client.AccountService;
+import ru.gd.dev.spring.pfs.ui.client.CategoryService;
+import ru.gd.dev.spring.pfs.ui.client.ClientService;
+import ru.gd.dev.spring.pfs.ui.client.LogoService;
+import ru.gd.dev.spring.pfs.ui.client.OperationService;
 
 import java.math.BigDecimal;
 import java.util.List;
