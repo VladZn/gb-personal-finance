@@ -1,8 +1,7 @@
-package ru.gb.dev.spring.pfs.accounting.model.dto.dto;
+package ru.gb.dev.spring.pfs.accounting.model.dto;
 
 import org.junit.Before;
 import org.junit.Test;
-import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
 import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
 import ru.gb.dev.spring.pfs.accounting.model.mapper.AccountMapper;
 

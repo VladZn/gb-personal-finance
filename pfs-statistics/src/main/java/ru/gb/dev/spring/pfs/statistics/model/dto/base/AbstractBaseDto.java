@@ -1,6 +1,8 @@
 package ru.gb.dev.spring.pfs.statistics.model.dto.base;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
@@ -19,9 +21,11 @@ public class AbstractBaseDto implements Serializable {
 	private String id = UUID.randomUUID().toString();
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+    @JsonDeserialize(using = LocalDateDeserializer.class)
 	LocalDateTime created;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-	LocalDateTime updated;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    LocalDateTime updated;
 
 }

@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting.model.dto.service;
+package ru.gb.dev.spring.pfs.accounting.model.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
 import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
-import ru.gb.dev.spring.pfs.accounting.model.service.AccountService;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 

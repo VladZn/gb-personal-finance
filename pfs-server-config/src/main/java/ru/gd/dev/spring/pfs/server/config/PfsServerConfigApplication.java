@@ -6,9 +6,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.config.server.EnableConfigServer;
 
 /**
- * http://127.0.0.1:8888/pi-server-discovery.properties
- * http://127.0.0.1:8888/pi-app-api.properties
- * http://127.0.0.1:8888/pi-app-web.properties
+ * http://127.0.0.1:8888/accounting.yml
+ * http://127.0.0.1:8888/application.yml
+ * http://127.0.0.1:8888/authentication.yml
+ * http://127.0.0.1:8888/zuul.yml
  */
 
 @EnableConfigServer
