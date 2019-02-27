@@ -21,9 +21,10 @@ public class StatisticView extends VerticalLayout {
         getClassNames().add("contentView");
         getClassNames().add("statisticView");
         this.messageSource = messageSource;
-        final Label label =
+        final Label title =
                 new Label(messageSource.getMessage("menu.links.statistic", null, getLocale()));
-        label.setId("statisticLabel");
-        add(label);
+        title.setId("statisticLabel");
+        title.getClassNames().add("pageTitle");
+        add(title);
     }
 }

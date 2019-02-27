@@ -1,5 +1,6 @@
 package ru.gd.dev.spring.pfs.ui.view.content;
 
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -35,11 +36,18 @@ public class AccountsView extends VerticalLayout {
         getClassNames().add("contentView");
         getClassNames().add("accountView");
         this.messageSource = messageSource;
-        final Label label =
+        final Label title =
                 new Label(messageSource.getMessage("menu.links.account", null, getLocale()));
-        label.setId("accountLabel");
-        add(label);
+        title.setId("accountLabel");
+        title.getClassNames().add("pageTitle");
+        add(title);
         add(circleChartBox);
+        final Button button =
+                new Button(messageSource.getMessage("account.button.add", null, getLocale()));
+        button.addClickListener(e -> button.getUI().ifPresent(ui -> ui.navigate("createAccount")));
+        button.getClassNames().add("button");
+        button.getClassNames().add("createAccountButton");
+        add(button);
         for (final AccountDto account : accounts) {
             add(new AccountBox(account));
         }
