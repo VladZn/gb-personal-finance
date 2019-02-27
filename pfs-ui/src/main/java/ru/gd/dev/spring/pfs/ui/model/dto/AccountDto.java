@@ -24,13 +24,13 @@ public class AccountDto {
     private String comment = "";
 
     @NotNull
-    private String active = "";
+    private boolean active = true;
 
     @NotNull
     private String userId = "";
 
     @NotNull
-    private String typeId = "";
+    private AccountType type;
 
     @NotNull
     private String clientId = "";
