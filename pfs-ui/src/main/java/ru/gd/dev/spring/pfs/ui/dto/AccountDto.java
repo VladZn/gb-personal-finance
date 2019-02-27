@@ -1,13 +1,13 @@
-package ru.gd.dev.spring.pfs.ui.model.dto;
+package ru.gd.dev.spring.pfs.ui.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import ru.gd.dev.spring.pfs.ui.dto.AccountType;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @XmlRootElement
 public class AccountDto {
