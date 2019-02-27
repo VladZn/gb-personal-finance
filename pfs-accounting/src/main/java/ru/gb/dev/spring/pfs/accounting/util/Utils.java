@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting.utils;
+package ru.gb.dev.spring.pfs.accounting.util;
 
 import org.jetbrains.annotations.Nullable;
 import org.springframework.util.StringUtils;

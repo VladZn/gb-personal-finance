@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting.client;
+package ru.gd.dev.spring.pfs.ui.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.gb.dev.spring.pfs.accounting.model.dto.LogoDto;
-import ru.gb.dev.spring.pfs.accounting.model.dto.util.ResultDto;
+import ru.gd.dev.spring.pfs.ui.controller.dto.ResultDto;
+import ru.gd.dev.spring.pfs.ui.dto.LogoDto;
 
 import java.util.List;
 
@@ -40,10 +40,11 @@ public interface LogoService {
     ResultDto put(final LogoDto logoDto);
 
     @DeleteMapping(
+            value = "{id}",
             consumes = APPLICATION_JSON_UTF8_VALUE,
             produces = APPLICATION_JSON_UTF8_VALUE
     )
-    ResultDto delete(final String logoId);
+    ResultDto delete(@PathVariable("id") final String logoId);
 
     @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
     ResultDto deleteAll();

@@ -1,22 +1,18 @@
 package ru.gd.dev.spring.pfs.ui.dto;
 
 import lombok.Data;
+
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
-import ru.gd.dev.spring.pfs.ui.dto.AccountType;
-
-import javax.xml.bind.annotation.XmlRootElement;
+import ru.gd.dev.spring.pfs.ui.dto.base.AbstractNamedDto;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-@XmlRootElement
-public class AccountDto {
+public class AccountDto extends AbstractNamedDto {
 
-    @NotNull
-    private String id = "";
-
-    @NotNull
-    private String name = "";
+	private static final long serialVersionUID = 1596263169401921474L;
 
     @NotNull
     private String amount = "";
@@ -24,8 +20,8 @@ public class AccountDto {
     @NotNull
     private String comment = "";
 
-	@NotNull
-	private Boolean active = Boolean.FALSE;
+  	@NotNull
+	  private Boolean active = Boolean.FALSE;
 
     @NotNull
     private String userId = "";

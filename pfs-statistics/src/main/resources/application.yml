@@ -14,9 +14,9 @@ spring:
         service-id: statistics
         enabled: true
   datasource:
-    url: jdbc:postgresql://localhost:5432/test
-    username: test
-    password: test
+    url: jdbc:postgresql://localhost:5432/statistics
+    username: user
+    password: password
     tomcat:
       max-wait: 200
       max-active: 50

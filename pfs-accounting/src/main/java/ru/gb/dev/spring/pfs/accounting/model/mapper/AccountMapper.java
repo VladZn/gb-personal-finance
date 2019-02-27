@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
 import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
 
-import static ru.gb.dev.spring.pfs.accounting.utils.Utils.getBigDecimalOfString;
+import static ru.gb.dev.spring.pfs.accounting.util.Utils.getBigDecimalOfString;
 
 @Component
 public class AccountMapper implements Mapper<Account, AccountDto> {

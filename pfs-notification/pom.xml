@@ -9,7 +9,7 @@
         <artifactId>pfs</artifactId>
     </parent>
 
-    <artifactId>pi-app-api</artifactId>
+    <artifactId>pfs-notification</artifactId>
     <version>1.0.0</version>
     <name>${project.artifactId}</name>
     <description>Notification service</description>

@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting.client;
+package ru.gd.dev.spring.pfs.ui.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -7,43 +7,44 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.gb.dev.spring.pfs.accounting.model.dto.ClientDto;
-import ru.gb.dev.spring.pfs.accounting.model.dto.util.ResultDto;
+import ru.gd.dev.spring.pfs.ui.controller.dto.ResultDto;
+import ru.gd.dev.spring.pfs.ui.dto.CategoryDto;
 
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
-@RequestMapping("/api/clients")
+@RequestMapping("/api/categories")
 @FeignClient(name = "statistics")
-public interface ClientService {
+public interface CategoryService {
 
     @GetMapping(value = "/ping", produces = APPLICATION_JSON_UTF8_VALUE)
     ResultDto ping();
 
     @GetMapping(value = "{id}", produces = APPLICATION_JSON_UTF8_VALUE)
-    ClientDto get(@PathVariable("id") final String id);
+    CategoryDto get(@PathVariable("id") final String id);
 
     @GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-    List<ClientDto> getAll();
+    List<CategoryDto> getAll();
 
     @PostMapping(
             consumes = APPLICATION_JSON_UTF8_VALUE,
             produces = APPLICATION_JSON_UTF8_VALUE
     )
-    ResultDto post(final ClientDto clientDto);
+    ResultDto post(final CategoryDto categoryDto);
 
     @PutMapping(
             consumes = APPLICATION_JSON_UTF8_VALUE,
             produces = APPLICATION_JSON_UTF8_VALUE
     )
-    ResultDto put(final ClientDto clientDto);
+    ResultDto put(final CategoryDto categoryDto);
 
     @DeleteMapping(
+            value = "{id}",
             consumes = APPLICATION_JSON_UTF8_VALUE,
             produces = APPLICATION_JSON_UTF8_VALUE
     )
-    ResultDto delete(final String clientId);
+    ResultDto delete(@PathVariable("id") final String categoryId);
 
     @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
     ResultDto deleteAll();

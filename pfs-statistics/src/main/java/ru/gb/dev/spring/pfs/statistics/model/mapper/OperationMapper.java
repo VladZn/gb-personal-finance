@@ -38,16 +38,13 @@ public class OperationMapper extends AbstractMapper<Operation, OperationDto> {
 	@PostConstruct
 	public void setupMapper() {
 		mapper.createTypeMap(Operation.class, OperationDto.class)
-				.addMappings(m -> m.skip(OperationDto::setClientId)).setPostConverter(toDtoConverter());
-		mapper.createTypeMap(OperationDto.class, Operation.class)
-				.addMappings(m -> m.skip(Operation::setClient)).setPostConverter(toEntityConverter());
-		mapper.createTypeMap(Operation.class, OperationDto.class)
-				.addMappings(m -> m.skip(OperationDto::setCategoryId)).setPostConverter(toDtoConverter());
-		mapper.createTypeMap(OperationDto.class, Operation.class)
-				.addMappings(m -> m.skip(Operation::setCategory)).setPostConverter(toEntityConverter());
-		mapper.createTypeMap(Operation.class, OperationDto.class)
+				.addMappings(m -> m.skip(OperationDto::setClientId)).setPostConverter(toDtoConverter())
+				.addMappings(m -> m.skip(OperationDto::setCategoryId)).setPostConverter(toDtoConverter())
 				.addMappings(m -> m.skip(OperationDto::setLogoId)).setPostConverter(toDtoConverter());
+
 		mapper.createTypeMap(OperationDto.class, Operation.class)
+				.addMappings(m -> m.skip(Operation::setClient)).setPostConverter(toEntityConverter())
+				.addMappings(m -> m.skip(Operation::setCategory)).setPostConverter(toEntityConverter())
 				.addMappings(m -> m.skip(Operation::setLogo)).setPostConverter(toEntityConverter());
 	}
 
