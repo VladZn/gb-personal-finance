@@ -1,4 +1,4 @@
-package ru.gd.dev.spring.pfs.ui.model.dto;
+package ru.gd.dev.spring.pfs.ui.dto;
 
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;

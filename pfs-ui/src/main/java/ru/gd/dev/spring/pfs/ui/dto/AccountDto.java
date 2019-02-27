@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @XmlRootElement
 public class AccountDto {
@@ -23,14 +24,14 @@ public class AccountDto {
     @NotNull
     private String comment = "";
 
-    @NotNull
-    private boolean active = true;
+	@NotNull
+	private Boolean active = Boolean.FALSE;
 
     @NotNull
     private String userId = "";
 
     @NotNull
-    private AccountType type;
+    private AccountType type = AccountType.CASH;
 
     @NotNull
     private String clientId = "";

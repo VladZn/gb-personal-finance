@@ -1,3 +1,133 @@
+@font-face {
+    font-family: "Brandon Grotesque Black";
+    src: url(../fonts/BrandonGrotesque-Black.ttf);
+}
+
+@font-face {
+    font-family: "Pacifico";
+    src: url(../fonts/Pacifico.ttf);
+}
+
+@font-face {
+    font-family: "Comfortaa-Bold";
+    src: url(../fonts/Comfortaa-Bold.ttf);
+}
+
+@font-face {
+    font-family: "Comfortaa-Regular";
+    src: url(../fonts/Comfortaa-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Vollkorn-BoldItalic";
+    src: url(../fonts/Vollkorn-BoldItalic.ttf);
+}
+
+@font-face {
+    font-family: "Vollkorn-ExtraBold";
+    src: url(../fonts/Vollkorn-ExtraBold.ttf);
+}
+
+@font-face {
+    font-family: "Vollkorn-Medium";
+    src: url(../fonts/Vollkorn-Medium.ttf);
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    min-height: 150px;
+    width: 100%;
+    flex-shrink: 0;
+    background-color: rgb(39, 35, 35);
+}
+
+.headerContainer {
+    margin: 0 auto;
+    width: 1170px;
+    min-height: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Comfortaa-Bold", sans-serif;
+    color: rgb(202, 202, 202);
+    font-size: 24px;
+}
+
+.title {
+    font-family: "Pacifico", sans-serif;
+    font-size: 50px;
+    width: 390px;
+}
+
+.linksContainer a {
+    color: rgb(202, 202, 202);
+    text-decoration: none;
+}
+
+.linksContainer a:hover {
+    text-decoration: underline;
+}
+
+.content {
+    width: 100%;
+    background-color: #e0e0e0;
+    flex-grow: 1;
+}
+
+.contentContainer {
+    margin: 0 auto;
+    width: 1170px;
+}
+
+.descriptionContainer {
+    margin: 50px 40px;
+}
+
+.descriptionTitle {
+    text-align: center;
+    font-family: "Comfortaa-Bold", sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.description {
+    text-align: center;
+    font-family: "Comfortaa-Regular", sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.footer {
+    width: 100%;
+    background-color: rgb(39, 35, 35);
+    min-height: 80px;
+    flex-shrink: 0;
+}
+
+.footerContainer {
+    margin: 0 auto;
+    width: 1170px;
+    min-height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.copBox {
+    font-family: "Vollkorn-ExtraBold", sans-serif;
+    font-size: 20px;
+    color: rgb(202, 202, 202);
+}
+
 .rootView {
     height: 100%;
     width: 100%;
@@ -33,7 +163,7 @@
     background-color: hsla(214, 96%, 96%, 0.9);
 }
 
-.contentView label{
+.contentView label {
     font-size: 24px;
 }
 
@@ -55,7 +185,7 @@
     margin: 0 5px;
 }
 
-.accountBox a{
+.accountBox a {
     text-decoration: none;
     margin: 0 30px 0 30px;
 }
