@@ -8,7 +8,7 @@ import com.vaadin.flow.spring.annotation.UIScope;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import ru.gd.dev.spring.pfs.ui.model.dto.AccountDto;
+import ru.gd.dev.spring.pfs.ui.dto.AccountDto;
 import ru.gd.dev.spring.pfs.ui.view.content.fragment.AccountBox;
 import ru.gd.dev.spring.pfs.ui.view.content.fragment.CircleChartBox;
 import ru.gd.dev.spring.pfs.ui.view.menu.MenuView;

@@ -16,8 +16,8 @@ import javax.persistence.MappedSuperclass;
 @AllArgsConstructor
 public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
-	@NotNull
-	@Column(name = "name")
-	private String name = "";
+    @NotNull
+    @Column(name = "name")
+    private String name = "";
 
 }

@@ -20,25 +20,25 @@ import java.util.UUID;
 @AllArgsConstructor
 public abstract class AbstractBaseEntity implements Serializable {
 
-	@NotNull
-	@Id
-	@Column(name = "id")
-	private String id = UUID.randomUUID().toString();
+    @NotNull
+    @Id
+    @Column(name = "id")
+    private String id = UUID.randomUUID().toString();
 
-	@Column(name = "created", updatable = false)
-	LocalDateTime created;
+    @Column(name = "created", updatable = false)
+    LocalDateTime created;
 
-	@Column(name = "updated", insertable = false)
-	LocalDateTime updated;
+    @Column(name = "updated", insertable = false)
+    LocalDateTime updated;
 
-	@PrePersist
-	public void toCreate() {
-		setCreated(LocalDateTime.now());
-	}
+    @PrePersist
+    public void toCreate() {
+        setCreated(LocalDateTime.now());
+    }
 
-	@PreUpdate
-	public void toUpdate() {
-		setUpdated(LocalDateTime.now());
-	}
+    @PreUpdate
+    public void toUpdate() {
+        setUpdated(LocalDateTime.now());
+    }
 
 }

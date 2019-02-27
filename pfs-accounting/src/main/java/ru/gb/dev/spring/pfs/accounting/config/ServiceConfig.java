@@ -1,4 +1,4 @@
-package ru.gb.dev.spring.pfs.accounting.system;
+package ru.gb.dev.spring.pfs.accounting.config;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;

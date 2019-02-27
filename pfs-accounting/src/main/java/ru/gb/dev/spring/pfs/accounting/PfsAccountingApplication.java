@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.web.client.RestTemplate;
-import ru.gb.dev.spring.pfs.accounting.util.user_context.UserContextInterceptor;
+import ru.gb.dev.spring.pfs.accounting.util.UserContextInterceptor;
 
 import java.util.List;
 

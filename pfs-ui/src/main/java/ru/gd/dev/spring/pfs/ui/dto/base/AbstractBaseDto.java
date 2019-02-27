@@ -1,4 +1,4 @@
-package ru.gd.dev.spring.pfs.ui.model.dto.base;
+package ru.gd.dev.spring.pfs.ui.dto.base;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
