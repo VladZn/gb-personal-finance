@@ -6,12 +6,21 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
 /**
  * @author V. Zinchenko
  */
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     /**
      * The AuthenticationManagerBean is used by Spring Security to handle authentication.
@@ -33,18 +42,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     @Override
     public UserDetailsService userDetailsServiceBean() throws Exception {
-        return super.userDetailsServiceBean();
+        return new JdbcUserDetails();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("john.doe")
-                .password("{noop}password1")
-                .roles("USER")
-                .and()
-                .withUser("vasya.pupkin")
-                .password("{noop}password2")
-                .roles("USER", "ADMIN");
+        auth.userDetailsService(userDetailsServiceBean())
+                .passwordEncoder(passwordEncoder());
+//        auth.inMemoryAuthentication()
+//                .withUser("john.doe")
+//                .password("{noop}password1")
+//                .roles("USER")
+//                .and()
+//                .withUser("vasya.pupkin")
+//                .password("{noop}password2")
+//                .roles("USER", "ADMIN");
     }
 }

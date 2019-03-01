@@ -1,15 +1,21 @@
 package ru.gb.dev.spring.pfs.authentication.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+
 import ru.gb.dev.spring.pfs.authentication.config.ServiceConfig;
+
+import javax.sql.DataSource;
 
 /**
  * @author V. Zinchenko
@@ -18,30 +24,32 @@ import ru.gb.dev.spring.pfs.authentication.config.ServiceConfig;
 @Configuration
 public class JwtTokenStoreConfig {
 
-    private final ServiceConfig serviceConfig;
-
     @Autowired
-    public JwtTokenStoreConfig(ServiceConfig serviceConfig) {
-        this.serviceConfig = serviceConfig;
-    }
+    private ServiceConfig serviceConfig;
 
-    @Bean
-    public TokenStore tokenStore() {
-        return new JwtTokenStore(jwtAccessTokenConverter());
-    }
+//    @Autowired
+//    @Qualifier("oauthDataSource")
+//    private DataSource dataSource;
 
-    /**
-     * Used to read data to and from a token presented to the service
-     * @return
-     */
-    @Bean
-    @Primary
-    public DefaultTokenServices defaultTokenServices() {
-        DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
-        defaultTokenServices.setTokenStore(tokenStore());
-        defaultTokenServices.setSupportRefreshToken(true);
-        return defaultTokenServices;
-    }
+//    @Autowired
+//    public JwtTokenStoreConfig(ServiceConfig serviceConfig, DataSource dataSource) {
+//        this.serviceConfig = serviceConfig;
+//        this.dataSource = dataSource;
+//    }
+
+
+//    /**
+//     * Used to read data to and from a token presented to the service
+//     * @return
+//     */
+//    @Bean
+//    @Primary
+//    public DefaultTokenServices defaultTokenServices() {
+//        DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
+//        defaultTokenServices.setTokenStore(tokenStore());
+//        defaultTokenServices.setSupportRefreshToken(true);
+//        return defaultTokenServices;
+//    }
 
     /**
      * Acts as the translator between JWT and OAuth2 server

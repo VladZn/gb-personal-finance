@@ -8,3 +8,5 @@ spring:
       discovery:
         enabled: true
         serviceId: config
+  main:
+    allow-bean-definition-overriding: true

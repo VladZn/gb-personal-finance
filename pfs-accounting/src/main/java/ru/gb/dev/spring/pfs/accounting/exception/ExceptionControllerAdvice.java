@@ -22,6 +22,7 @@ public class ExceptionControllerAdvice {
     private static final String INTERNAL_SERVER_ERROR = "internal_server_error";
     private static final String ENTITY_NOT_FOUND = "entity_not_found";
     private static final String UNAUTHORIZED = "unauthorized";
+    private static final String PARAMETER_REQUIRED = "parameter_required";
 
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -37,6 +38,13 @@ public class ExceptionControllerAdvice {
     public ErrorDto handleUnknown(HttpServletRequest request, Exception exception) {
         log.error("exception at {}: {}", request.getRequestURI(), exception);
         return new ErrorDto(INTERNAL_SERVER_ERROR, exception.getLocalizedMessage());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ParameterRequiredException.class)
+    public ErrorDto handleBadRequest(HttpServletRequest request, Exception exception) {
+        log.error("Bad request at {}: {}", request.getRequestURI(), exception);
+        return new ErrorDto(PARAMETER_REQUIRED, exception.getLocalizedMessage());
     }
 
 }

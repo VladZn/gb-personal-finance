@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import ru.gd.dev.spring.pfs.ui.controller.dto.ResultDto;
 import ru.gd.dev.spring.pfs.ui.dto.AccountDto;
 
@@ -14,39 +15,29 @@ import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
-@RequestMapping("/api/accounts")
+@RequestMapping(value = "/api/accounts", produces = APPLICATION_JSON_UTF8_VALUE)
 @FeignClient(name = "accounting")
 public interface AccountService {
 
-    @GetMapping(value = "/ping", produces = APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping("/ping")
     ResultDto ping();
 
-    @GetMapping(value = "{id}", produces = APPLICATION_JSON_UTF8_VALUE)
-    AccountDto get(@PathVariable("id") final String id);
+    @GetMapping("{id}")
+    AccountDto findOne(@PathVariable("id") final String id);
 
-    @GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-    List<AccountDto> getAll();
+    @GetMapping
+    List<AccountDto> findAll();
 
-    @PostMapping(
-            consumes = APPLICATION_JSON_UTF8_VALUE,
-            produces = APPLICATION_JSON_UTF8_VALUE
-    )
-    ResultDto post(final AccountDto accountDto);
+    @PostMapping(consumes = APPLICATION_JSON_UTF8_VALUE)
+    ResultDto add(final AccountDto accountDto);
 
-    @PutMapping(
-            consumes = APPLICATION_JSON_UTF8_VALUE,
-            produces = APPLICATION_JSON_UTF8_VALUE
-    )
-    ResultDto put(final AccountDto accountDto);
+    @PutMapping(value = "{id}", consumes = APPLICATION_JSON_UTF8_VALUE)
+    ResultDto update(@PathVariable("id") final String id, final AccountDto accountDto);
 
-    @DeleteMapping(
-            value = "{id}",
-            consumes = APPLICATION_JSON_UTF8_VALUE,
-            produces = APPLICATION_JSON_UTF8_VALUE
-    )
+    @DeleteMapping(value = "{id}", consumes = APPLICATION_JSON_UTF8_VALUE)
     ResultDto delete(@PathVariable("id") final String accountId);
 
-    @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    @DeleteMapping
     ResultDto deleteAll();
 
 }

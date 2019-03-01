@@ -41,24 +41,34 @@ public class Bootstrap implements InitializingBean {
     }
 
     private void initAccounting() {
+
         final AccountDto account;
-        final boolean isNew = accountService.getAll().isEmpty();
+
+        final boolean isNew = accountService.findAll().isEmpty();
+
         if (isNew) {
             account = new AccountDto();
             account.setName("TestAccount");
             account.setAmount(BigDecimal.TEN.toString());
         } else {
-            account = accountService.getAll().get(0);
+            account = accountService.findAll().get(0);
         }
 
         final List<ClientDto> clients = clientService.getAll();
-        if (!clients.isEmpty()) account.setClientId(clients.get(0).getId());
+
+        if (!clients.isEmpty()) {
+            account.setClientId(clients.get(0).getId());
+        }
 
         final List<LogoDto> logos = logoService.getAll();
-        if (!logos.isEmpty()) account.setLogoId(logos.get(0).getId());
 
-        if (isNew) accountService.post(account);
-        else accountService.put(account);
+        if (!logos.isEmpty()) {
+            account.setLogoId(logos.get(0).getId());
+        }
+
+        if (isNew) {
+            accountService.add(account);
+        } else accountService.update(account.getId(), account);
     }
 
     private void initStatistics() {

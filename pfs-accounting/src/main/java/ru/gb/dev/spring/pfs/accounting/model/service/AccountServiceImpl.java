@@ -4,6 +4,7 @@ import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import ru.gb.dev.spring.pfs.accounting.exception.ParameterRequiredException;
 import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
 import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
 import ru.gb.dev.spring.pfs.accounting.model.mapper.AccountMapper;
@@ -28,7 +29,7 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public @Nullable <S extends Account> S save(final @Nullable S account) {
 		if (account == null || StringUtils.isEmpty(account.getId())) {
-			throw new EntityNotFoundException("account is not valid");
+			throw new ParameterRequiredException("Account is not valid");
 		}
 		return repository.save(account);
 	}

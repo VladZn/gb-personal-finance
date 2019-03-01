@@ -7,6 +7,7 @@ import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
 import ru.gb.dev.spring.pfs.accounting.model.mapper.AccountMapper;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import static org.apache.commons.lang.RandomStringUtils.randomAlphabetic;
 import static org.junit.Assert.assertEquals;
@@ -28,12 +29,14 @@ public class AccountDtoTest {
 		account.setName(randomAlphabetic(8));
 		account.setAmount(BigDecimal.TEN);
 		account.setActive(true);
+		account.setCreated(LocalDateTime.now());
 
 		final AccountDto accountDto = mapper.toDto(account);
 		assertEquals(account.getId(), accountDto.getId());
 		assertEquals(account.getName(), accountDto.getName());
 		assertEquals(account.getAmount().toString(), accountDto.getAmount());
 		assertEquals(account.getActive(), accountDto.getActive());
+		assertEquals(account.getCreated(), accountDto.getCreated());
 	}
 
 	@Test

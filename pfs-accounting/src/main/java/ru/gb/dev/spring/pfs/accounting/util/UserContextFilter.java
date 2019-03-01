@@ -15,6 +15,7 @@ import java.io.IOException;
 @Slf4j
 @Component
 public class UserContextFilter implements Filter {
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -27,10 +28,10 @@ public class UserContextFilter implements Filter {
 
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
 
-        log.debug("Entering the accounting service with auth token " + httpServletRequest.getHeader("Authorization"));
+        log.debug("Entering the accounting service with auth token {}", httpServletRequest.getHeader("Authorization"));
 
         UserContextHolder.getContext().setCorrelationId(httpServletRequest.getHeader(UserContext.CORRELATION_ID));
-        UserContextHolder.getContext().setUserId(httpServletRequest.getHeader(UserContext.USER_ID));
+        UserContextHolder.getContext().setUserId(httpServletRequest.getHeader(UserContext.USER_ID)); //TODO добавить userId
         UserContextHolder.getContext().setAuthToken(httpServletRequest.getHeader(UserContext.AUTH_TOKEN));
 
         filterChain.doFilter(httpServletRequest, servletResponse);
