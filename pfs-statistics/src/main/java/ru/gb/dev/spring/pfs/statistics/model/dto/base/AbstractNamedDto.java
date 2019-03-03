@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class AbstractNamedDto extends AbstractBaseDto {
 
 	private static final long serialVersionUID = 3631794238207017050L;

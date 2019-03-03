@@ -6,14 +6,12 @@ import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import ru.gb.dev.spring.pfs.statistics.model.dto.base.AbstractNamedDto;
 
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-@XmlRootElement
+@EqualsAndHashCode(callSuper = true)
 public class ClientDto extends AbstractNamedDto {
 
 	private static final long serialVersionUID = 6397781857024530712L;

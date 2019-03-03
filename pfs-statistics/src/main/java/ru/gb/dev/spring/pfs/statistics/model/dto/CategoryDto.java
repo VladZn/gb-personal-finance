@@ -11,9 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-@XmlRootElement
+@EqualsAndHashCode(callSuper = true)
 public class CategoryDto extends AbstractNamedDto {
 
 	private static final long serialVersionUID = -3476100187582748829L;

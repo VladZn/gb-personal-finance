@@ -11,34 +11,34 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 
-@MappedSuperclass
 @Data
+@MappedSuperclass
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class AbstractBaseEntity implements Serializable {
 
-	@NotNull
-	@Id
-	@Column(name = "id")
-	private String id = UUID.randomUUID().toString();
+    @Id
+    @NotNull
+    @Column(name = "id")
+    private String id = UUID.randomUUID().toString();
 
-	@Column(name = "created", updatable = false)
-	LocalDateTime created;
+    @Column(name = "created", updatable = false)
+    private Date created;
 
-	@Column(name = "updated", insertable = false)
-	LocalDateTime updated;
+    @Column(name = "updated", insertable = false)
+    private Date updated;
 
-	@PrePersist
-	public void toCreate() {
-		setCreated(LocalDateTime.now());
-	}
+    @PrePersist
+    public void toCreate() {
+        setCreated(new Date());
+    }
 
-	@PreUpdate
-	public void toUpdate() {
-		setUpdated(LocalDateTime.now());
-	}
+    @PreUpdate
+    public void toUpdate() {
+        setUpdated(new Date());
+    }
 
 }

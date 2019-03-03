@@ -1,31 +1,24 @@
 package ru.gb.dev.spring.pfs.statistics.model.dto.base;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.UUID;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
-@XmlRootElement
 public class AbstractBaseDto implements Serializable {
 
 	@NotNull
-	private String id = UUID.randomUUID().toString();
+	private String id = "";
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-	LocalDateTime created;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+	private Date created;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    LocalDateTime updated;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+	private Date updated;
 
 }
