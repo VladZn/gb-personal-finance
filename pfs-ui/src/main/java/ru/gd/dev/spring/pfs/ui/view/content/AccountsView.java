@@ -10,12 +10,15 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import ru.gd.dev.spring.pfs.ui.dto.AccountDto;
+import ru.gd.dev.spring.pfs.ui.dto.AccountType;
 import ru.gd.dev.spring.pfs.ui.view.content.fragment.AccountBox;
 import ru.gd.dev.spring.pfs.ui.view.content.fragment.CircleChartBox;
 import ru.gd.dev.spring.pfs.ui.view.menu.MenuView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @autor Eremin Artem on 24.02.2019.
@@ -33,8 +36,8 @@ public class AccountsView extends VerticalLayout {
     public AccountsView(@NotNull final MessageSource messageSource) {
         setSizeFull();
         this.messageSource = messageSource;
-        final CircleChartBox circleChartBox = new CircleChartBox();
         final List<AccountDto> accounts = getAccounts();
+        final CircleChartBox circleChartBox = new CircleChartBox(accounts);
         getClassNames().add("contentView");
         getClassNames().add("accountView");
         final Label title =
