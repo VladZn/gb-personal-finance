@@ -15,7 +15,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/api/accounts/**")
+                .antMatchers("/api/notify/**")
                 .hasRole("USER")
                 .anyRequest()
                 .authenticated();
