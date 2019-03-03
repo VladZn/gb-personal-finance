@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import ru.gb.dev.spring.pfs.notifying.controller.service.RestPreconditions;
-import ru.gb.dev.spring.pfs.notifying.dto.NotificationDtoCreate;
-import ru.gb.dev.spring.pfs.notifying.dto.NotificationDtoDelete;
-import ru.gb.dev.spring.pfs.notifying.dto.NotificationDtoUpdate;
+import ru.gb.dev.spring.pfs.notifying.dto.NotificationDTOCreate;
+import ru.gb.dev.spring.pfs.notifying.dto.NotificationDTODelete;
+import ru.gb.dev.spring.pfs.notifying.dto.NotificationDTOUpdate;
 import ru.gb.dev.spring.pfs.notifying.dto.service.HealthCheck;
 import ru.gb.dev.spring.pfs.notifying.dto.util.ConvertUtil;
-import ru.gb.dev.spring.pfs.notifying.dto.view.NotificationDtoView;
+import ru.gb.dev.spring.pfs.notifying.dto.view.NotificationDTOView;
 import ru.gb.dev.spring.pfs.notifying.exception.RecordNotFoundException;
 import ru.gb.dev.spring.pfs.notifying.model.Notification;
 import ru.gb.dev.spring.pfs.notifying.service.NotificationServiceImpl;
@@ -54,37 +54,37 @@ public class NotifyController {
 
     @PostMapping(value = "/createNotify", produces = APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public NotificationDtoView createNotify(@Valid @RequestBody NotificationDtoCreate resource){
+    public NotificationDTOView createNotify(@Valid @RequestBody NotificationDTOCreate resource){
 
         RestPreconditions.checkFound(resource);
         Notification notificationOut = service.save(ConvertUtil.convertDtoToNotification(resource));
 
-        return ConvertUtil.convertNotificationToDto(notificationOut, NotificationDtoView.class);
+        return ConvertUtil.convertNotificationToDto(notificationOut, NotificationDTOView.class);
 
     }
 
     @GetMapping(value = "/{id}", produces = APPLICATION_JSON_UTF8_VALUE)
-    public NotificationDtoView getNotifyById(@PathVariable("id") final String id){
+    public NotificationDTOView getNotifyById(@PathVariable("id") final String id){
         return service.findById(id)
-                .map(notification -> ConvertUtil.convertNotificationToDto(notification, NotificationDtoView.class))
+                .map(notification -> ConvertUtil.convertNotificationToDto(notification, NotificationDTOView.class))
                 .orElseThrow(() -> new RecordNotFoundException("Notify with id " + id + " not found"));
     }
 
     @GetMapping(value = "/getAllNotify", produces = APPLICATION_JSON_UTF8_VALUE)
-    public List<NotificationDtoView> getAllNotify(){
+    public List<NotificationDTOView> getAllNotify(){
         final Iterable<Notification> notifications = service.findAll();
         return StreamSupport
                 .stream(notifications.spliterator(), false)
-                .map(notify -> ConvertUtil.convertNotificationToDto(notify, NotificationDtoView.class))
+                .map(notify -> ConvertUtil.convertNotificationToDto(notify, NotificationDTOView.class))
                 .collect(Collectors.toList());
     }
 
     @PutMapping(value = "/updateNotify", produces = APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public NotificationDtoView updateNotify(@Valid @RequestBody NotificationDtoUpdate resource){
+    public NotificationDTOView updateNotify(@Valid @RequestBody NotificationDTOUpdate resource){
         return ConvertUtil.convertNotificationToDto(
                 service.update(ConvertUtil.convertDtoToNotification(resource)),
-                NotificationDtoView.class);
+                NotificationDTOView.class);
     }
 
     @DeleteMapping(value = "/{id}", produces = APPLICATION_JSON_UTF8_VALUE)
@@ -95,7 +95,7 @@ public class NotifyController {
 
     @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public void delete(@Valid @RequestBody NotificationDtoDelete resource){
+    public void delete(@Valid @RequestBody NotificationDTODelete resource){
         service.delete(ConvertUtil.convertDtoToNotification(resource));
     }
 

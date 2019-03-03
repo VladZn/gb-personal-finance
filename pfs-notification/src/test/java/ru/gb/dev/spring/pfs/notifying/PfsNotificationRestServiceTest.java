@@ -10,12 +10,13 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.gb.dev.spring.pfs.notifying.dto.NotificationDtoCreate;
-import ru.gb.dev.spring.pfs.notifying.dto.NotificationDtoDelete;
-import ru.gb.dev.spring.pfs.notifying.dto.NotificationDtoUpdate;
+import ru.gb.dev.spring.pfs.notifying.dto.NotificationDTOCreate;
+import ru.gb.dev.spring.pfs.notifying.dto.NotificationDTODelete;
+import ru.gb.dev.spring.pfs.notifying.dto.NotificationDTOUpdate;
 import ru.gb.dev.spring.pfs.notifying.dto.util.ConvertUtil;
-import ru.gb.dev.spring.pfs.notifying.dto.view.NotificationDtoView;
+import ru.gb.dev.spring.pfs.notifying.dto.view.NotificationDTOView;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -31,20 +32,21 @@ public class PfsNotificationRestServiceTest {
     @Autowired
     private TestRestTemplate testRestTemplate;
 
-    private NotificationDtoCreate notificationDtoCreate = null;
+    private NotificationDTOCreate notificationDtoCreate = null;
 
     private final String HOST_NAME = "http://localhost:10151/api/notify";
 
     @Before
     public void initObjects(){
-        notificationDtoCreate  = new NotificationDtoCreate(true,"1", LocalDateTime.now(),
+        notificationDtoCreate  = new NotificationDTOCreate(true,"1", LocalDateTime.now(),
                 "Test title", "Test body");
     }
 
     @Test
+    @WithMockUser(username = "vasya.pupkin",roles={"USER", "ADMIN"})
     public void testRestService(){
-        ResponseEntity<NotificationDtoView> entity = testRestTemplate.postForEntity(HOST_NAME + "/createNotify",
-                notificationDtoCreate, NotificationDtoView.class);
+        ResponseEntity<NotificationDTOView> entity = testRestTemplate.postForEntity(HOST_NAME + "/createNotify",
+                notificationDtoCreate, NotificationDTOView.class);
 
         Assert.assertEquals(entity.getStatusCodeValue(), 201);
         Assert.assertNotNull(entity.getBody().getId());
@@ -53,7 +55,7 @@ public class PfsNotificationRestServiceTest {
         Assert.assertEquals(entity.getBody().getUserId(), notificationDtoCreate.getUserId());
         Assert.assertEquals(entity.getBody().getDateTime(), notificationDtoCreate.getDateTime());
 
-        NotificationDtoUpdate notificationDtoUpdate = ConvertUtil.converDtoToDto(entity.getBody(),NotificationDtoUpdate.class);
+        NotificationDTOUpdate notificationDtoUpdate = ConvertUtil.converDtoToDto(entity.getBody(), NotificationDTOUpdate.class);
         Assert.assertEquals(entity.getBody().getId(), notificationDtoUpdate.getId());
         Assert.assertEquals(entity.getBody().getTitle(), notificationDtoUpdate.getTitle());
         Assert.assertEquals(entity.getBody().getIsActive(), notificationDtoUpdate.getIsActive());
@@ -65,38 +67,38 @@ public class PfsNotificationRestServiceTest {
 
         String urlId  = HOST_NAME + "/" + notificationDtoUpdate.getId();
 
-        ResponseEntity<NotificationDtoView> entityGetId = testRestTemplate.getForEntity(urlId,
-                                                             NotificationDtoView.class);
+        ResponseEntity<NotificationDTOView> entityGetId = testRestTemplate.getForEntity(urlId,
+                                                             NotificationDTOView.class);
         Assert.assertEquals(entityGetId.getStatusCodeValue(),  200);
         Assert.assertFalse(entityGetId.getBody().getIsActive());
 
-        ResponseEntity<List<NotificationDtoView>>  listResponseEntity =
+        ResponseEntity<List<NotificationDTOView>>  listResponseEntity =
                 testRestTemplate.exchange(HOST_NAME + "/getAllNotify",
                         HttpMethod.GET,
                         null,
-                        new ParameterizedTypeReference<List<NotificationDtoView>>() {});
+                        new ParameterizedTypeReference<List<NotificationDTOView>>() {});
         Assert.assertEquals(listResponseEntity.getStatusCodeValue(), 200);
         Assert.assertTrue(listResponseEntity.getBody().size() > 0);
 
         testRestTemplate.delete(urlId);
 
         entityGetId = testRestTemplate.getForEntity(urlId,
-                NotificationDtoView.class);
+                NotificationDTOView.class);
 
         Assert.assertEquals(entityGetId.getStatusCodeValue(), 500);
 
         entity = testRestTemplate.postForEntity(HOST_NAME + "/createNotify",
-                notificationDtoCreate, NotificationDtoView.class);
+                notificationDtoCreate, NotificationDTOView.class);
 
         Assert.assertEquals(entity.getStatusCodeValue(), 201);
         Assert.assertNotNull(entity.getBody().getId());
 
         urlId = HOST_NAME + "/" + entity.getBody().getId();
 
-        testRestTemplate.delete(urlId, ConvertUtil.converDtoToDto(entity.getBody(), NotificationDtoDelete.class));
+        testRestTemplate.delete(urlId, ConvertUtil.converDtoToDto(entity.getBody(), NotificationDTODelete.class));
 
         entityGetId = testRestTemplate.getForEntity(urlId,
-                NotificationDtoView.class);
+                NotificationDTOView.class);
 
         Assert.assertEquals(entityGetId.getStatusCodeValue(),  500);
     }

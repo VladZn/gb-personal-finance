@@ -1,22 +1,19 @@
 package ru.gb.dev.spring.pfs.notifying.dto.view;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.gb.dev.spring.pfs.notifying.dto.NotificationAbstractDto;
+import ru.gb.dev.spring.pfs.notifying.dto.NotificationAbstractDTO;
 
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.time.LocalDateTime;
+import java.util.Date;
 
-@Data
-@XmlRootElement
+@Getter
+@Setter
 @NoArgsConstructor
-public class NotificationDtoView extends NotificationAbstractDto {
+public class NotificationDTOView extends NotificationAbstractDTO {
 
-    @Getter
-    @Setter
     private String id;
 
     private Boolean isActive;
@@ -25,7 +22,8 @@ public class NotificationDtoView extends NotificationAbstractDto {
     private String userId;
 
     @NotNull
-    private LocalDateTime dateTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+    private Date dateTime;
 
     @NotNull
     private String title;
