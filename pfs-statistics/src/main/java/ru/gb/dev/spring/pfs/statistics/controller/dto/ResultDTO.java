@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Data
 @NoArgsConstructor
 @XmlRootElement
-public class ResultDto {
+public class ResultDTO {
 
 	@Nullable
 	private String message = "";

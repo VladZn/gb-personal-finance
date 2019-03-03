@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.gb.dev.spring.pfs.statistics.controller.base.AbstractControllerTest;
-import ru.gb.dev.spring.pfs.statistics.model.dto.CategoryDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.CategoryDTO;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -16,14 +16,14 @@ import static org.junit.Assert.assertTrue;
 public class CategoriesControllerTest extends AbstractControllerTest {
 
     private final String uri = "/api/categories";
-    private CategoryDto testCategory;
+    private CategoryDTO testCategory;
 
     @Before
     @Override
     public void setUp() {
         super.setUp();
 
-        testCategory = new CategoryDto();
+        testCategory = new CategoryDTO();
         testCategory.setId("test-Category-Id");
         testCategory.setName("TestCategory");
         testCategory.setActive(true);
@@ -76,7 +76,7 @@ public class CategoriesControllerTest extends AbstractControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)).andReturn();
         final int status = mvcResult.getResponse().getStatus();
         final String content = mvcResult.getResponse().getContentAsString();
-        final CategoryDto[] categories = super.mapFromJson(content, CategoryDto[].class);
+        final CategoryDTO[] categories = super.mapFromJson(content, CategoryDTO[].class);
 
         // then
         assertEquals(HttpStatus.OK.value(), status);
@@ -94,7 +94,7 @@ public class CategoriesControllerTest extends AbstractControllerTest {
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri + "/" + testCategory.getId())).andReturn();
         int status = mvcResult.getResponse().getStatus();
         String content = mvcResult.getResponse().getContentAsString();
-        CategoryDto category = super.mapFromJson(content, CategoryDto.class);
+        CategoryDTO category = super.mapFromJson(content, CategoryDTO.class);
 
         // then
         assertEquals(HttpStatus.OK.value(), status);

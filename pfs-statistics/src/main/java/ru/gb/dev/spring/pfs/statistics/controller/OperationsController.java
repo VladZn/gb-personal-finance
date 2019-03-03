@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import ru.gb.dev.spring.pfs.statistics.controller.dto.SuccessDto;
-import ru.gb.dev.spring.pfs.statistics.model.dto.OperationDto;
+import ru.gb.dev.spring.pfs.statistics.controller.dto.SuccessDTO;
+import ru.gb.dev.spring.pfs.statistics.model.dto.OperationDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Operation;
 import ru.gb.dev.spring.pfs.statistics.model.service.OperationService;
 
@@ -33,15 +33,15 @@ public class OperationsController {
 
     @RequestMapping(value = "/ping")
     public ResponseEntity<Object> ping() {
-        return new ResponseEntity<>(new SuccessDto(), HttpStatus.OK);
+        return new ResponseEntity<>(new SuccessDTO(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}")
     public ResponseEntity<Object> getOperation(@PathVariable("id") String id) {
         return new ResponseEntity<>(
                 service.findById(id)
-                        .map(operation -> modelMapper.map(operation, OperationDto.class))
-                        .orElseGet(OperationDto::new),
+                        .map(operation -> modelMapper.map(operation, OperationDTO.class))
+                        .orElseGet(OperationDTO::new),
                 HttpStatus.OK);
     }
 
@@ -49,20 +49,20 @@ public class OperationsController {
     public ResponseEntity<Object> getAllOperation() {
         return new ResponseEntity<>(
                 StreamSupport.stream(service.findAll().spliterator(), false)
-                        .map(operation -> modelMapper.map(operation, OperationDto.class))
+                        .map(operation -> modelMapper.map(operation, OperationDTO.class))
                         .toArray(),
                 HttpStatus.OK);
     }
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Object> createOperation(@RequestBody OperationDto operationDto) {
+    public ResponseEntity<Object> createOperation(@RequestBody OperationDTO operationDto) {
         service.save(operationDto);
         return new ResponseEntity<>("Operation is created successfully", HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> updateOperation(@PathVariable("id") String id, @RequestBody OperationDto operationDto) {
+    public ResponseEntity<Object> updateOperation(@PathVariable("id") String id, @RequestBody OperationDTO operationDto) {
         Optional<Operation> optional = service.findById(id);
         if (!optional.isPresent()) return new ResponseEntity<>("Operation is not found", HttpStatus.NOT_FOUND);
         Operation operation = optional.get();

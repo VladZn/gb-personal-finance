@@ -1,6 +1,6 @@
 package ru.gb.dev.spring.pfs.statistics.model.service;
 
-import ru.gb.dev.spring.pfs.statistics.model.dto.ClientDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.ClientDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Client;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Logo;
 
@@ -32,8 +32,8 @@ public interface ClientService {
 
 	void deleteAll();
 
-	void save(ClientDto clientDto);
+	void save(ClientDTO clientDto);
 
-	void delete(ClientDto clientDto);
+	void delete(ClientDTO clientDto);
 
 }

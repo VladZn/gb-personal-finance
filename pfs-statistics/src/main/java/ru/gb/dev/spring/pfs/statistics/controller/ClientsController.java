@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import ru.gb.dev.spring.pfs.statistics.controller.dto.SuccessDto;
-import ru.gb.dev.spring.pfs.statistics.model.dto.ClientDto;
+import ru.gb.dev.spring.pfs.statistics.controller.dto.SuccessDTO;
+import ru.gb.dev.spring.pfs.statistics.model.dto.ClientDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Client;
 import ru.gb.dev.spring.pfs.statistics.model.service.ClientService;
 
@@ -33,15 +33,15 @@ public class ClientsController {
 
     @RequestMapping(value = "/ping")
     public ResponseEntity<Object> ping() {
-        return new ResponseEntity<>(new SuccessDto(), HttpStatus.OK);
+        return new ResponseEntity<>(new SuccessDTO(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}")
     public ResponseEntity<Object> getClient(@PathVariable("id") String id) {
         return new ResponseEntity<>(
                 service.findById(id)
-                        .map(client -> modelMapper.map(client, ClientDto.class))
-                        .orElseGet(ClientDto::new),
+                        .map(client -> modelMapper.map(client, ClientDTO.class))
+                        .orElseGet(ClientDTO::new),
                 HttpStatus.OK);
     }
 
@@ -49,20 +49,20 @@ public class ClientsController {
     public ResponseEntity<Object> getAllClient() {
         return new ResponseEntity<>(
                 StreamSupport.stream(service.findAll().spliterator(), false)
-                        .map(client -> modelMapper.map(client, ClientDto.class))
+                        .map(client -> modelMapper.map(client, ClientDTO.class))
                         .toArray(),
                 HttpStatus.OK);
     }
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Object> createClient(@RequestBody ClientDto clientDto) {
+    public ResponseEntity<Object> createClient(@RequestBody ClientDTO clientDto) {
         service.save(clientDto);
         return new ResponseEntity<>("Client is created successfully", HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> updateClient(@PathVariable("id") String id, @RequestBody ClientDto clientDto) {
+    public ResponseEntity<Object> updateClient(@PathVariable("id") String id, @RequestBody ClientDTO clientDto) {
         Optional<Client> optional = service.findById(id);
         if (!optional.isPresent()) return new ResponseEntity<>("Client is not found", HttpStatus.NOT_FOUND);
         Client client = optional.get();

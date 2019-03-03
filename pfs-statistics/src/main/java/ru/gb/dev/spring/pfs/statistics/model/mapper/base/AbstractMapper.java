@@ -3,12 +3,12 @@ package ru.gb.dev.spring.pfs.statistics.model.mapper.base;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.gb.dev.spring.pfs.statistics.model.dto.base.AbstractBaseDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.base.AbstractBaseDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.base.AbstractBaseEntity;
 
 import java.util.Objects;
 
-public abstract class AbstractMapper<E extends AbstractBaseEntity, D extends AbstractBaseDto> implements Mapper<E, D> {
+public abstract class AbstractMapper<E extends AbstractBaseEntity, D extends AbstractBaseDTO> implements Mapper<E, D> {
 
 	@Autowired
 	ModelMapper mapper;

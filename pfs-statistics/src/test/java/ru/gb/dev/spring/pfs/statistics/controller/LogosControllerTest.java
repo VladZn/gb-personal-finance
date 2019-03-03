@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.gb.dev.spring.pfs.statistics.controller.base.AbstractControllerTest;
-import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDTO;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -16,14 +16,14 @@ import static org.junit.Assert.assertTrue;
 public class LogosControllerTest extends AbstractControllerTest {
 
     private final String uri = "/api/logos";
-    private LogoDto testLogo;
+    private LogoDTO testLogo;
 
     @Before
     @Override
     public void setUp() {
         super.setUp();
 
-        testLogo = new LogoDto();
+        testLogo = new LogoDTO();
         testLogo.setId("test-Logo-Id");
         testLogo.setName("TestLogo");
         testLogo.setExtension("TestLogoExtension");
@@ -77,7 +77,7 @@ public class LogosControllerTest extends AbstractControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)).andReturn();
         final int status = mvcResult.getResponse().getStatus();
         final String content = mvcResult.getResponse().getContentAsString();
-        final LogoDto[] logos = super.mapFromJson(content, LogoDto[].class);
+        final LogoDTO[] logos = super.mapFromJson(content, LogoDTO[].class);
 
         // then
         assertEquals(HttpStatus.OK.value(), status);
@@ -95,7 +95,7 @@ public class LogosControllerTest extends AbstractControllerTest {
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri + "/" + testLogo.getId())).andReturn();
         int status = mvcResult.getResponse().getStatus();
         String content = mvcResult.getResponse().getContentAsString();
-        LogoDto logo = super.mapFromJson(content, LogoDto.class);
+        LogoDTO logo = super.mapFromJson(content, LogoDTO.class);
 
         // then
         assertEquals(HttpStatus.OK.value(), status);

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import ru.gb.dev.spring.pfs.statistics.exception.EntityNotFoundException;
-import ru.gb.dev.spring.pfs.statistics.model.dto.OperationDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.OperationDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Category;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Client;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Logo;
@@ -105,7 +105,7 @@ public class OperationServiceImpl implements OperationService {
 	}
 
 	@Override
-	public void save(final OperationDto operationDto) {
+	public void save(final OperationDTO operationDto) {
 		if (operationDto == null) return;
 
 		final Operation operation = modelMapper.map(operationDto, Operation.class);
@@ -114,7 +114,7 @@ public class OperationServiceImpl implements OperationService {
 	}
 
 	@Override
-	public void delete(final OperationDto operationDto) {
+	public void delete(final OperationDTO operationDto) {
 		if (operationDto == null) return;
 
 		deleteById(operationDto.getId());

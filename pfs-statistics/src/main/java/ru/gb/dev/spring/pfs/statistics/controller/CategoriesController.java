@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import ru.gb.dev.spring.pfs.statistics.controller.dto.SuccessDto;
-import ru.gb.dev.spring.pfs.statistics.model.dto.CategoryDto;
+import ru.gb.dev.spring.pfs.statistics.controller.dto.SuccessDTO;
+import ru.gb.dev.spring.pfs.statistics.model.dto.CategoryDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Category;
 import ru.gb.dev.spring.pfs.statistics.model.service.CategoryService;
 
@@ -33,15 +33,15 @@ public class CategoriesController {
 
     @RequestMapping(value = "/ping")
     public ResponseEntity<Object> ping() {
-        return new ResponseEntity<>(new SuccessDto(), HttpStatus.OK);
+        return new ResponseEntity<>(new SuccessDTO(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}")
     public ResponseEntity<Object> getCategory(@PathVariable("id") String id) {
         return new ResponseEntity<>(
                 service.findById(id)
-                        .map(category -> modelMapper.map(category, CategoryDto.class))
-                        .orElseGet(CategoryDto::new),
+                        .map(category -> modelMapper.map(category, CategoryDTO.class))
+                        .orElseGet(CategoryDTO::new),
                 HttpStatus.OK);
     }
 
@@ -49,20 +49,20 @@ public class CategoriesController {
     public ResponseEntity<Object> getAllCategory() {
         return new ResponseEntity<>(
                 StreamSupport.stream(service.findAll().spliterator(), false)
-                        .map(category -> modelMapper.map(category, CategoryDto.class))
+                        .map(category -> modelMapper.map(category, CategoryDTO.class))
                         .toArray(),
                 HttpStatus.OK);
     }
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Object> createCategory(@RequestBody CategoryDto categoryDto) {
+    public ResponseEntity<Object> createCategory(@RequestBody CategoryDTO categoryDto) {
         service.save(categoryDto);
         return new ResponseEntity<>("Category is created successfully", HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> updateCategory(@PathVariable("id") String id, @RequestBody CategoryDto categoryDto) {
+    public ResponseEntity<Object> updateCategory(@PathVariable("id") String id, @RequestBody CategoryDTO categoryDto) {
         Optional<Category> optional = service.findById(id);
         if (!optional.isPresent()) return new ResponseEntity<>("Category is not found", HttpStatus.NOT_FOUND);
         Category category = optional.get();

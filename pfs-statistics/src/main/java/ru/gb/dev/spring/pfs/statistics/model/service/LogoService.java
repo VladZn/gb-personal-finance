@@ -1,6 +1,6 @@
 package ru.gb.dev.spring.pfs.statistics.model.service;
 
-import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Logo;
 
 import java.util.Optional;
@@ -29,8 +29,8 @@ public interface LogoService {
 
 	void deleteAll();
 
-	void save(LogoDto logoDto);
+	void save(LogoDTO logoDto);
 
-	void delete(LogoDto logoDto);
+	void delete(LogoDTO logoDto);
 
 }

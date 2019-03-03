@@ -4,14 +4,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Logo;
 
 import static org.apache.commons.lang.RandomStringUtils.randomAlphabetic;
 import static org.junit.Assert.assertEquals;
 import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
 
-public class LogoDtoTest {
+public class LogoDTOTest {
 
 	private ModelMapper mapper;
 
@@ -34,7 +34,7 @@ public class LogoDtoTest {
 		logo.setExtension(randomAlphabetic(8));
 
 		// when
-		final LogoDto logoDto = mapper.map(logo, LogoDto.class);
+		final LogoDTO logoDto = mapper.map(logo, LogoDTO.class);
 
 		// then
 		assertEquals(logo.getId(), logoDto.getId());
@@ -46,7 +46,7 @@ public class LogoDtoTest {
 	@Test
 	public void whenConvertLogoDtoToLogoEntity_thenCorrect() {
 		// given
-		final LogoDto logoDto = new LogoDto();
+		final LogoDTO logoDto = new LogoDTO();
 		logoDto.setName(randomAlphabetic(8));
 		logoDto.setPath(randomAlphabetic(8));
 		logoDto.setExtension(randomAlphabetic(8));

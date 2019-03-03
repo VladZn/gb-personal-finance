@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import ru.gb.dev.spring.pfs.statistics.controller.dto.SuccessDto;
-import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDto;
+import ru.gb.dev.spring.pfs.statistics.controller.dto.SuccessDTO;
+import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Logo;
 import ru.gb.dev.spring.pfs.statistics.model.service.LogoService;
 
@@ -33,15 +33,15 @@ public class LogosController {
 
     @RequestMapping(value = "/ping")
     public ResponseEntity<Object> ping() {
-        return new ResponseEntity<>(new SuccessDto(), HttpStatus.OK);
+        return new ResponseEntity<>(new SuccessDTO(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}")
     public ResponseEntity<Object> getLogo(@PathVariable("id") String id) {
         return new ResponseEntity<>(
                 service.findById(id)
-                        .map(logo -> modelMapper.map(logo, LogoDto.class))
-                        .orElseGet(LogoDto::new),
+                        .map(logo -> modelMapper.map(logo, LogoDTO.class))
+                        .orElseGet(LogoDTO::new),
                 HttpStatus.OK);
     }
 
@@ -49,20 +49,20 @@ public class LogosController {
     public ResponseEntity<Object> getAllLogo() {
         return new ResponseEntity<>(
                 StreamSupport.stream(service.findAll().spliterator(), false)
-                        .map(logo -> modelMapper.map(logo, LogoDto.class))
+                        .map(logo -> modelMapper.map(logo, LogoDTO.class))
                         .toArray(),
                 HttpStatus.OK);
     }
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Object> createLogo(@RequestBody LogoDto logoDto) {
+    public ResponseEntity<Object> createLogo(@RequestBody LogoDTO logoDto) {
         service.save(logoDto);
         return new ResponseEntity<>("Logo is created successfully", HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> updateLogo(@PathVariable("id") String id, @RequestBody LogoDto logoDto) {
+    public ResponseEntity<Object> updateLogo(@PathVariable("id") String id, @RequestBody LogoDTO logoDto) {
         Optional<Logo> optional = service.findById(id);
         if (!optional.isPresent()) return new ResponseEntity<>("Logo is not found", HttpStatus.NOT_FOUND);
         Logo logo = optional.get();

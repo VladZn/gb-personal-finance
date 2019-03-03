@@ -1,6 +1,6 @@
 package ru.gb.dev.spring.pfs.statistics.controller.dto;
 
-public class SuccessDto extends ResultDto {
+public class SuccessDTO extends ResultDTO {
 
 	{
 		setSuccess(true);

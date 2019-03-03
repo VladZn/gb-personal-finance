@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import ru.gb.dev.spring.pfs.statistics.exception.EntityNotFoundException;
-import ru.gb.dev.spring.pfs.statistics.model.dto.ClientDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.ClientDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Client;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Logo;
 import ru.gb.dev.spring.pfs.statistics.model.repository.ClientRepository;
@@ -93,7 +93,7 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public void save(final ClientDto clientDto) {
+	public void save(final ClientDTO clientDto) {
 		if (clientDto == null) return;
 
 		final Client client = modelMapper.map(clientDto, Client.class);
@@ -102,7 +102,7 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public void delete(final ClientDto clientDto) {
+	public void delete(final ClientDTO clientDto) {
 		if (clientDto == null) return;
 
 		deleteById(clientDto.getId());

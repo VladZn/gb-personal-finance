@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class AbstractNamedDto extends AbstractBaseDto {
+public class AbstractNamedDTO extends AbstractBaseDTO {
 
 	private static final long serialVersionUID = 3631794238207017050L;
 

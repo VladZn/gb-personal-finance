@@ -4,14 +4,14 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
-import ru.gb.dev.spring.pfs.statistics.model.dto.base.AbstractBaseDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.base.AbstractBaseDTO;
 
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class OperationDto extends AbstractBaseDto {
+public class OperationDTO extends AbstractBaseDTO {
 
 	private static final long serialVersionUID = -6268060818229181878L;
 

@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.gb.dev.spring.pfs.statistics.controller.base.AbstractControllerTest;
-import ru.gb.dev.spring.pfs.statistics.model.dto.ClientDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.ClientDTO;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -16,14 +16,14 @@ import static org.junit.Assert.assertTrue;
 public class ClientsControllerTest extends AbstractControllerTest {
 
     private final String uri = "/api/clients";
-    private ClientDto testClient;
+    private ClientDTO testClient;
 
     @Before
     @Override
     public void setUp() {
         super.setUp();
 
-        testClient = new ClientDto();
+        testClient = new ClientDTO();
         testClient.setId("test-Client-Id");
         testClient.setName("TestClient");
         testClient.setActive(true);
@@ -76,7 +76,7 @@ public class ClientsControllerTest extends AbstractControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)).andReturn();
         final int status = mvcResult.getResponse().getStatus();
         final String content = mvcResult.getResponse().getContentAsString();
-        final ClientDto[] clients = super.mapFromJson(content, ClientDto[].class);
+        final ClientDTO[] clients = super.mapFromJson(content, ClientDTO[].class);
 
         // then
         assertEquals(HttpStatus.OK.value(), status);
@@ -94,7 +94,7 @@ public class ClientsControllerTest extends AbstractControllerTest {
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri + "/" + testClient.getId())).andReturn();
         int status = mvcResult.getResponse().getStatus();
         String content = mvcResult.getResponse().getContentAsString();
-        ClientDto client = super.mapFromJson(content, ClientDto.class);
+        ClientDTO client = super.mapFromJson(content, ClientDTO.class);
 
         // then
         assertEquals(HttpStatus.OK.value(), status);

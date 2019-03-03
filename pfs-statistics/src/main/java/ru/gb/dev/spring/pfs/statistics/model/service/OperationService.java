@@ -1,6 +1,6 @@
 package ru.gb.dev.spring.pfs.statistics.model.service;
 
-import ru.gb.dev.spring.pfs.statistics.model.dto.OperationDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.OperationDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Category;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Client;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Logo;
@@ -38,8 +38,8 @@ public interface OperationService {
 
 	void deleteAll();
 
-	void save(OperationDto operationDto);
+	void save(OperationDTO operationDto);
 
-	void delete(OperationDto operationDto);
+	void delete(OperationDTO operationDto);
 
 }

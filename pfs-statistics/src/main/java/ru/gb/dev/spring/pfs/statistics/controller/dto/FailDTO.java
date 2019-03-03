@@ -1,8 +1,8 @@
 package ru.gb.dev.spring.pfs.statistics.controller.dto;
 
-public class FailDto extends ResultDto {
+public class FailDTO extends ResultDTO {
 
-	public FailDto(final Exception e) {
+	public FailDTO(final Exception e) {
 		setSuccess(false);
 		setMessage(e.getMessage());
 	}

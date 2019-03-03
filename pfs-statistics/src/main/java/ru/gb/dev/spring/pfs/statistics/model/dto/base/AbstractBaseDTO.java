@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Data
 @NoArgsConstructor
-public class AbstractBaseDto implements Serializable {
+public class AbstractBaseDTO implements Serializable {
 
 	@NotNull
 	private String id = "";

@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.gb.dev.spring.pfs.statistics.controller.base.AbstractControllerTest;
-import ru.gb.dev.spring.pfs.statistics.model.dto.OperationDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.OperationDTO;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -16,14 +16,14 @@ import static org.junit.Assert.assertTrue;
 public class OperationsControllerTest extends AbstractControllerTest {
 
     private final String uri = "/api/operations";
-    private OperationDto testOperation;
+    private OperationDTO testOperation;
 
     @Before
     @Override
     public void setUp() {
         super.setUp();
 
-        testOperation = new OperationDto();
+        testOperation = new OperationDTO();
         testOperation.setId("test-Operation-Id");
         testOperation.setAmount("10");
     }
@@ -75,7 +75,7 @@ public class OperationsControllerTest extends AbstractControllerTest {
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)).andReturn();
         final int status = mvcResult.getResponse().getStatus();
         final String content = mvcResult.getResponse().getContentAsString();
-        final OperationDto[] operations = super.mapFromJson(content, OperationDto[].class);
+        final OperationDTO[] operations = super.mapFromJson(content, OperationDTO[].class);
 
         // then
         assertEquals(HttpStatus.OK.value(), status);
@@ -93,7 +93,7 @@ public class OperationsControllerTest extends AbstractControllerTest {
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri + "/" + testOperation.getId())).andReturn();
         int status = mvcResult.getResponse().getStatus();
         String content = mvcResult.getResponse().getContentAsString();
-        OperationDto operation = super.mapFromJson(content, OperationDto.class);
+        OperationDTO operation = super.mapFromJson(content, OperationDTO.class);
 
         // then
         assertEquals(HttpStatus.OK.value(), status);
