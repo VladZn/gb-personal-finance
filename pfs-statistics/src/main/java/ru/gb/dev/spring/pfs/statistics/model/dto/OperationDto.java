@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import ru.gb.dev.spring.pfs.statistics.model.dto.base.AbstractBaseDto;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -31,7 +31,7 @@ public class OperationDto extends AbstractBaseDto {
 	private String number = "";
 
 	@NotNull
-	private LocalDateTime operationDate = LocalDateTime.now();
+	private Date operationDate = new Date();
 
 	@NotNull
 	private Boolean active = Boolean.FALSE;

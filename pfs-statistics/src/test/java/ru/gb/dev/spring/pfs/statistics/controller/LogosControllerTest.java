@@ -13,7 +13,7 @@ import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDto;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class LogoControllerTest extends AbstractControllerTest {
+public class LogosControllerTest extends AbstractControllerTest {
 
     private final String uri = "/api/logos";
     private LogoDto testLogo;
