@@ -4,3 +4,18 @@
 Team project as the next part of Java development education
 
 Java 8, Spring boot 2.1, Spring Cloud, Spring Cloud Configuration server, Netflix Eureka discovery server, Netflix Zuul, Spring Cloud OpenFeign client, Spring Boot Test, PostgreSQL 10, Vaadin
+
+## Build
+`maven clean install`
+
+## Run
+Последовательность запуска модулей:
+* pfs-server-discovery
+* pfs-server-config
+* pfs-authentication
+* pfs-accounting
+* pfs-notification
+* pfs-statistics
+* pfs-server-gateway
+* pfs-ui
+
