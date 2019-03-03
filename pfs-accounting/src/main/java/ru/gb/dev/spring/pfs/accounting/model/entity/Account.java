@@ -1,8 +1,9 @@
 package ru.gb.dev.spring.pfs.accounting.model.entity;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import ru.gb.dev.spring.pfs.accounting.model.entity.base.AbstractNamedEntity;
 
@@ -11,9 +12,10 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "accounts")
-@Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Account extends AbstractNamedEntity {
@@ -47,3 +49,4 @@ public class Account extends AbstractNamedEntity {
 	private String logoId = "";
 
 }
+
