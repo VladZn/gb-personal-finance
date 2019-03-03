@@ -31,11 +31,12 @@ public class AccountsView extends VerticalLayout {
 
     @Autowired
     public AccountsView(@NotNull final MessageSource messageSource) {
+        setSizeFull();
+        this.messageSource = messageSource;
         final CircleChartBox circleChartBox = new CircleChartBox();
         final List<AccountDto> accounts = getAccounts();
         getClassNames().add("contentView");
         getClassNames().add("accountView");
-        this.messageSource = messageSource;
         final Label title =
                 new Label(messageSource.getMessage("menu.links.account", null, getLocale()));
         title.setId("accountLabel");

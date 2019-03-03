@@ -18,7 +18,6 @@ import ru.gd.dev.spring.pfs.ui.view.menu.MenuView;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -110,11 +109,9 @@ public class CreateAccountView extends VerticalLayout {
     }
 
     private AccountDto createAccountDTO() {
-        accountDto.setId(UUID.randomUUID().toString());
         accountDto.setName(accountName.getValue());
         accountDto.setAmount(accountAmount.getValue());
         accountDto.setActive(true);
-        System.out.println(accountDto);
         return accountDto;
     }
 }
