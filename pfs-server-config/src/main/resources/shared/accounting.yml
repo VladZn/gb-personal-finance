@@ -4,11 +4,6 @@ spring:
     url: jdbc:postgresql://localhost:5432/accounts
     username: user
     password: password
-    tomcat:
-      max-wait: 200
-      max-active: 50
-      min-idle: 15
-      max-idle: 20
     driver-class-name: org.postgresql.Driver
     validationQuery: "SELECT 1"
   jpa:
