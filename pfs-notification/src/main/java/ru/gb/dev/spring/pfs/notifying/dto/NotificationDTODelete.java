@@ -1,17 +1,18 @@
 package ru.gb.dev.spring.pfs.notifying.dto;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 
-@Data
-@XmlRootElement
+@Getter
+@Setter
 @NoArgsConstructor
-public class NotificationDtoDelete extends NotificationAbstractDto{
+public class NotificationDTODelete extends NotificationAbstractDTO {
 
     @NotNull
     private String id;
@@ -22,7 +23,8 @@ public class NotificationDtoDelete extends NotificationAbstractDto{
     private String userId;
 
     @NotNull
-    private LocalDateTime dateTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+    private Date dateTime;
 
     @NotNull
     private String title;
@@ -30,8 +32,8 @@ public class NotificationDtoDelete extends NotificationAbstractDto{
     @NotNull
     private String body;
 
-    public NotificationDtoDelete(@NotNull String id, boolean isActive, @NotNull String userId,
-                                 @NotNull LocalDateTime dateTime, @NotNull String title,
+    public NotificationDTODelete(@NotNull String id, boolean isActive, @NotNull String userId,
+                                 @NotNull Date dateTime, @NotNull String title,
                                  @NotNull String body) {
         this.id = id;
         this.isActive = isActive;

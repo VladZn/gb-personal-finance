@@ -1,18 +1,18 @@
 package ru.gb.dev.spring.pfs.notifying.dto;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Setter;
+import lombok.Getter;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.time.LocalDateTime;
+import java.util.Date;
 
-@Data
-@XmlRootElement
+@Getter
+@Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-public class NotificationDtoCreate extends NotificationAbstractDto{
+public class NotificationDTOCreate extends NotificationAbstractDTO {
 
     private Boolean isActive;
 
@@ -20,7 +20,8 @@ public class NotificationDtoCreate extends NotificationAbstractDto{
     private String userId;
 
     @NotNull
-    private LocalDateTime dateTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+    private Date dateTime;
 
     @NotNull
     private String title;
@@ -28,8 +29,8 @@ public class NotificationDtoCreate extends NotificationAbstractDto{
     @NotNull
     private String body;
 
-    public NotificationDtoCreate(boolean isActive, String userId,
-                                 LocalDateTime dateTime,
+    public NotificationDTOCreate(boolean isActive, String userId,
+                                 Date dateTime,
                                  String title,
                                  String body) {
         this.isActive = isActive;

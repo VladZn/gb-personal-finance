@@ -1,7 +1,7 @@
 package ru.gb.dev.spring.pfs.notifying.dto.util;
 
 import org.modelmapper.ModelMapper;
-import ru.gb.dev.spring.pfs.notifying.dto.NotificationAbstractDto;
+import ru.gb.dev.spring.pfs.notifying.dto.NotificationAbstractDTO;
 import ru.gb.dev.spring.pfs.notifying.model.Notification;
 
 /**
@@ -18,14 +18,14 @@ public class ConvertUtil {
 
     }
 
-    public static Notification convertDtoToNotification(NotificationAbstractDto notifucationDto){
+    public static Notification convertDtoToNotification(NotificationAbstractDTO notifucationDto){
 
         return modelMapper
                 .map(notifucationDto, Notification.class);
 
     }
 
-    public static <D> D converDtoToDto(NotificationAbstractDto notificationDtoIn,
+    public static <D> D converDtoToDto(NotificationAbstractDTO notificationDtoIn,
                                        Class<D> notificationDtoOut){
         return modelMapper
                 .map(notificationDtoIn, notificationDtoOut);
