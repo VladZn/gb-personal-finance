@@ -1,12 +1,12 @@
 package ru.gb.dev.spring.pfs.accounting.model.dto.base;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
 @NoArgsConstructor
 public class AbstractNamedDto extends AbstractBaseDto {
 

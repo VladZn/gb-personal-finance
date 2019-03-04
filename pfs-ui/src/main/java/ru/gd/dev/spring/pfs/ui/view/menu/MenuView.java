@@ -27,6 +27,7 @@ public class MenuView extends HorizontalLayout implements RouterLayout {
                     @NotNull final MenuLinksBox menuLinksBox) {
         this.personalInformationBox = personalInformationBox;
         this.menuLinksBox = menuLinksBox;
+        setSizeFull();
         getClassNames().add("rootView");
         final VerticalLayout menuView = new VerticalLayout(personalInformationBox, menuLinksBox);
         menuView.getClassNames().add("menuView");

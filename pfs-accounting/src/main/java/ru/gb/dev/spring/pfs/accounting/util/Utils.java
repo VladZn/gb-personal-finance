@@ -8,26 +8,26 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 
-public class Utils {
+public final class Utils {
 
-	private Utils() {
-	}
+    private Utils() {
+    }
 
-	public static BigDecimal getBigDecimalOfString(@Nullable final String amount) {
-		if (StringUtils.isEmpty(amount)) return BigDecimal.ZERO;
+    public static BigDecimal getBigDecimalOfString(@Nullable final String amount) {
+        if (StringUtils.isEmpty(amount)) return BigDecimal.ZERO;
 
-		DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-		symbols.setGroupingSeparator(' ');
-		symbols.setDecimalSeparator('.');
-		String pattern = "#,##0.0#";
-		DecimalFormat format = new DecimalFormat(pattern, symbols);
-		format.setParseBigDecimal(true);
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setGroupingSeparator(' ');
+        symbols.setDecimalSeparator('.');
+        String pattern = "#,##0.0#";
+        DecimalFormat format = new DecimalFormat(pattern, symbols);
+        format.setParseBigDecimal(true);
 
-		try {
-			return (BigDecimal) format.parse(amount);
-		} catch (ParseException e) {
-			return BigDecimal.ZERO;
-		}
-	}
+        try {
+            return (BigDecimal) format.parse(amount);
+        } catch (ParseException e) {
+            return BigDecimal.ZERO;
+        }
+    }
 
 }

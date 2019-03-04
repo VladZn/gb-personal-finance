@@ -21,9 +21,10 @@ public class OperationView extends VerticalLayout {
         getClassNames().add("contentView");
         getClassNames().add("operationView");
         this.messageSource = messageSource;
-        final Label label =
+        final Label title =
                 new Label(messageSource.getMessage("menu.links.operation", null, getLocale()));
-        label.setId("operationLabel");
-        add(label);
+        title.getClassNames().add("pageTitle");
+        title.setId("operationLabel");
+        add(title);
     }
 }

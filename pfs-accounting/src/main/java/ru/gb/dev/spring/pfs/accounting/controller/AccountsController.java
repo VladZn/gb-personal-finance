@@ -23,64 +23,58 @@ import java.util.stream.StreamSupport;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
 @RestController
-@RequestMapping("/api/accounts")
+@RequestMapping(value = "/api/accounts", produces = APPLICATION_JSON_UTF8_VALUE)
 public class AccountsController {
 
-	private final AccountService service;
-	private final AccountMapper mapper;
+    private final AccountService service;
+    private final AccountMapper mapper;
 
-	@Autowired
-	public AccountsController(final AccountService service, AccountMapper mapper) {
-		this.service = service;
-		this.mapper = mapper;
-	}
+    @Autowired
+    public AccountsController(final AccountService service, AccountMapper mapper) {
+        this.service = service;
+        this.mapper = mapper;
+    }
 
-    @GetMapping(value = "/ping", produces = APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/ping")
     public ResultDto ping() {
         return new SuccessDto();
     }
 
-	@GetMapping(value = "{id}", produces = APPLICATION_JSON_UTF8_VALUE)
-	public AccountDto get(@PathVariable("id") final String id) {
-		return service.findById(id)
-				.map(mapper::toDto)
-				.orElseThrow(() -> new EntityNotFoundException("Account with id " + id + "not found"));
-	}
+    @GetMapping(value = "{id}")
+    public AccountDto findOne(@PathVariable("id") final String id) {
+        return service.findById(id)
+                .map(mapper::toDto)
+                .orElseThrow(() -> new EntityNotFoundException("Account with id " + id + "not found"));
+    }
 
-	@GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-	public List<AccountDto> getAll() {
-		final Iterable<Account> accounts = service.findAll();
-		return StreamSupport
-				.stream(accounts.spliterator(), false)
-				.map(mapper::toDto)
-				.collect(Collectors.toList());
-	}
+    @GetMapping
+    public List<AccountDto> findAll() {
+        final Iterable<Account> accounts = service.findAll();
+        return StreamSupport
+                .stream(accounts.spliterator(), false)
+                .map(mapper::toDto)
+                .collect(Collectors.toList());
+    }
 
-    @PostMapping(
-            consumes = APPLICATION_JSON_UTF8_VALUE,
-            produces = APPLICATION_JSON_UTF8_VALUE)
-    public ResultDto post(final AccountDto accountDto) {
+    @PostMapping(consumes = APPLICATION_JSON_UTF8_VALUE)
+    public ResultDto create(final AccountDto accountDto) {
         service.save(accountDto);
         return new ResultDto();
     }
 
-    @PutMapping(
-            consumes = APPLICATION_JSON_UTF8_VALUE,
-            produces = APPLICATION_JSON_UTF8_VALUE)
-    public ResultDto put(final AccountDto accountDto) {
+    @PutMapping(consumes = APPLICATION_JSON_UTF8_VALUE)
+    public ResultDto update(final AccountDto accountDto) {
         service.save(accountDto);
         return new ResultDto();
     }
 
-    @DeleteMapping(
-            consumes = APPLICATION_JSON_UTF8_VALUE,
-            produces = APPLICATION_JSON_UTF8_VALUE)
+    @DeleteMapping(consumes = APPLICATION_JSON_UTF8_VALUE)
     public ResultDto delete(final String accountId) {
         service.deleteById(accountId);
         return new ResultDto();
     }
 
-    @DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+    @DeleteMapping
     public ResultDto deleteAll() {
         service.deleteAll();
         return new ResultDto();

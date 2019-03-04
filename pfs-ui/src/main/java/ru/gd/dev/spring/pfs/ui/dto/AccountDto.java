@@ -1,6 +1,7 @@
 package ru.gd.dev.spring.pfs.ui.dto;
 
 import lombok.Data;
+
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
@@ -19,14 +20,14 @@ public class AccountDto extends AbstractNamedDto {
     @NotNull
     private String comment = "";
 
-	@NotNull
-	private Boolean active = Boolean.FALSE;
+  	@NotNull
+	  private Boolean active = Boolean.FALSE;
 
     @NotNull
     private String userId = "";
 
     @NotNull
-    private String typeId = "";
+    private AccountType type = AccountType.CASH;
 
     @NotNull
     private String clientId = "";
