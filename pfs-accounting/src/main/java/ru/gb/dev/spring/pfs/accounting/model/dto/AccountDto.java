@@ -1,5 +1,6 @@
 package ru.gb.dev.spring.pfs.accounting.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import ru.gb.dev.spring.pfs.accounting.model.dto.base.AbstractNamedDto;
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class AccountDto extends AbstractNamedDto {
 
 	private static final long serialVersionUID = 1596263169401921474L;

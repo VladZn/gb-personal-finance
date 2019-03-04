@@ -2,6 +2,7 @@ package ru.gb.dev.spring.pfs.accounting.model.mapper;
 
 import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import ru.gb.dev.spring.pfs.accounting.model.dto.AccountDto;
 import ru.gb.dev.spring.pfs.accounting.model.entity.Account;
 
@@ -16,7 +17,9 @@ public class AccountMapper implements Mapper<Account, AccountDto> {
         if (dto == null) return null;
 
         final Account account = new Account();
-//        account.setId(dto.getId());
+        if (!StringUtils.isEmpty(dto.getId())) {
+            account.setId(dto.getId());
+        }
         account.setName(dto.getName());
         account.setAmount(getBigDecimalOfString(dto.getAmount()));
         account.setComment(dto.getComment());

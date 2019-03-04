@@ -7,3 +7,16 @@ exception:
 
 signing:
   key: "cGVyc29uYWwgZmluYW5jZSBzZXJ2aWNl"
+
+# For detailed logging during development
+logging:
+  level:
+    org:
+      com: ERROR
+      springframework: ERROR
+      hibernate:
+        sql: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: ERROR

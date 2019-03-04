@@ -20,33 +20,33 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 public class Account extends AbstractNamedEntity {
 
-	@NotNull
-	@Column(name = "amount")
-	private BigDecimal amount = BigDecimal.ZERO;
+    @NotNull
+    @Column(name = "amount")
+    private BigDecimal amount = BigDecimal.ZERO;
 
-	@NotNull
-	@Column(name = "comment")
-	private String comment = "";
+    @NotNull
+    @Column(name = "comment")
+    private String comment = "";
 
-	@NotNull
-	@Column(name = "active")
-	private Boolean active = false;
+    @NotNull
+    @Column(name = "active")
+    private Boolean active = false;
 
-	@NotNull
-	@Column(name = "type_id")
-	private String typeId = "";
+    @NotNull
+    @Column(name = "type_id")
+    private String typeId = "";
 
-	@NotNull
-	@Column(name = "user_id")
-	private String userId = "";
+    @NotNull
+    @Column(name = "user_id")
+    private String userId = "";
 
-	@NotNull
-	@Column(name = "client_id")
-	private String clientId = "";
+    @NotNull
+    @Column(name = "client_id")
+    private String clientId = "";
 
-	@NotNull
-	@Column(name = "logoId")
-	private String logoId = "";
+    @NotNull
+    @Column(name = "logoId")
+    private String logoId = "";
 
 }
 
