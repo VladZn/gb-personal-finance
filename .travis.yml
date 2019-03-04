@@ -10,5 +10,5 @@ cache:
 
 # https://docs.travis-ci.com/user/database-setup/#PostgreSQL
 before_script:
-  - psql -c 'create database test' -U postgres
-  - psql -c 'create user "test"; grant all privileges on database test to "test"' -U postgres
+  - psql -U postgres -tc "SELECT 1 FROM pg_database WHERE datname = 'notification'" | grep -q 1 || psql -U postgres -c "CREATE DATABASE notification"
+  - psql -c 'create user "user"; grant all privileges on database notification to "user"' -U postgres
