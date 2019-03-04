@@ -29,7 +29,7 @@ import static org.junit.Assert.assertNotNull;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class AccountViewTest {
+public class AccountDetailViewTest {
 
     @Autowired
     MessageSource messageSource;

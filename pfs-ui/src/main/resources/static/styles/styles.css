@@ -159,6 +159,9 @@ body {
 }
 
 .contentView {
+    display: block;
+    overflow: auto;
+    height: 100%;
     max-width: 85%;
     background-color: hsla(214, 96%, 96%, 0.9);
 }
@@ -182,7 +185,7 @@ body {
 }
 
 .accountBox img {
-    margin: 0 5px;
+    margin: 0 20px;
 }
 
 .accountBox a {
