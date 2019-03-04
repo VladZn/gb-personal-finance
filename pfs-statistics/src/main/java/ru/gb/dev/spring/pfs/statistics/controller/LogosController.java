@@ -2,92 +2,87 @@ package ru.gb.dev.spring.pfs.statistics.controller;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import ru.gb.dev.spring.pfs.statistics.exception.EntityNotFoundException;
-import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDto;
-import ru.gb.dev.spring.pfs.statistics.controller.dto.ResultDto;
-import ru.gb.dev.spring.pfs.statistics.controller.dto.SuccessDto;
+import ru.gb.dev.spring.pfs.statistics.controller.dto.SuccessDTO;
+import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Logo;
 import ru.gb.dev.spring.pfs.statistics.model.service.LogoService;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 import java.util.stream.StreamSupport;
-
-import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
 @RestController
 @RequestMapping("/api/logos")
 public class LogosController {
 
-	private final LogoService service;
+    private final LogoService service;
 
-	private final ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
-	@Autowired
-	public LogosController(final LogoService service, final ModelMapper modelMapper) {
-		this.service = service;
-		this.modelMapper = modelMapper;
-	}
+    @Autowired
+    public LogosController(LogoService service, ModelMapper modelMapper) {
+        this.service = service;
+        this.modelMapper = modelMapper;
+    }
 
-	@GetMapping(value = "/ping", produces = APPLICATION_JSON_UTF8_VALUE)
-	public ResultDto ping() {
-		return new SuccessDto();
-	}
+    @RequestMapping(value = "/ping")
+    public ResponseEntity<Object> ping() {
+        return new ResponseEntity<>(new SuccessDTO(), HttpStatus.OK);
+    }
 
-	@GetMapping(value = "{id}", produces = APPLICATION_JSON_UTF8_VALUE)
-	public LogoDto get(@PathVariable("id") final String id) {
-		return service.findById(id)
-				.map(logo -> modelMapper.map(logo, LogoDto.class))
-				.orElseThrow(() -> new EntityNotFoundException("Logo with id " + id + "not found"));
-	}
+    @RequestMapping(value = "/{id}")
+    public ResponseEntity<Object> getLogo(@PathVariable("id") String id) {
+        return new ResponseEntity<>(
+                service.findById(id)
+                        .map(logo -> modelMapper.map(logo, LogoDTO.class))
+                        .orElseGet(LogoDTO::new),
+                HttpStatus.OK);
+    }
 
-	@GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-	public List<LogoDto> getAll() {
-		final Iterable<Logo> logos = service.findAll();
-		return StreamSupport
-				.stream(logos.spliterator(), false)
-				.map(logo -> modelMapper.map(logo, LogoDto.class))
-				.collect(Collectors.toList());
-	}
+    @RequestMapping
+    public ResponseEntity<Object> getAllLogo() {
+        return new ResponseEntity<>(
+                StreamSupport.stream(service.findAll().spliterator(), false)
+                        .map(logo -> modelMapper.map(logo, LogoDTO.class))
+                        .toArray(),
+                HttpStatus.OK);
+    }
 
-	@PostMapping(
-			consumes = APPLICATION_JSON_UTF8_VALUE,
-			produces = APPLICATION_JSON_UTF8_VALUE
-	)
-	public ResultDto post(final LogoDto logoDto) {
-		service.save(logoDto);
-		return new ResultDto();
-	}
 
-	@PutMapping(
-			consumes = APPLICATION_JSON_UTF8_VALUE,
-			produces = APPLICATION_JSON_UTF8_VALUE
-	)
-	public ResultDto put(final LogoDto logoDto) {
-		service.save(logoDto);
-		return new ResultDto();
-	}
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Object> createLogo(@RequestBody LogoDTO logoDto) {
+        service.save(logoDto);
+        return new ResponseEntity<>("Logo is created successfully", HttpStatus.CREATED);
+    }
 
-	@DeleteMapping(
-			consumes = APPLICATION_JSON_UTF8_VALUE,
-			produces = APPLICATION_JSON_UTF8_VALUE
-	)
-	public ResultDto delete(final String logoId) {
-		service.deleteById(logoId);
-		return new ResultDto();
-	}
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Object> updateLogo(@PathVariable("id") String id, @RequestBody LogoDTO logoDto) {
+        Optional<Logo> optional = service.findById(id);
+        if (!optional.isPresent()) return new ResponseEntity<>("Logo is not found", HttpStatus.NOT_FOUND);
+        Logo logo = optional.get();
+        logoDto.setId(id);
+        logoDto.setCreated(logo.getCreated());
+        logoDto.setUpdated(logo.getUpdated());
+        service.save(logoDto);
+        return new ResponseEntity<>("Logo is updated successfully", HttpStatus.OK);
+    }
 
-	@DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-	public ResultDto deleteAll() {
-		service.deleteAll();
-		return new ResultDto();
-	}
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Object> deleteLogo(@PathVariable("id") String logoId) {
+        service.deleteById(logoId);
+        return new ResponseEntity<>("Logo is deleted successfully", HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseEntity<Object> deleteAllLogo() {
+        service.deleteAll();
+        return new ResponseEntity<>("Logos are deleted successfully", HttpStatus.OK);
+    }
 
 }

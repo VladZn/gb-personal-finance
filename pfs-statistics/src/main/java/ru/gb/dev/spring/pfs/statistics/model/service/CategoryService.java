@@ -1,6 +1,6 @@
 package ru.gb.dev.spring.pfs.statistics.model.service;
 
-import ru.gb.dev.spring.pfs.statistics.model.dto.CategoryDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.CategoryDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Category;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Logo;
 
@@ -32,8 +32,8 @@ public interface CategoryService {
 
 	void deleteAll();
 
-	void save(CategoryDto categoryDto);
+	void save(CategoryDTO categoryDto);
 
-	void delete(CategoryDto categoryDto);
+	void delete(CategoryDTO categoryDto);
 
 }

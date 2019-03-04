@@ -4,14 +4,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import ru.gb.dev.spring.pfs.statistics.model.dto.CategoryDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.CategoryDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Category;
 
 import static org.apache.commons.lang.RandomStringUtils.randomAlphabetic;
 import static org.junit.Assert.assertEquals;
 import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
 
-public class CategoryDtoTest {
+public class CategoryDTOTest {
 
 	private ModelMapper mapper;
 
@@ -33,7 +33,7 @@ public class CategoryDtoTest {
 		category.setActive(true);
 
 		// when
-		final CategoryDto categoryDto = mapper.map(category, CategoryDto.class);
+		final CategoryDTO categoryDto = mapper.map(category, CategoryDTO.class);
 
 		// then
 		assertEquals(category.getId(), categoryDto.getId());
@@ -44,7 +44,7 @@ public class CategoryDtoTest {
 	@Test
 	public void whenConvertCategoryDtoToCategoryEntity_thenCorrect() {
 		// given
-		final CategoryDto categoryDto = new CategoryDto();
+		final CategoryDTO categoryDto = new CategoryDTO();
 		categoryDto.setName(randomAlphabetic(8));
 		categoryDto.setActive(Boolean.TRUE);
 

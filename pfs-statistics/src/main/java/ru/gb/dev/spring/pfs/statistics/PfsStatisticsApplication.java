@@ -31,7 +31,7 @@ public class PfsStatisticsApplication {
 		return mapper;
 	}
 
-	public static void main(final String[] args) {
+    public static void main(final String[] args) {
 		SpringApplication.run(PfsStatisticsApplication.class, args);
 	}
 

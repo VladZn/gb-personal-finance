@@ -4,14 +4,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import ru.gb.dev.spring.pfs.statistics.model.dto.ClientDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.ClientDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Client;
 
 import static org.apache.commons.lang.RandomStringUtils.randomAlphabetic;
 import static org.junit.Assert.assertEquals;
 import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
 
-public class ClientDtoTest {
+public class ClientDTOTest {
 
 	private ModelMapper mapper;
 
@@ -30,14 +30,14 @@ public class ClientDtoTest {
 		final Client client = new Client();
 		client.setName(randomAlphabetic(8));
 
-		final ClientDto clientDto = mapper.map(client, ClientDto.class);
+		final ClientDTO clientDto = mapper.map(client, ClientDTO.class);
 		assertEquals(client.getId(), clientDto.getId());
 		assertEquals(client.getName(), clientDto.getName());
 	}
 
 	@Test
 	public void whenConvertClientDtoToClientEntity_thenCorrect() {
-		final ClientDto clientDto = new ClientDto();
+		final ClientDTO clientDto = new ClientDTO();
 		clientDto.setName(randomAlphabetic(8));
 
 		final Client client = mapper.map(clientDto, Client.class);

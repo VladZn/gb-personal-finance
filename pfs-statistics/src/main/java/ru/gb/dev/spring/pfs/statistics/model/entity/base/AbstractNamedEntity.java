@@ -9,11 +9,11 @@ import org.jetbrains.annotations.NotNull;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
-@MappedSuperclass
 @Data
-@EqualsAndHashCode(callSuper = true)
+@MappedSuperclass
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
 	@NotNull

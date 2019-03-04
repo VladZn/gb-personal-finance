@@ -4,17 +4,15 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
-import ru.gb.dev.spring.pfs.statistics.model.dto.base.AbstractNamedDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.base.AbstractNamedDTO;
 
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-@XmlRootElement
-public class ClientDto extends AbstractNamedDto {
+@EqualsAndHashCode(callSuper = true)
+public class ClientDTO extends AbstractNamedDTO {
 
 	private static final long serialVersionUID = 6397781857024530712L;
 
@@ -52,7 +50,7 @@ public class ClientDto extends AbstractNamedDto {
 	private String logoId = "";
 
 	@NotNull
-	private List<OperationDto> operations = new ArrayList<>();
+	private List<OperationDTO> operations = new ArrayList<>();
 
 	@NotNull
 	private String userId = "";

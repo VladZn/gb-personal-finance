@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import ru.gb.dev.spring.pfs.statistics.exception.EntityNotFoundException;
-import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.LogoDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Logo;
 import ru.gb.dev.spring.pfs.statistics.model.repository.LogoRepository;
 
@@ -87,7 +87,7 @@ public class LogoServiceImpl implements LogoService {
 	}
 
 	@Override
-	public void save(final LogoDto logoDto) {
+	public void save(final LogoDTO logoDto) {
 		if (logoDto == null) return;
 
 		final Logo logo = modelMapper.map(logoDto, Logo.class);
@@ -96,7 +96,7 @@ public class LogoServiceImpl implements LogoService {
 	}
 
 	@Override
-	public void delete(final LogoDto logoDto) {
+	public void delete(final LogoDTO logoDto) {
 		if (logoDto == null) return;
 
 		deleteById(logoDto.getId());

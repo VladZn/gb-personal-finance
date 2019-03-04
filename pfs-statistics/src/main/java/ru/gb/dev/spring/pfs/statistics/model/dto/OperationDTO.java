@@ -4,16 +4,14 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
-import ru.gb.dev.spring.pfs.statistics.model.dto.base.AbstractBaseDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.base.AbstractBaseDTO;
 
-import javax.xml.bind.annotation.XmlRootElement;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-@XmlRootElement
-public class OperationDto extends AbstractBaseDto {
+@EqualsAndHashCode(callSuper = true)
+public class OperationDTO extends AbstractBaseDTO {
 
 	private static final long serialVersionUID = -6268060818229181878L;
 
@@ -33,7 +31,7 @@ public class OperationDto extends AbstractBaseDto {
 	private String number = "";
 
 	@NotNull
-	private LocalDateTime operationDate = LocalDateTime.now();
+	private Date operationDate = new Date();
 
 	@NotNull
 	private Boolean active = Boolean.FALSE;

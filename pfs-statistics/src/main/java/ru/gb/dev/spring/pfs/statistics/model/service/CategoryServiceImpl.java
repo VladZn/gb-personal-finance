@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import ru.gb.dev.spring.pfs.statistics.exception.EntityNotFoundException;
-import ru.gb.dev.spring.pfs.statistics.model.dto.CategoryDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.CategoryDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Category;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Logo;
 import ru.gb.dev.spring.pfs.statistics.model.repository.CategoryRepository;
@@ -95,7 +95,7 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public void save(final CategoryDto categoryDto) {
+	public void save(final CategoryDTO categoryDto) {
 		if (categoryDto == null) return;
 
 		final Category category = mapper.map(categoryDto, Category.class);
@@ -104,7 +104,7 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public void delete(final CategoryDto categoryDto) {
+	public void delete(final CategoryDTO categoryDto) {
 		if (categoryDto == null) return;
 
 		deleteById(categoryDto.getId());

@@ -2,92 +2,87 @@ package ru.gb.dev.spring.pfs.statistics.controller;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import ru.gb.dev.spring.pfs.statistics.exception.EntityNotFoundException;
-import ru.gb.dev.spring.pfs.statistics.model.dto.ClientDto;
-import ru.gb.dev.spring.pfs.statistics.controller.dto.ResultDto;
-import ru.gb.dev.spring.pfs.statistics.controller.dto.SuccessDto;
+import ru.gb.dev.spring.pfs.statistics.controller.dto.SuccessDTO;
+import ru.gb.dev.spring.pfs.statistics.model.dto.ClientDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Client;
 import ru.gb.dev.spring.pfs.statistics.model.service.ClientService;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 import java.util.stream.StreamSupport;
-
-import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
 @RestController
 @RequestMapping("/api/clients")
 public class ClientsController {
 
-	private final ClientService service;
+    private final ClientService service;
 
-	private final ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
-	@Autowired
-	public ClientsController(final ClientService service, final ModelMapper modelMapper) {
-		this.service = service;
-		this.modelMapper = modelMapper;
-	}
+    @Autowired
+    public ClientsController(ClientService service, ModelMapper modelMapper) {
+        this.service = service;
+        this.modelMapper = modelMapper;
+    }
 
-	@GetMapping(value = "/ping", produces = APPLICATION_JSON_UTF8_VALUE)
-	public ResultDto ping() {
-		return new SuccessDto();
-	}
+    @RequestMapping(value = "/ping")
+    public ResponseEntity<Object> ping() {
+        return new ResponseEntity<>(new SuccessDTO(), HttpStatus.OK);
+    }
 
-	@GetMapping(value = "{id}", produces = APPLICATION_JSON_UTF8_VALUE)
-	public ClientDto get(@PathVariable("id") final String id) {
-		return service.findById(id)
-				.map(client -> modelMapper.map(client, ClientDto.class))
-				.orElseThrow(() -> new EntityNotFoundException("Logo with id " + id + "not found"));
-	}
+    @RequestMapping(value = "/{id}")
+    public ResponseEntity<Object> getClient(@PathVariable("id") String id) {
+        return new ResponseEntity<>(
+                service.findById(id)
+                        .map(client -> modelMapper.map(client, ClientDTO.class))
+                        .orElseGet(ClientDTO::new),
+                HttpStatus.OK);
+    }
 
-	@GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-	public List<ClientDto> getAll() {
-		final Iterable<Client> clients = service.findAll();
-		return StreamSupport
-				.stream(clients.spliterator(), false)
-				.map(client -> modelMapper.map(client, ClientDto.class))
-				.collect(Collectors.toList());
-	}
+    @RequestMapping
+    public ResponseEntity<Object> getAllClient() {
+        return new ResponseEntity<>(
+                StreamSupport.stream(service.findAll().spliterator(), false)
+                        .map(client -> modelMapper.map(client, ClientDTO.class))
+                        .toArray(),
+                HttpStatus.OK);
+    }
 
-	@PostMapping(
-			consumes = APPLICATION_JSON_UTF8_VALUE,
-			produces = APPLICATION_JSON_UTF8_VALUE
-	)
-	public ResultDto post(final ClientDto clientDto) {
-		service.save(clientDto);
-		return new ResultDto();
-	}
 
-	@PutMapping(
-			consumes = APPLICATION_JSON_UTF8_VALUE,
-			produces = APPLICATION_JSON_UTF8_VALUE
-	)
-	public ResultDto put(final ClientDto clientDto) {
-		service.save(clientDto);
-		return new ResultDto();
-	}
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Object> createClient(@RequestBody ClientDTO clientDto) {
+        service.save(clientDto);
+        return new ResponseEntity<>("Client is created successfully", HttpStatus.CREATED);
+    }
 
-	@DeleteMapping(
-			consumes = APPLICATION_JSON_UTF8_VALUE,
-			produces = APPLICATION_JSON_UTF8_VALUE
-	)
-	public ResultDto delete(final String clientId) {
-		service.deleteById(clientId);
-		return new ResultDto();
-	}
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Object> updateClient(@PathVariable("id") String id, @RequestBody ClientDTO clientDto) {
+        Optional<Client> optional = service.findById(id);
+        if (!optional.isPresent()) return new ResponseEntity<>("Client is not found", HttpStatus.NOT_FOUND);
+        Client client = optional.get();
+        clientDto.setId(id);
+        clientDto.setCreated(client.getCreated());
+        clientDto.setUpdated(client.getUpdated());
+        service.save(clientDto);
+        return new ResponseEntity<>("Client is updated successfully", HttpStatus.OK);
+    }
 
-	@DeleteMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-	public ResultDto deleteAll() {
-		service.deleteAll();
-		return new ResultDto();
-	}
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Object> deleteClient(@PathVariable("id") String clientId) {
+        service.deleteById(clientId);
+        return new ResponseEntity<>("Client is deleted successfully", HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseEntity<Object> deleteAllClient() {
+        service.deleteAll();
+        return new ResponseEntity<>("Clients are deleted successfully", HttpStatus.OK);
+    }
 
 }

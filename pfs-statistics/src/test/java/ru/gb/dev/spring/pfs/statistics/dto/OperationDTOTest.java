@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import ru.gb.dev.spring.pfs.statistics.model.dto.OperationDto;
+import ru.gb.dev.spring.pfs.statistics.model.dto.OperationDTO;
 import ru.gb.dev.spring.pfs.statistics.model.entity.Operation;
 
 import java.math.BigDecimal;
@@ -13,7 +13,7 @@ import static org.apache.commons.lang.RandomStringUtils.randomAlphabetic;
 import static org.junit.Assert.assertEquals;
 import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
 
-public class OperationDtoTest {
+public class OperationDTOTest {
 
 	private ModelMapper mapper;
 
@@ -36,7 +36,7 @@ public class OperationDtoTest {
 		operation.setActive(true);
 
 		// when
-		final OperationDto operationDto = mapper.map(operation, OperationDto.class);
+		final OperationDTO operationDto = mapper.map(operation, OperationDTO.class);
 
 		// then
 		assertEquals(operation.getId(), operationDto.getId());
@@ -49,7 +49,7 @@ public class OperationDtoTest {
 	@Test
 	public void whenConvertOperationDtoToOperationEntity_thenCorrect() {
 		// given
-		final OperationDto operationDto = new OperationDto();
+		final OperationDTO operationDto = new OperationDTO();
 		operationDto.setComment(randomAlphabetic(8));
 		operationDto.setAmount(BigDecimal.TEN.toString());
 		operationDto.setActive(Boolean.TRUE);
